@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1116276832282480449}
   - component: {fileID: 6090504914900971158}
   - component: {fileID: 7103120004766243094}
+  - component: {fileID: 2845412450084412387}
   m_Layer: 0
   m_Name: foxrun1
   m_TagString: Untagged
@@ -98,7 +99,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 10
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -165,3 +166,21 @@ PolygonCollider2D:
       - {x: 0.475, y: -0.3}
       - {x: 0.475, y: 0.35}
   m_UseDelaunayMesh: 0
+--- !u!114 &2845412450084412387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7937113779895964329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31c3a819cd52cf345a57b438be4b1702, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterHolder: {fileID: 7937113779895964329}
+  walkSpeed: 5
+  gravityScale: 5
+  jumpForce: 10
+  timeUntilAutoJump: 0.5
+  buttonTime: 0.3

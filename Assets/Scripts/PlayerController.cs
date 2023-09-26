@@ -6,8 +6,9 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;
     private PolygonCollider2D pc;
+    public GameObject characterHolder;
     public float walkSpeed = 5f;
-    public float gravityScale = 5f;
+    public float gravityScale = 10f;
 
     private float horizontalInput;
 
@@ -44,6 +45,7 @@ public class PlayerController : MonoBehaviour
             if (jumping)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                StartCoroutine(JumpSqueeze(1.25f, 0.8f, 0.05f));
                 jumpTime += Time.deltaTime;
             }
             if (Input.GetKeyUp(KeyCode.Space) | jumpTime > buttonTime)
@@ -58,11 +60,37 @@ public class PlayerController : MonoBehaviour
         // Move the player
         rb.velocity = new Vector2(horizontalInput * walkSpeed, rb.velocity.y);
 
-        print(rb.velocity.y);
-        print(onGround);
-        print(Input.GetKey(KeyCode.Space));
+        // Flip the player
+        if (rb.velocity.x > 0)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+        else if (rb.velocity.x < 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
     }
 
+    IEnumerator JumpSqueeze(float xSqueeze, float ySqueeze, float seconds)
+    {
+        Vector3 originalSize = Vector3.one;
+        Vector3 newSize = new Vector3(xSqueeze, ySqueeze, originalSize.z);
+        float t = 0f;
+        while (t <= 1.0)
+        {
+            t += Time.deltaTime / seconds;
+            characterHolder.transform.localScale = Vector3.Lerp(originalSize, newSize, t);
+            yield return null;
+        }
+        t = 0f;
+        while (t <= 1.0)
+        {
+            t += Time.deltaTime / seconds;
+            characterHolder.transform.localScale = Vector3.Lerp(newSize, originalSize, t);
+            yield return null;
+        }
+
+    }
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Ground")
