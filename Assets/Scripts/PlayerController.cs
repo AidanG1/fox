@@ -6,11 +6,15 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D rb;
     private PolygonCollider2D pc;
+    private GameObject weaponParent;
+    private GameObject weapon;
+
     public GameObject characterHolder;
     public float walkSpeed = 5f;
     public float gravityScale = 10f;
 
     private float horizontalInput;
+    private Vector3 mousePosition;
 
     public float jumpForce = 10f;
     public float timeUntilAutoJump = 0.5f;
@@ -30,6 +34,10 @@ public class PlayerController : MonoBehaviour
 
         // Get the PolygonCollider2D component of the player
         pc = GetComponent<PolygonCollider2D>();
+
+        // Get the weapon of the player
+        weaponParent = transform.GetChild(0).gameObject;
+        weapon = weaponParent.transform.GetChild(0).gameObject;
     }
 
     // Update is called once per frame
@@ -56,6 +64,18 @@ public class PlayerController : MonoBehaviour
         // onGround = IsGrounded();
         // Get the horizontal input from the player
         horizontalInput = Input.GetAxis("Horizontal");
+        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        
+        // point the weapon at the mouse
+        Vector3 lookDirection = mousePosition - transform.position;
+        float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+        weapon.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+
+        // on left click, shoot the weapon
+        if (Input.GetMouseButtonDown(0))
+        {
+            weapon.GetComponent<Weapon>().Shoot();
+        }
 
         // Move the player
         rb.velocity = new Vector2(horizontalInput * walkSpeed, rb.velocity.y);
