@@ -58,9 +58,9 @@ public class PlayerController : MonoBehaviour
         // Move the player
         rb.velocity = new Vector2(horizontalInput * walkSpeed, rb.velocity.y);
 
-        print(rb.velocity.y);
-        print(onGround);
-        print(Input.GetKey(KeyCode.Space));
+        //print(rb.velocity.y);
+        //print(onGround);
+        //print(Input.GetKey(KeyCode.Space));
     }
 
     void OnCollisionEnter2D(Collision2D collision)

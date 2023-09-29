@@ -622,7 +622,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   walkSpeed: 5
+  gravityScale: 5
   jumpForce: 10
+  timeUntilAutoJump: 0.5
+  buttonTime: 0.3
 --- !u!1001 &7281461516785161091
 PrefabInstance:
   m_ObjectHideFlags: 0

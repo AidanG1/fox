@@ -15,4 +15,14 @@ public class CameraController : MonoBehaviour
     {
         
     }
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("fox")) // Check if the FOX collided with the trigger
+        {
+            Debug.Log("yes");
+            // Move the main camera to the position of this GameObject
+            Camera.main.transform.position = transform.position;
+        }
+    }
 }
