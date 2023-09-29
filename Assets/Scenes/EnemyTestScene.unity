@@ -1062,7 +1062,6 @@ GameObject:
   m_Component:
   - component: {fileID: 427338578}
   - component: {fileID: 427338577}
-  - component: {fileID: 427338576}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1070,14 +1069,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &427338576
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 427338575}
-  m_Enabled: 1
 --- !u!20 &427338577
 Camera:
   m_ObjectHideFlags: 0
@@ -1198,12 +1189,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -2804944890194112079, guid: a2addb356519e472db3d2d33595493f8, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -2804944890194112079, guid: a2addb356519e472db3d2d33595493f8, type: 3}
       propertyPath: moveRight
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -2804944890194112079, guid: a2addb356519e472db3d2d33595493f8, type: 3}
       propertyPath: moveSpeed
-      value: 7
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -2804944890194112079, guid: a2addb356519e472db3d2d33595493f8, type: 3}
       propertyPath: unitsToMove
