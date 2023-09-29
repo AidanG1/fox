@@ -53,7 +53,7 @@ public class Weapon : MonoBehaviour
                 GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
 
                 // set the bullet's rotation to the angle
-                bullet.transform.rotation = Quaternion.Euler(0, 0, angle);
+                bullet.transform.rotation = Quaternion.Euler(0, 0, angle + transform.rotation.eulerAngles.z);
 
                 // set the bullet's velocity to bulletSpeed
                 bullet.GetComponent<Bullet>().Shoot(bullet.transform.right * bulletSpeed);
