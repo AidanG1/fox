@@ -4,17 +4,10 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    public int maxRicochets = 0;
+    private int ricochets = 0;
+    public int maxPierces = 0;
+    private int pierces = 0;
 
     public void Shoot(Vector2 velocity)
     {

@@ -1,28 +1,37 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    // Basic player variables
     private Rigidbody2D rb;
     private PolygonCollider2D pc;
+    private SpriteRenderer sr;
+    private FrameInput frameInput = new FrameInput();
     private GameObject weaponParent;
     private GameObject weapon;
 
-    public GameObject characterHolder;
+    // Player movement variables
     public float walkSpeed = 5f;
+    public float runSpeed = 10f;
+    public float timeUntilRun = 0.5f;
     public float gravityScale = 10f;
+    public float jumpForce = 20f;
+    public float maxJumpForce = 28f;
+    public float maxJumpTime = 0.5f;
+    public float jumpBoostBuffer = 0.1f;
+    public bool currentlyJumping = false;
+    private float timeJumping = 0f;
 
-    private float horizontalInput;
-    private Vector3 mousePosition;
+    private float timeAtMaxHorizontalSpeed = 0f;
 
-    public float jumpForce = 10f;
-    public float timeUntilAutoJump = 0.5f;
+    // Player grounding variables
     private bool onGround = false;
-    public float buttonTime = 0.3f;
-    float jumpTime;
-    bool jumping;
-
+    public Vector3 boxSize = new Vector3(0.5f, 0.3f, 1f);
+    public float maxDistance = 0.1f;
+    public LayerMask layerMask = 3; // ground
     // Start is called before the first frame update
     void Start()
     {
@@ -38,48 +47,74 @@ public class PlayerController : MonoBehaviour
         // Get the weapon of the player
         weaponParent = transform.GetChild(0).gameObject;
         weapon = weaponParent.transform.GetChild(0).gameObject;
+
+        // Get the SpriteRenderer component of the player
+        sr = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (onGround || jumping)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                jumping = true;
-                jumpTime = 0;
-            }
-            if (jumping)
-            {
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-                StartCoroutine(JumpSqueeze(1.25f, 0.8f, 0.05f));
-                jumpTime += Time.deltaTime;
-            }
-            if (Input.GetKeyUp(KeyCode.Space) | jumpTime > buttonTime)
-            {
-                jumping = false;
-            }
-        }
-        // onGround = IsGrounded();
-        // Get the horizontal input from the player
-        horizontalInput = Input.GetAxis("Horizontal");
-        mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        
-        // point the weapon at the mouse
-        Vector3 lookDirection = mousePosition - transform.position;
-        float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
-        weapon.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+        ManageGround();
+        ManageInputs();
+        ManageJumping();
+        ManageWalking();
+        ManageShooting();
+    }
 
-        // on left click, shoot the weapon
-        if (Input.GetMouseButtonDown(0))
+    void ManageJumping()
+    {
+        // If on ground and jump is keyed down, add upwards force
+        if (onGround && frameInput.jumpDownPressed)
         {
-            weapon.GetComponent<Weapon>().Shoot();
+            currentlyJumping = true;
+            rb.velocity += new Vector2(0, jumpForce);
         }
 
-        // Move the player
-        rb.velocity = new Vector2(horizontalInput * walkSpeed, rb.velocity.y);
+        // If in the air and jump is held down, add small upwards force (this should only apply up to maxJumpForce)
+        if (!onGround && frameInput.jumpPressed && timeJumping > jumpBoostBuffer && timeJumping < maxJumpTime)
+        {
+            print("Here!");
+            // this extra force should be applied over time (maxJumpTime - jumpBoostBuffer)
+            float extraJumpForce = maxJumpForce - jumpForce;
+            float extraJumpTime = maxJumpTime - jumpBoostBuffer;
+            float extraJumpForcePerSecond = extraJumpForce / extraJumpTime;
+            rb.velocity += new Vector2(0, extraJumpForcePerSecond * Time.deltaTime);
+        }
 
+        if (frameInput.jumpPressed)
+        {
+            timeJumping += Time.deltaTime;
+        }
+        else
+        {
+            timeJumping = 0f;
+        }
+    }
+
+    void ManageInputs()
+    {
+        frameInput.horizontalInput = Input.GetAxis("Horizontal");
+        frameInput.mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        frameInput.jumpDownPressed = Input.GetKeyDown(KeyCode.Space);
+        frameInput.jumpPressed = Input.GetKey(KeyCode.Space);
+        frameInput.jumpUpPressed = Input.GetKeyUp(KeyCode.Space);
+        frameInput.shootPressed = Input.GetMouseButtonDown(0);
+    }
+
+    void ManageWalking()
+    {
+        if (Math.Abs(frameInput.horizontalInput) > 0.9)
+        {
+            timeAtMaxHorizontalSpeed += Time.deltaTime;
+        }
+        else
+        {
+            timeAtMaxHorizontalSpeed = 0f;
+        }
+        float speed = timeAtMaxHorizontalSpeed > timeUntilRun ? runSpeed : walkSpeed;
+
+        rb.velocity = new Vector2(frameInput.horizontalInput * speed, rb.velocity.y);
         // Flip the player
         if (rb.velocity.x > 0)
         {
@@ -91,39 +126,44 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    IEnumerator JumpSqueeze(float xSqueeze, float ySqueeze, float seconds)
+    void ManageShooting()
     {
-        Vector3 originalSize = Vector3.one;
-        Vector3 newSize = new Vector3(xSqueeze, ySqueeze, originalSize.z);
-        float t = 0f;
-        while (t <= 1.0)
+        // point the weapon at the mouse
+        Vector3 lookDirection = frameInput.mousePosition - transform.position;
+        float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
+        weapon.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+
+        // on left click, shoot the weapon
+        if (Input.GetMouseButtonDown(0))
         {
-            t += Time.deltaTime / seconds;
-            characterHolder.transform.localScale = Vector3.Lerp(originalSize, newSize, t);
-            yield return null;
-        }
-        t = 0f;
-        while (t <= 1.0)
-        {
-            t += Time.deltaTime / seconds;
-            characterHolder.transform.localScale = Vector3.Lerp(newSize, originalSize, t);
-            yield return null;
+            weapon.GetComponent<Weapon>().Shoot();
         }
 
     }
-    void OnCollisionEnter2D(Collision2D collision)
+    void ManageGround()
     {
-        if (collision.gameObject.tag == "Ground")
+        if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, maxDistance, layerMask))
         {
             onGround = true;
         }
-    }
-
-    void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "Ground")
+        else
         {
             onGround = false;
         }
     }
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawCube(transform.position - transform.up * maxDistance, boxSize);
+    }
+}
+
+public class FrameInput
+{
+    public float horizontalInput;
+    public Vector3 mousePosition;
+    public bool jumpDownPressed;
+    public bool jumpPressed;
+    public bool jumpUpPressed;
+    public bool shootPressed;
 }
