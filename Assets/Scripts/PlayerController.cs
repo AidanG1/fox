@@ -33,6 +33,14 @@ public class PlayerController : MonoBehaviour
     public Vector3 boxSize = new Vector3(0.5f, 0.3f, 1f);
     public float maxDistance = 0.1f;
     public LayerMask layerMask = 3; // ground
+
+    // added in for implementing immobility when interacting with a bear trap
+    private bool isImmobile = false;
+    private float immobileTimer = 0f;
+    public float waitTime = 3.3f; // Adjust the wait time as needed
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,9 +66,13 @@ public class PlayerController : MonoBehaviour
     {
         ManageGround();
         ManageInputs();
-        ManageJumping();
-        ManageWalking();
+        if (!isImmobile)
+        {
+            ManageJumping();
+            ManageWalking();
+        }
         ManageShooting();
+        cantMove();
     }
 
     void ManageJumping()
@@ -168,6 +180,33 @@ public class PlayerController : MonoBehaviour
         {
             // restart the level
             UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        }
+    }
+
+    // these two functions are so that the fox can't move when in the bear trap
+
+    public void SetImmobile()
+    {
+        isImmobile = true;
+        Debug.Log("immobile is set");
+    }
+
+    void cantMove()
+    {
+        if (isImmobile)
+        {
+            // Update the timer
+            immobileTimer += Time.deltaTime;
+
+            // Check if the immobile duration is over
+            if (immobileTimer >= waitTime)
+            {
+                // Reset the immobile state
+                isImmobile = false;
+
+                // Reset the timer
+                immobileTimer = 0f;
+            }
         }
     }
 }

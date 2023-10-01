@@ -11,12 +11,26 @@ public class BearTrap : MonoBehaviour
     private float timeSinceLastCycle = 0f;
     private bool activated = false;
     private bool waiting = false;
-    private float waitTime = 2.0f;
+    private float waitTime = 3.0f;
+
+    // berry and player activated is different
+    private bool playerAct = false;
+    private bool berryAct = false;
+
+    // Reference to the original collider
+    private Collider2D originalCollider;
+
+    // Reference to the new collider
+    private Collider2D newCollider;
 
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = trapSprites[currentSpriteIndex];
+
+        originalCollider = GetComponent<Collider2D>();
+        newCollider = transform.GetChild(0).GetComponent<Collider2D>(); // Assuming the new collider is the first child
+        newCollider.enabled = false; // Disable the new collider initially
     }
 
     private void Update()
@@ -44,6 +58,12 @@ public class BearTrap : MonoBehaviour
                     {
                         waiting = true;
                         StartCoroutine(WaitForAnimation());
+
+                        if (berryAct)
+                        {
+                            originalCollider.enabled = false;
+                            newCollider.enabled = true;
+                        }
                     }
                 }
             }
@@ -56,6 +76,15 @@ public class BearTrap : MonoBehaviour
 
         // Resume animation after the delay
         waiting = false;
+
+        if (berryAct)
+        {
+            originalCollider.enabled = true;
+            newCollider.enabled = false;
+        }
+        playerAct = false;
+
+        berryAct = false;
 
     }
 
@@ -70,6 +99,15 @@ public class BearTrap : MonoBehaviour
             // Reset the timer
             timeSinceLastCycle = 0f;
             activated = true;
+            if (collision.gameObject.CompareTag("Player")){
+                playerAct = true;
+
+                collision.gameObject.GetComponent<PlayerController>().SetImmobile();
+
+            }
+            if (collision.gameObject.CompareTag("Berry")){
+                berryAct = true;
+            }
         }
     }
 }
