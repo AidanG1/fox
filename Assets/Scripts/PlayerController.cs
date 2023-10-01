@@ -125,12 +125,12 @@ public class PlayerController : MonoBehaviour
         // Flip the player based on mouse position
         if (frameInput.mousePosition.x > transform.position.x)
         {
-            sr.flipX = false;
+            transform.localScale = new Vector3(1f, 1f, 1f);
         //     weaponParent.transform.SetPositionAndRotation(_originalWeaponParentLocalPosition, Quaternion.Euler(0f, 0f, 0f));
         }
         else
         {
-            sr.flipX = true;
+            transform.localScale = new Vector3(-1f, 1f, 1f);
 
             // flip weapon parent to be in the same relative position
             // position needs to change too

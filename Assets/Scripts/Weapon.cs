@@ -20,7 +20,6 @@ public class Weapon : MonoBehaviour
     public int maxRicochets = 0;
     [Tooltip("The maximum number of times the bullet can pierce enemies")]
     public int maxPierces = 0;
-
     private GameObject stickTip;
 
     // Start is called before the first frame update
@@ -61,8 +60,6 @@ public class Weapon : MonoBehaviour
                 // set the bullet's maxPierces to maxPierces
                 bullet.GetComponent<Bullet>().maxPierces = maxPierces;
             }
-        }
-
-        
+        }        
     }
 }
