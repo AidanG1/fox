@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private GameObject weapon;
 
     // Player movement variables
+    public float health = 100f;
     public float walkSpeed = 5f;
     public float runSpeed = 10f;
     public float timeUntilRun = 0.5f;
@@ -155,6 +156,16 @@ public class PlayerController : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawCube(transform.position - transform.up * maxDistance, boxSize);
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            // restart the level
+            UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        }
     }
 }
 
