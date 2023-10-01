@@ -99,6 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099c3944dfdc9cf4e9a2a17cdf8aef1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxRicochets: 0
+  maxPierces: 0
 --- !u!50 &2166356111541957570
 Rigidbody2D:
   serializedVersion: 4
@@ -141,7 +143,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

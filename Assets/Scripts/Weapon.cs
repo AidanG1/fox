@@ -5,8 +5,6 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [Header("Weapon Properties")]
-    [Tooltip("The sprite of the weapon")]
-    public Sprite weaponSprite;
     [Tooltip("The prefab of the bullet")]
     public GameObject bulletPrefab;
     [Tooltip("The minimum time between shots")]
@@ -23,10 +21,12 @@ public class Weapon : MonoBehaviour
     [Tooltip("The maximum number of times the bullet can pierce enemies")]
     public int maxPierces = 0;
 
+    private GameObject stickTip;
+
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<SpriteRenderer>().sprite = weaponSprite;
+        stickTip = transform.GetChild(0).gameObject;
     }
 
     // Update is called once per frame
@@ -50,13 +50,10 @@ public class Weapon : MonoBehaviour
                 float angle = Random.Range(-spreadAngle, spreadAngle);
 
                 // create a new bullet
-                GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
-
-                // set the bullet's rotation to the angle
-                bullet.transform.rotation = Quaternion.Euler(0, 0, angle + transform.rotation.eulerAngles.z);
+                GameObject bullet = Instantiate(bulletPrefab, stickTip.transform.position, stickTip.transform.rotation * Quaternion.Euler(0, 0, angle));
 
                 // set the bullet's velocity to bulletSpeed
-                bullet.GetComponent<Bullet>().Shoot(bullet.transform.right * bulletSpeed);
+                bullet.GetComponent<Bullet>().Shoot(bullet.transform.forward * bulletSpeed);
 
                 // set the bullet's maxRicochets to maxRicochets
                 bullet.GetComponent<Bullet>().maxRicochets = maxRicochets;

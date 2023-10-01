@@ -75,7 +75,6 @@ public class PlayerController : MonoBehaviour
         // If in the air and jump is held down, add small upwards force (this should only apply up to maxJumpForce)
         if (!onGround && frameInput.jumpPressed && timeJumping > jumpBoostBuffer && timeJumping < maxJumpTime)
         {
-            print("Here!");
             // this extra force should be applied over time (maxJumpTime - jumpBoostBuffer)
             float extraJumpForce = maxJumpForce - jumpForce;
             float extraJumpTime = maxJumpTime - jumpBoostBuffer;
@@ -116,23 +115,27 @@ public class PlayerController : MonoBehaviour
         float speed = timeAtMaxHorizontalSpeed > timeUntilRun ? runSpeed : walkSpeed;
 
         rb.velocity = new Vector2(frameInput.horizontalInput * speed, rb.velocity.y);
-        // Flip the player
-        if (rb.velocity.x > 0)
-        {
-            transform.localScale = new Vector3(1, 1, 1);
-        }
-        else if (rb.velocity.x < 0)
-        {
-            transform.localScale = new Vector3(-1, 1, 1);
-        }
     }
 
     void ManageShooting()
     {
         // point the weapon at the mouse
-        Vector3 lookDirection = frameInput.mousePosition - transform.position;
-        float angle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
-        weapon.transform.rotation = Quaternion.Euler(0f, 0f, angle);
+        weaponParent.transform.LookAt(frameInput.mousePosition, Vector3.forward);
+
+        // Flip the player based on mouse position
+        if (frameInput.mousePosition.x > transform.position.x)
+        {
+            sr.flipX = false;
+        //     weaponParent.transform.SetPositionAndRotation(_originalWeaponParentLocalPosition, Quaternion.Euler(0f, 0f, 0f));
+        }
+        else
+        {
+            sr.flipX = true;
+
+            // flip weapon parent to be in the same relative position
+            // position needs to change too
+            // weaponParent.transform.SetPositionAndRotation(new Vector3(_originalWeaponParentLocalPosition.x - 0.5f, _originalWeaponParentLocalPosition.y, _originalWeaponParentLocalPosition.z), Quaternion.Euler(0f, 180f, 0f)); 
+        }
 
         // on left click, shoot the weapon
         if (Input.GetMouseButtonDown(0))
