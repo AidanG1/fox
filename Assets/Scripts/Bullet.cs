@@ -18,7 +18,17 @@ public class Bullet : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground")
         {
-            Destroy(gameObject);
+            if (ricochets < maxRicochets)
+            {
+                // ricochet
+                ricochets++;
+                GetComponent<Rigidbody2D>().velocity = Vector2.Reflect(GetComponent<Rigidbody2D>().velocity, collision.contacts[0].normal);
+            }
+            else
+            {
+                // destroy
+                Destroy(gameObject);
+            }
         }
     }
 }
