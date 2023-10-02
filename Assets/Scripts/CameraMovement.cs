@@ -12,14 +12,10 @@ public class CameraMovement : MonoBehaviour
     // Reference to the BackgroundManager GameObject
     public GameObject backgroundManager;
     public Sprite newBackgroundSprite; // Assign the new background sprite in the Inspector
-    public int spriteIndex;
+    private int spriteIndex;
 
     // Reference to the BackgroundFader script on the backgroundManager GameObject
     private BackgroundFader backgroundFader;
-
-    // GUI text for timer display
-    public TMP_Text timerText;
-    private float timer = 0f;
 
     private void Start()
     {
@@ -29,10 +25,6 @@ public class CameraMovement : MonoBehaviour
 
     private void Update()
     {
-        // Update the timer
-        timer += Time.deltaTime;
-        // Display the timer in the GUI text
-        timerText.text = "Timer: " + timer.ToString("F2");
 
         if (isCameraMoving)
         {

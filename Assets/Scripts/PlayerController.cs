@@ -242,7 +242,7 @@ public class PlayerController : MonoBehaviour
 
     public void AddHealth(float addedHealth)
     {
-        currHealth = std::min(currHealth + addedHealth, 100.0f);
+        currHealth = Mathf.Min(currHealth + addedHealth, 100.0f);
         healthBar.SetHealth(currHealth);
 
     }
