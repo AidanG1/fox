@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Weapon : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class Weapon : MonoBehaviour
     [Tooltip("The angle between bullets")]
     public float maxSpread = 20f;
 
+    public GameObject weaponUI;
     // max ricochets and max pierces are set in the bullet prefab    
     private GameObject stickTip;
 
@@ -26,6 +28,7 @@ public class Weapon : MonoBehaviour
 
         // set the active bullet prefab to the first bullet prefab in the list
         activeBulletPrefab = bulletPrefabs[0];
+        UpdateUI();
     }
 
     // Update is called once per frame
@@ -54,12 +57,6 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    public void SetBullets(List<GameObject> bullets)
-    {
-        bulletPrefabs = bullets;
-        activeBulletPrefab = bulletPrefabs[0];
-    }
-
     public void SetActiveBullet(int index)
     {
         activeBulletPrefab = bulletPrefabs[index];
@@ -69,5 +66,55 @@ public class Weapon : MonoBehaviour
     {
         bulletPrefabs.Add(bullet);
         activeBulletPrefab = bulletPrefabs[^1];
+        UpdateUI();
+    }
+
+    public void UpdateUI()
+    {
+        // destroy all children of weaponUI
+        foreach (Transform child in weaponUI.transform)
+        {
+            Destroy(child.gameObject);
+        }
+
+        // each bullet should be size 20 pixels wide
+        float width = 20f;
+        float spacing = 5f;
+        float position = 5f;
+        float right = bulletPrefabs.Count * width + (bulletPrefabs.Count - 1) * spacing + position + 5f;
+        float height = 30f;
+
+        // set the width of weaponUI
+        weaponUI.GetComponent<RectTransform>().sizeDelta = new Vector2(right, height);
+        for (int i = 0; i < bulletPrefabs.Count; i++)
+        {
+            // update the UI
+            GameObject bulletUI = new GameObject();
+            Image bulletImage = bulletUI.AddComponent<Image>();
+            bulletImage.sprite = bulletPrefabs[i].GetComponent<SpriteRenderer>().sprite;
+
+            // set the parent of the bulletUI to the weaponUI
+            bulletUI.transform.SetParent(weaponUI.transform);
+
+            // set the position of the bulletUI
+            bulletUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(position, 0);
+
+            // set the size of the bulletUI
+            bulletUI.GetComponent<RectTransform>().sizeDelta = new Vector2(width, width);
+
+            if (bulletPrefabs[i] == activeBulletPrefab)
+            {
+                // set the color of the bulletUI
+                bulletImage.color = Color.white;
+            }
+            else
+            {
+                // set the color of the bulletUI
+                bulletImage.color = Color.gray;
+            }
+
+            // set the position for the next bulletUI
+            position += width + spacing;
+        }
     }
 }
