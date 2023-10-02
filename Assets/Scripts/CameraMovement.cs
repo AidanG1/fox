@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
@@ -16,6 +17,10 @@ public class CameraMovement : MonoBehaviour
     // Reference to the BackgroundFader script on the backgroundManager GameObject
     private BackgroundFader backgroundFader;
 
+    // GUI text for timer display
+    public TMP_Text timerText;
+    private float timer = 0f;
+
     private void Start()
     {
         // Get the BackgroundFader script from the backgroundManager GameObject
@@ -24,6 +29,11 @@ public class CameraMovement : MonoBehaviour
 
     private void Update()
     {
+        // Update the timer
+        timer += Time.deltaTime;
+        // Display the timer in the GUI text
+        timerText.text = "Timer: " + timer.ToString("F2");
+
         if (isCameraMoving)
         {
             // Interpolate the camera's position towards the target position over time
