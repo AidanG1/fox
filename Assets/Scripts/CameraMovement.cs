@@ -65,6 +65,8 @@ public class CameraMovement : MonoBehaviour
                 Camera.main.transform.position.z // Keep the same z-position (-10)
             );
 
+            GameTimerManager.instance.AddCameraMovementTime(targetPosition.y);
+
             // Set isCameraMoving to true to start the camera movement
             isCameraMoving = true;
 
