@@ -131,7 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 2299020075955701351, guid: 7ff973ee0571577449fc5876426d5bd9, type: 3}
   fireRate: 0.5
-  bulletSpeed: 12
+  bulletSpeed: 20
   quantity: 1
   spreadAngle: 0
   maxRicochets: 0
@@ -363,6 +363,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 8
+  waitTime: 3.3
 --- !u!96 &4161786076758400500
 TrailRenderer:
   serializedVersion: 3

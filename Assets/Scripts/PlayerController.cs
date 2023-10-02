@@ -40,6 +40,10 @@ public class PlayerController : MonoBehaviour
     public float waitTime = 3.3f; // Adjust the wait time as needed
 
 
+    // variables for the health bar
+    public HealthBarScript healthBar;
+    public float currHealth;
+
 
     // Start is called before the first frame update
     void Start()
@@ -59,6 +63,11 @@ public class PlayerController : MonoBehaviour
 
         // Get the SpriteRenderer component of the player
         sr = GetComponent<SpriteRenderer>();
+
+        // set max health at the start of the game
+        currHealth = health;
+        healthBar.MaxHealth(health);
+        
     }
 
     // Update is called once per frame
@@ -175,8 +184,10 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        health -= damage;
-        if (health <= 0)
+        currHealth -= damage;
+        healthBar.SetHealth(currHealth);
+        Debug.Log(currHealth);
+        if (currHealth <= 0)
         {
             // restart the level
             UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
@@ -207,6 +218,14 @@ public class PlayerController : MonoBehaviour
                 // Reset the timer
                 immobileTimer = 0f;
             }
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Trap"))
+        {
+            TakeDamage(20.0f);
         }
     }
 }
