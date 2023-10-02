@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     public float jumpBoostBuffer = 0.1f;
     public bool currentlyJumping = false;
     private float timeJumping = 0f;
+    public List<GameObject> bullets = new List<GameObject>();
 
     private float timeAtMaxHorizontalSpeed = 0f;
 
@@ -75,6 +76,7 @@ public class PlayerController : MonoBehaviour
         currHealth = healthMax;
         healthBar.MaxHealth(healthMax);
 
+        weapon.GetComponent<Weapon>().SetBullets(bullets);
     }
 
     // Update is called once per frame
@@ -285,6 +287,17 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Trap"))
         {
             TakeDamage(20.0f);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Fruit"))
+        {
+            weapon.GetComponent<Weapon>().AddBullet(collision.gameObject.GetComponent<Fruit>().bulletPrefab);
+
+            // Destroy the fruit
+            Destroy(collision.gameObject);
         }
     }
 

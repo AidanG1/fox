@@ -9,9 +9,11 @@ public class Bullet : MonoBehaviour
     public int maxPierces = 0;
     private int pierces = 0;
 
-    public void Shoot(Vector2 velocity)
+    public float velocity = 10f;
+
+    void Start()
     {
-        GetComponent<Rigidbody2D>().velocity = velocity;
+        GetComponent<Rigidbody2D>().velocity = transform.forward * velocity;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -22,7 +24,6 @@ public class Bullet : MonoBehaviour
             {
                 // ricochet
                 ricochets++;
-                GetComponent<Rigidbody2D>().velocity = Vector2.Reflect(GetComponent<Rigidbody2D>().velocity, collision.contacts[0].normal);
             }
             else
             {
