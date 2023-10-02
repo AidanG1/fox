@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour
         // set max health at the start of the game
         currHealth = healthMax;
         healthBar.MaxHealth(healthMax);
-        
+
     }
 
     // Update is called once per frame
@@ -108,9 +108,12 @@ public class PlayerController : MonoBehaviour
 
     void ManageCoyote()
     {
-        if (onGround) {
+        if (onGround)
+        {
             coyoteTimeCounter = coyoteTime;
-        } else {
+        }
+        else
+        {
             coyoteTimeCounter -= Time.deltaTime;
         }
     }
@@ -193,7 +196,7 @@ public class PlayerController : MonoBehaviour
         if (frameInput.mousePosition.x > transform.position.x)
         {
             transform.localScale = new Vector3(1f, 1f, 1f);
-        //     weaponParent.transform.SetPositionAndRotation(_originalWeaponParentLocalPosition, Quaternion.Euler(0f, 0f, 0f));
+            //     weaponParent.transform.SetPositionAndRotation(_originalWeaponParentLocalPosition, Quaternion.Euler(0f, 0f, 0f));
         }
         else
         {
@@ -238,6 +241,8 @@ public class PlayerController : MonoBehaviour
             // restart the level
             UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
         }
+
+        StartCoroutine(BlinkColor(1, Color.red));
     }
 
     public void AddHealth(float addedHealth)
@@ -245,6 +250,7 @@ public class PlayerController : MonoBehaviour
         currHealth = Mathf.Min(currHealth + addedHealth, 100.0f);
         healthBar.SetHealth(currHealth);
 
+        StartCoroutine(BlinkColor(1, Color.green));
     }
 
     // these two functions are so that the fox can't move when in the bear trap
@@ -280,7 +286,17 @@ public class PlayerController : MonoBehaviour
         {
             TakeDamage(20.0f);
         }
+    }
 
+    IEnumerator BlinkColor(float time, Color color)
+    {
+        for (int i = 0; i < time / 0.2f; i++)
+        {
+            sr.color = color;
+            yield return new WaitForSeconds(0.1f);
+            sr.color = Color.white;
+            yield return new WaitForSeconds(0.1f);
+        }
     }
 }
 
