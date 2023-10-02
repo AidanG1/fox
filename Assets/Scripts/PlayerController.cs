@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     private GameObject weapon;
 
     // Player movement variables
-    public float health = 100f;
+    public float healthMax = 100f;
     public float walkSpeed = 5f;
     public float runSpeed = 10f;
     public float timeUntilRun = 0.5f;
@@ -72,8 +72,8 @@ public class PlayerController : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
 
         // set max health at the start of the game
-        currHealth = health;
-        healthBar.MaxHealth(health);
+        currHealth = healthMax;
+        healthBar.MaxHealth(healthMax);
         
     }
 
@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
             ManageWalking();
         }
         ManageShooting();
-        cantMove();
+        CantMove();
     }
 
     void ManageJumpBuffer()
@@ -240,6 +240,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void AddHealth(float addedHealth)
+    {
+        currHealth = std::min(currHealth + addedHealth, 100.0f);
+        healthBar.SetHealth(currHealth);
+
+    }
+
     // these two functions are so that the fox can't move when in the bear trap
 
     public void SetImmobile()
@@ -248,7 +255,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log("immobile is set");
     }
 
-    void cantMove()
+    void CantMove()
     {
         if (isImmobile)
         {
@@ -273,6 +280,7 @@ public class PlayerController : MonoBehaviour
         {
             TakeDamage(20.0f);
         }
+
     }
 }
 
