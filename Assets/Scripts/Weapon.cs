@@ -35,6 +35,46 @@ public class Weapon : MonoBehaviour
     void Update()
     {
         timeUntilNextShot -= Time.deltaTime;
+
+        if (Input.GetKeyDown(KeyCode.Alpha1)) {
+            SetActiveBullet(0);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            SetActiveBullet(1);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            SetActiveBullet(2);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            SetActiveBullet(3);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            SetActiveBullet(4);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            SetActiveBullet(5);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            SetActiveBullet(6);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            SetActiveBullet(7);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            SetActiveBullet(8);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha0))
+        {
+            SetActiveBullet(9);
+        }
     }
 
     public void Shoot()
@@ -60,6 +100,7 @@ public class Weapon : MonoBehaviour
     public void SetActiveBullet(int index)
     {
         activeBulletPrefab = bulletPrefabs[index];
+        UpdateUI();
     }
 
     public void AddBullet(GameObject bullet)
