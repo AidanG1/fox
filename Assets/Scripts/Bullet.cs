@@ -18,7 +18,7 @@ public class Bullet : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if ((collision.gameObject.tag == "Ground") || (collision.gameObject.tag == "Trap"))
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Trap"))
         {
             if (ricochets < maxRicochets)
             {

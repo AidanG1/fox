@@ -129,13 +129,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 098da6019b7200744a0249837571ba29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 2299020075955701351, guid: 7ff973ee0571577449fc5876426d5bd9, type: 3}
+  bulletPrefabs:
+  - {fileID: 2299020075955701351, guid: 7ff973ee0571577449fc5876426d5bd9, type: 3}
   fireRate: 0.5
-  bulletSpeed: 20
   quantity: 1
-  spreadAngle: 0
-  maxRicochets: 0
-  maxPierces: 0
+  maxSpread: 20
 --- !u!1 &6850940819533503786
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,11 +346,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31c3a819cd52cf345a57b438be4b1702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  healthMax: 100
   walkSpeed: 5
   runSpeed: 10
   timeUntilRun: 0.5
   gravityScale: 5
+  newJumpForce: 0.5
   jumpForce: 20
   maxJumpForce: 28
   maxJumpTime: 0.5
@@ -364,6 +363,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   waitTime: 3.3
+  healthBar: {fileID: 0}
+  currHealth: 0
+  coyoteTime: 0.1
+  jumpBufferTime: 0.1
 --- !u!96 &4161786076758400500
 TrailRenderer:
   serializedVersion: 3

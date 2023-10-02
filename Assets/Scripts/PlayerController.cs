@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviour
     public float jumpBoostBuffer = 0.1f;
     public bool currentlyJumping = false;
     private float timeJumping = 0f;
-    public List<GameObject> bullets = new List<GameObject>();
 
     private float timeAtMaxHorizontalSpeed = 0f;
 
@@ -75,8 +74,6 @@ public class PlayerController : MonoBehaviour
         // set max health at the start of the game
         currHealth = healthMax;
         healthBar.MaxHealth(healthMax);
-
-        weapon.GetComponent<Weapon>().SetBullets(bullets);
     }
 
     // Update is called once per frame
