@@ -119,7 +119,7 @@ public class PlayerController : MonoBehaviour
     {
         if (coyoteTimeCounter > 0 && jumpBufferTimeCounter > 0)
         {
-            rb.velocity += new Vector2(0, jumpForce);
+            rb.velocity += new Vector2(0, newJumpForce);
             jumpBufferTimeCounter = 0;
         }
 
