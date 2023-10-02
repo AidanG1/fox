@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public float runSpeed = 10f;
     public float timeUntilRun = 0.5f;
     public float gravityScale = 10f;
+    public float newJumpForce = 0.2f;
     public float jumpForce = 20f;
     public float maxJumpForce = 28f;
     public float maxJumpTime = 0.5f;
@@ -43,6 +44,12 @@ public class PlayerController : MonoBehaviour
     // variables for the health bar
     public HealthBarScript healthBar;
     public float currHealth;
+
+    public float coyoteTime = 0.1f;
+    private float coyoteTimeCounter;
+
+    public float jumpBufferTime = 0.1f;
+    private float jumpBufferTimeCounter;
 
 
     // Start is called before the first frame update
@@ -75,13 +82,52 @@ public class PlayerController : MonoBehaviour
     {
         ManageGround();
         ManageInputs();
+        ManageCoyote();
+        ManageJumpBuffer();
         if (!isImmobile)
         {
-            ManageJumping();
+            ManageJumpingNew();
+            // ManageJumping();
             ManageWalking();
         }
         ManageShooting();
         cantMove();
+    }
+
+    void ManageJumpBuffer()
+    {
+        if (frameInput.jumpPressed)
+        {
+            jumpBufferTimeCounter = jumpBufferTime;
+        }
+        else
+        {
+            jumpBufferTimeCounter -= Time.deltaTime;
+        }
+    }
+
+    void ManageCoyote()
+    {
+        if (onGround) {
+            coyoteTimeCounter = coyoteTime;
+        } else {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+    }
+
+    void ManageJumpingNew()
+    {
+        if (coyoteTimeCounter > 0 && jumpBufferTimeCounter > 0)
+        {
+            rb.velocity += new Vector2(0, jumpForce);
+            jumpBufferTimeCounter = 0;
+        }
+
+        if (frameInput.jumpUpPressed && rb.velocity.y > 0)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            coyoteTimeCounter = 0;
+        }
     }
 
     void ManageJumping()
