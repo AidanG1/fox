@@ -121,7 +121,7 @@ public class Weapon : MonoBehaviour
         // each bullet should be size 20 pixels wide
         float width = 20f;
         float spacing = 5f;
-        float position = 5f;
+        float position = 1f;
         float right = bulletPrefabs.Count * width + (bulletPrefabs.Count - 1) * spacing + position + 5f;
         float height = 30f;
 
@@ -138,10 +138,10 @@ public class Weapon : MonoBehaviour
             bulletUI.transform.SetParent(weaponUI.transform);
 
             // set the position of the bulletUI
-            bulletUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(position, 0);
+            bulletUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(position - right/3, 2f);
 
             // set the size of the bulletUI
-            bulletUI.GetComponent<RectTransform>().sizeDelta = new Vector2(width, width);
+            bulletUI.GetComponent<RectTransform>().sizeDelta = new Vector2(height, height);
 
             if (bulletPrefabs[i] == activeBulletPrefab)
             {
