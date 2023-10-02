@@ -6,10 +6,6 @@ PhysicsMaterial2D:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: High Friction
-<<<<<<< Updated upstream
-  friction: 1
-=======
-  friction: 100
->>>>>>> Stashed changes
+  m_Name: No Friction
+  friction: 0
   bounciness: 0
