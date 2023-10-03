@@ -20,11 +20,14 @@ public class Weapon : MonoBehaviour
     public GameObject weaponUI;
     // max ricochets and max pierces are set in the bullet prefab    
     private GameObject stickTip;
+    private GameObject muzzleFlash;
 
     // Start is called before the first frame update
     void Start()
     {
         stickTip = transform.GetChild(0).gameObject;
+        muzzleFlash = transform.GetChild(1).gameObject;
+        muzzleFlash.SetActive(false);
 
         // set the active bullet prefab to the first bullet prefab in the list
         activeBulletPrefab = bulletPrefabs[0];
@@ -93,8 +96,16 @@ public class Weapon : MonoBehaviour
 
                 // create a new bullet
                 GameObject bullet = Instantiate(activeBulletPrefab, stickTip.transform.position, stickTip.transform.rotation * Quaternion.Euler(0, 0, angle));
+                muzzleFlash.SetActive(true);
+                StartCoroutine(DisableMuzzleFlash());
             }
         }
+    }
+
+    IEnumerator DisableMuzzleFlash()
+    {
+        yield return new WaitForSeconds(0.1f);
+        muzzleFlash.SetActive(false);
     }
 
     public void SetActiveBullet(int index)

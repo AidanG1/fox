@@ -824,6 +824,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a99d637bf21944643b8279d3bf95038f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameText: {fileID: 930527528}
+  originalGameTextPosition: {x: 0, y: 0, z: 0}
+  startingGameTextPositionY: 400
+  gameTextMovementTime: 2
 --- !u!4 &1240825662
 Transform:
   m_ObjectHideFlags: 0
