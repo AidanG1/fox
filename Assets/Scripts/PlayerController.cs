@@ -179,8 +179,7 @@ public class PlayerController : MonoBehaviour
         // If the player is moving left or right, move the player
         if (frameInput.horizontalInput != 0)
         {
-            print(frameInput.shiftPressed);
-            if (frameInput.shiftPressed && onGround)
+            if (frameInput.shiftPressed)
             {
                 runningTime += Time.deltaTime;
                 rb.velocity = new Vector2(frameInput.horizontalInput * Mathf.Lerp(walkSpeed, runSpeed, Math.Min(1, runningTime / timeToRun)), rb.velocity.y);
