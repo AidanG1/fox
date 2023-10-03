@@ -92,7 +92,26 @@ public class PlayerController : MonoBehaviour
             // ManageJumping();
         }
         ManageShooting();
+        ManageMovingPlatform();
         CantMove();
+    }
+
+    void ManageMovingPlatform()
+    {
+        // check if player is touching platform layer
+        // boxcast down to see if moving platform is below
+        // if so, move the player with the platform
+        var bc = Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, maxDistance, 7);
+        if (bc)
+        {
+            // get the moving platform
+            GameObject platform = bc.collider.gameObject;
+
+            // move the player with the platform
+            var vel = rb.velocity;
+            vel.x += platform.GetComponent<MovingPlatform>().speed;
+            rb.velocity = vel;
+        }
     }
 
     void ManageJumpBuffer()
