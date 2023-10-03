@@ -16,8 +16,11 @@ public class PlayerController : MonoBehaviour
     // Player movement variables
     public float healthMax = 100f;
     public float walkSpeed = 5f;
+    public float timeToWalk = 0.2f;
     public float runSpeed = 10f;
+    public float timeToRun = 0.4f;
     public float timeUntilRun = 0.5f;
+    private float runningTime = 0f;
     public float gravityScale = 10f;
     public float newJumpForce = 0.2f;
     public float jumpForce = 20f;
@@ -26,8 +29,6 @@ public class PlayerController : MonoBehaviour
     public float jumpBoostBuffer = 0.1f;
     public bool currentlyJumping = false;
     private float timeJumping = 0f;
-
-    private float timeAtMaxHorizontalSpeed = 0f;
 
     // Player grounding variables
     private bool onGround = false;
@@ -79,15 +80,16 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ManageGround();
         ManageInputs();
+        ManageGround();
+        ManageJumpBuffer();
         ManageCoyote();
         ManageJumpBuffer();
         if (!isImmobile)
         {
+            ManageWalking();
             ManageJumpingNew();
             // ManageJumping();
-            ManageWalking();
         }
         ManageShooting();
         CantMove();
@@ -169,21 +171,30 @@ public class PlayerController : MonoBehaviour
         frameInput.jumpPressed = Input.GetKey(KeyCode.Space);
         frameInput.jumpUpPressed = Input.GetKeyUp(KeyCode.Space);
         frameInput.shootPressed = Input.GetMouseButtonDown(0);
+        frameInput.shiftPressed = Input.GetKey(KeyCode.LeftShift);
     }
 
     void ManageWalking()
     {
-        if (Math.Abs(frameInput.horizontalInput) > 0.9)
+        // If the player is moving left or right, move the player
+        if (frameInput.horizontalInput != 0)
         {
-            timeAtMaxHorizontalSpeed += Time.deltaTime;
+            print(frameInput.shiftPressed);
+            if (frameInput.shiftPressed && onGround)
+            {
+                runningTime += Time.deltaTime;
+                rb.velocity = new Vector2(frameInput.horizontalInput * Mathf.Lerp(walkSpeed, runSpeed, Math.Min(1, runningTime / timeToRun)), rb.velocity.y);
+            }
+            else
+            {
+                rb.velocity = new Vector2(frameInput.horizontalInput * walkSpeed, rb.velocity.y);
+            }
         }
         else
         {
-            timeAtMaxHorizontalSpeed = 0f;
+            runningTime = 0f;
+            rb.velocity = new Vector2(0, rb.velocity.y);
         }
-        float speed = timeAtMaxHorizontalSpeed > timeUntilRun ? runSpeed : walkSpeed;
-
-        rb.velocity = new Vector2(frameInput.horizontalInput * speed, rb.velocity.y);
     }
 
     void ManageShooting()
@@ -318,4 +329,5 @@ public class FrameInput
     public bool jumpPressed;
     public bool jumpUpPressed;
     public bool shootPressed;
+    public bool shiftPressed;
 }
