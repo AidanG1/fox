@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2929930806246603005}
   m_Layer: 0
   m_Name: coconut
-  m_TagString: Untagged
+  m_TagString: Berry
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,7 +100,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099c3944dfdc9cf4e9a2a17cdf8aef1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  muzzleFlash: {fileID: 2371425545185377473, guid: c3e007f3ba0c4e7439e34a999157ad90, type: 3}
   maxRicochets: 2
   maxPierces: 0
   velocity: 25
@@ -229,7 +228,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
+  m_Mass: 20
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1.2
