@@ -22,7 +22,6 @@ public class PlayerController : MonoBehaviour
     public float timeUntilRun = 0.5f;
     private float runningTime = 0f;
     public float gravityScale = 10f;
-    public float newJumpForce = 0.2f;
     public float jumpForce = 20f;
     public float maxJumpForce = 28f;
     public float maxJumpTime = 0.5f;
@@ -45,12 +44,6 @@ public class PlayerController : MonoBehaviour
     // variables for the health bar
     public HealthBarScript healthBar;
     public float currHealth;
-
-    public float coyoteTime = 0.1f;
-    private float coyoteTimeCounter;
-
-    public float jumpBufferTime = 0.1f;
-    private float jumpBufferTimeCounter;
 
 
     // Start is called before the first frame update
@@ -280,6 +273,8 @@ public class PlayerController : MonoBehaviour
 
         StartCoroutine(BlinkColor(1, Color.green));
     }
+
+    //}
 
     // these two functions are so that the fox can't move when in the bear trap
 
