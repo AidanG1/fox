@@ -30,6 +30,33 @@ public class Bullet : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        if (shouldExplode)
+        {
+            // explode
+            // Instantiate explosion prefab
+            GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+            // make explosion sized to explosion radius
+            explosion.transform.localScale = new Vector3(explosionRadius, explosionRadius, explosionRadius);
+
+            // Get all colliders within explosion radius
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
+
+            // Apply explosion force to all rigidbodies within explosion radius
+            foreach (Collider2D collider in colliders)
+            {
+                Rigidbody2D rb = collider.GetComponent<Rigidbody2D>();
+                if (rb != null)
+                {
+                    print(collider);
+                    Vector2 direction = (rb.transform.position - transform.position).normalized;
+                    rb.AddForce(direction * explosionForce, ForceMode2D.Impulse);
+                }
+            }
+
+            // Destroy bullet and explosion after delay
+            Destroy(explosion, explosionDuration);
+            Destroy(gameObject);
+        }
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Trap"))
         {
             if (ricochets < maxRicochets)
@@ -39,34 +66,6 @@ public class Bullet : MonoBehaviour
             }
             else
             {
-                if (shouldExplode)
-                {
-                    // explode
-                    // Instantiate explosion prefab
-                    GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-                    // make explosion sized to explosion radius
-                    explosion.transform.localScale = new Vector3(explosionRadius, explosionRadius, explosionRadius);
-
-                    // Get all colliders within explosion radius
-                    Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
-
-                    // Apply explosion force to all rigidbodies within explosion radius
-                    foreach (Collider2D collider in colliders)
-                    {
-                        Rigidbody2D rb = collider.GetComponent<Rigidbody2D>();
-                        if (rb != null)
-                        {
-                            print(collider);
-                            Vector2 direction = (rb.transform.position - transform.position).normalized;
-                            rb.AddForce(direction * explosionForce, ForceMode2D.Impulse);
-                        }
-                    }
-
-                    // Destroy bullet and explosion after delay
-                    Destroy(explosion, explosionDuration);
-                    Destroy(gameObject);
-                }
-
                 // destroy
                 Destroy(gameObject);
             }

@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayerMask = 3; // ground
 
     // Player grounding variables
+    public bool currentlyJumping = false;
     private bool onGround = false;
     private float previousHorizontalInput = 0f;
 
@@ -47,11 +48,11 @@ public class PlayerController : MonoBehaviour
     [Header("Fancy Jumping")]
     [Tooltip("The coyote time of the player")]
     public float coyoteTime = 0.1f;
-    private float coyoteTimeCounter;
+    private float coyoteTimeCounter = 0.1f;
 
     [Tooltip("The jump buffer time of the player")]
     public float jumpBufferTime = 0.1f;
-    private float jumpBufferTimeCounter;
+    private float jumpBufferTimeCounter = 0.1f;
 
     // Start is called before the first frame update
     void Start()
@@ -78,14 +79,13 @@ public class PlayerController : MonoBehaviour
         ManageGround();
         ManageJumpBuffer();
         ManageCoyote();
-        ManageJumpBuffer();
-        ManageMovingPlatform();
         if (!isImmobile)
         {
             ManageWalking();
             ManageJumping();
         }
         ManageShooting();
+        ManageMovingPlatform();
         CantMove();
     }
     void ManageInputs()
@@ -102,6 +102,7 @@ public class PlayerController : MonoBehaviour
         if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, maxDistance, groundLayerMask))
         {
             onGround = true;
+            currentlyJumping = false;
         }
         else
         {
@@ -113,10 +114,12 @@ public class PlayerController : MonoBehaviour
         if (frameInput.jumpPressed)
         {
             jumpBufferTimeCounter = jumpBufferTime;
+            currentlyJumping = true;
         }
         else
         {
             jumpBufferTimeCounter -= Time.deltaTime;
+            currentlyJumping = false;
         }
     }
     void ManageCoyote()
@@ -156,7 +159,6 @@ public class PlayerController : MonoBehaviour
         // If the player is moving left or right, move the player
         if (frameInput.horizontalInput != 0)
         {
-
             rb.velocity = new Vector2(frameInput.horizontalInput * walkSpeed, rb.velocity.y);
         }
         else if (previousHorizontalInput != 0)
@@ -168,6 +170,8 @@ public class PlayerController : MonoBehaviour
     }
     void ManageJumping()
     {
+        // print("Coyote time: " + coyoteTimeCounter);
+        // print("Jump buffer time: " + jumpBufferTimeCounter);
         if (coyoteTimeCounter > 0 && jumpBufferTimeCounter > 0)
         {
             rb.velocity += new Vector2(0, jumpForce);
