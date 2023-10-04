@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 4779199983370024016}
   - component: {fileID: 8009576959822904498}
   - component: {fileID: 3244020074504575931}
-  - component: {fileID: -4461846435594420768}
   - component: {fileID: -2804944890194112079}
+  - component: {fileID: 4086822600325163809}
+  - component: {fileID: 8646703850950093982}
   m_Layer: 0
   m_Name: Ratman
   m_TagString: Untagged
@@ -113,9 +114,47 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!60 &-4461846435594420768
-PolygonCollider2D:
+  m_Constraints: 4
+--- !u!114 &-2804944890194112079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7892746014916388060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e371da1c0aa2446c850dae4c81da05f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitsToMove: 0
+  moveSpeed: 0
+  isFacingRight: 0
+  moveRight: 0
+--- !u!114 &4086822600325163809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7892746014916388060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce28f0372860448bb8798a04b57d2b06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animationFPS: 10
+  walkAnimation:
+  - {fileID: -1883199730, guid: 23dc748e17766468cbb761ca4bf00f2f, type: 3}
+  - {fileID: 1688394104, guid: 23dc748e17766468cbb761ca4bf00f2f, type: 3}
+  - {fileID: -1813269459, guid: 23dc748e17766468cbb761ca4bf00f2f, type: 3}
+  - {fileID: 1981978314, guid: 23dc748e17766468cbb761ca4bf00f2f, type: 3}
+  - {fileID: -1515302947, guid: 23dc748e17766468cbb761ca4bf00f2f, type: 3}
+  - {fileID: 654358016, guid: 23dc748e17766468cbb761ca4bf00f2f, type: 3}
+  - {fileID: -1473475971, guid: 23dc748e17766468cbb761ca4bf00f2f, type: 3}
+  - {fileID: -828046921, guid: 23dc748e17766468cbb761ca4bf00f2f, type: 3}
+--- !u!70 &8646703850950093982
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -146,45 +185,6 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.4, y: 1.25}
-    newSize: {x: 1.4, y: 1.25}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.18746796, y: 0.6356554}
-      - {x: -0.24917701, y: 0.6330385}
-      - {x: -0.26162237, y: 0.28368664}
-      - {x: -0.62073123, y: -0.124901965}
-      - {x: -0.6219828, y: -0.23701954}
-      - {x: -0.49616814, y: -0.34146976}
-      - {x: -0.62448835, y: -0.4614687}
-      - {x: -0.7047254, y: -0.57388973}
-      - {x: -0.7, y: -0.625}
-      - {x: 0.45486024, y: -0.63113785}
-      - {x: 0.44708467, y: -0.52348804}
-      - {x: 0.35951492, y: -0.48272133}
-      - {x: 0.41336808, y: -0.391531}
-      - {x: 0.7061381, y: -0.12768689}
-      - {x: 0.7120587, y: 0.08608189}
-      - {x: 0.4581043, y: 0.08548069}
-      - {x: 0.46029297, y: 0.23510551}
-  m_UseDelaunayMesh: 0
---- !u!114 &-2804944890194112079
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7892746014916388060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6e371da1c0aa2446c850dae4c81da05f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Offset: {x: 0.009555221, y: 0.007165909}
+  m_Size: {x: 0.89357686, y: 1.2996712}
+  m_Direction: 0

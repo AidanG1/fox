@@ -9,8 +9,8 @@ public class EnemyController : MonoBehaviour
     public float moveSpeed;
 
     // space being travelled between
-    public float startPos;
-    public float endPos;
+    protected float startPos;
+    protected float endPos;
 
     // direction bools
     public bool isFacingRight;
@@ -73,6 +73,7 @@ public class EnemyController : MonoBehaviour
     {
         transform.localScale = new Vector3(-transform.localScale.x,
             transform.localScale.y, transform.localScale.z);
+
         isFacingRight = transform.localScale.x > 0;
     }
 }

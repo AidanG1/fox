@@ -7,6 +7,8 @@ public class RatController : EnemyController
     // Update is called once per frame
     void Update()
     {
+        movementLeftRight();
+
         // updating the facing direction
         if (moveRight && !isFacingRight)
         {
@@ -17,7 +19,7 @@ public class RatController : EnemyController
             Flip();
         }
 
-        movementLeftRight();
+        
     }
 
 }

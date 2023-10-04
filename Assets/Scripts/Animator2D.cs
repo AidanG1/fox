@@ -74,7 +74,7 @@ public class Animator2D : MonoBehaviour
             sRenderer.flipX = false;
         }
 
-        sRenderer.flipX = rb2D.velocity.x < 0.0f;
+        //sRenderer.flipX = rb2D.velocity.x < 0.0f;
     }
 
 

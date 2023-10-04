@@ -4255,6 +4255,10 @@ PrefabInstance:
       propertyPath: weaponUI
       value: 
       objectReference: {fileID: 441768073}
+    - target: {fileID: 4161786076758400500, guid: 6c34a0e5ccf813e47a39c07f216096a6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7311649907953539859, guid: 6c34a0e5ccf813e47a39c07f216096a6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.04
