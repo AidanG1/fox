@@ -4414,6 +4414,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 181062328842231242, guid: 373051b33c10a456abc65df3b2e64e16, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 875435715}
     - target: {fileID: 2595770908597395363, guid: 373051b33c10a456abc65df3b2e64e16, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.997979
@@ -4458,6 +4462,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fox
       objectReference: {fileID: 0}
+    - target: {fileID: 5402781990406931111, guid: 373051b33c10a456abc65df3b2e64e16, type: 3}
+      propertyPath: weaponUI
+      value: 
+      objectReference: {fileID: 441768073}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
