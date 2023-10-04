@@ -64,15 +64,15 @@ public class Animator2D : MonoBehaviour
             frameIndex++;
         }
 
-        if (rb2D.velocity.x < -0.01f)
-        {
-            sRenderer.flipX = true;
-        }
+        // if (rb2D.velocity.x < -0.01f)
+        // {
+        //     sRenderer.flipX = true;
+        // }
 
-        if (rb2D.velocity.x > 0.01f)
-        {
-            sRenderer.flipX = false;
-        }
+        // if (rb2D.velocity.x > 0.01f)
+        // {
+        //     sRenderer.flipX = false;
+        // }
 
         //sRenderer.flipX = rb2D.velocity.x < 0.0f;
     }

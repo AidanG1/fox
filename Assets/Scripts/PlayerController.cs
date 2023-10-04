@@ -230,15 +230,10 @@ public class PlayerController : MonoBehaviour
         if (frameInput.mousePosition.x > transform.position.x)
         {
             transform.localScale = new Vector3(1f, 1f, 1f);
-            //     weaponParent.transform.SetPositionAndRotation(_originalWeaponParentLocalPosition, Quaternion.Euler(0f, 0f, 0f));
         }
         else
         {
             transform.localScale = new Vector3(-1f, 1f, 1f);
-
-            // flip weapon parent to be in the same relative position
-            // position needs to change too
-            // weaponParent.transform.SetPositionAndRotation(new Vector3(_originalWeaponParentLocalPosition.x - 0.5f, _originalWeaponParentLocalPosition.y, _originalWeaponParentLocalPosition.z), Quaternion.Euler(0f, 180f, 0f)); 
         }
 
         // on left click, shoot the weapon
