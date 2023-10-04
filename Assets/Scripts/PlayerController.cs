@@ -1,55 +1,55 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     // Basic player variables
-    private Rigidbody2D rb;
-    private PolygonCollider2D pc;
-    private SpriteRenderer sr;
     private FrameInput frameInput = new FrameInput();
-    private GameObject weaponParent;
     private GameObject weapon;
+    private GameObject weaponParent;
+    private Rigidbody2D rb;
+    private SpriteRenderer sr;
 
-    // Player movement variables
+    // Player information variables
+    [Header("Player Information")]
+    [Tooltip("The maximum health of the player")]
     public float healthMax = 100f;
+    [Tooltip("The walking speed of the player")]
     public float walkSpeed = 5f;
-    public float timeToWalk = 0.2f;
-    public float runSpeed = 10f;
-    public float maxSpeed = 10f;
-    public float timeToRun = 0.4f;
-    public float timeUntilRun = 0.5f;
-    public float gravityScale = 10f;
-    public float newJumpForce = 0.2f;
-    public float jumpForce = 20f;
-    public float maxJumpForce = 28f;
-    public float maxJumpTime = 0.5f;
+    [Tooltip("The jumping force of the player")]
+    public float jumpForce = 0.3f;
+    [Tooltip("The jump boost buffer of the player")]
     public float jumpBoostBuffer = 0.1f;
-    public bool currentlyJumping = false;
-    private float timeJumping = 0f;
+    [Tooltip("The box dimensions for the ground check")]
+    public Vector3 boxSize = new(0.5f, 0.3f, 1f);
+    [Tooltip("The maximum distance for the ground check")]
+    public float maxDistance = 0.1f;
+    [Tooltip("The layer mask for the ground")]
+    public LayerMask groundLayerMask = 3; // ground
 
     // Player grounding variables
     private bool onGround = false;
-    public Vector3 boxSize = new Vector3(0.5f, 0.3f, 1f);
-    public float maxDistance = 0.1f;
-    public LayerMask layerMask = 3; // ground
+    private float previousHorizontalInput = 0f;
 
     // added in for implementing immobility when interacting with a bear trap
     private bool isImmobile = false;
     private float immobileTimer = 0f;
+    [Tooltip("The time the player is immobile when interacting with a bear trap")]
     public float waitTime = 3.3f; // Adjust the wait time as needed
 
 
     // variables for the health bar
+    [Tooltip("The health bar of the player")]
     public HealthBarScript healthBar;
-    public float currHealth;
+    [SerializeField] private float currentHealth;
 
 
+    [Header("Fancy Jumping")]
+    [Tooltip("The coyote time of the player")]
     public float coyoteTime = 0.1f;
     private float coyoteTimeCounter;
 
+    [Tooltip("The jump buffer time of the player")]
     public float jumpBufferTime = 0.1f;
     private float jumpBufferTimeCounter;
 
@@ -59,12 +59,6 @@ public class PlayerController : MonoBehaviour
         // Get the Rigidbody2D component of the player
         rb = GetComponent<Rigidbody2D>();
 
-        // Set the gravity scale of the player
-        rb.gravityScale = gravityScale;
-
-        // Get the PolygonCollider2D component of the player
-        pc = GetComponent<PolygonCollider2D>();
-
         // Get the weapon of the player
         weaponParent = transform.GetChild(0).gameObject;
         weapon = weaponParent.transform.GetChild(0).gameObject;
@@ -73,7 +67,7 @@ public class PlayerController : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
 
         // set max health at the start of the game
-        currHealth = healthMax;
+        currentHealth = healthMax;
         healthBar.MaxHealth(healthMax);
     }
 
@@ -85,17 +79,57 @@ public class PlayerController : MonoBehaviour
         ManageJumpBuffer();
         ManageCoyote();
         ManageJumpBuffer();
+        ManageMovingPlatform();
         if (!isImmobile)
         {
             ManageWalking();
-            ManageJumpingNew();
-            // ManageJumping();
+            ManageJumping();
         }
         ManageShooting();
-        ManageMovingPlatform();
         CantMove();
     }
-
+    void ManageInputs()
+    {
+        frameInput.horizontalInput = Input.GetAxis("Horizontal");
+        frameInput.mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        frameInput.jumpDownPressed = Input.GetKeyDown(KeyCode.Space);
+        frameInput.jumpPressed = Input.GetKey(KeyCode.Space);
+        frameInput.jumpUpPressed = Input.GetKeyUp(KeyCode.Space);
+        frameInput.shootPressed = Input.GetMouseButtonDown(0);
+    }
+    void ManageGround()
+    {
+        if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, maxDistance, groundLayerMask))
+        {
+            onGround = true;
+        }
+        else
+        {
+            onGround = false;
+        }
+    }
+    void ManageJumpBuffer()
+    {
+        if (frameInput.jumpPressed)
+        {
+            jumpBufferTimeCounter = jumpBufferTime;
+        }
+        else
+        {
+            jumpBufferTimeCounter -= Time.deltaTime;
+        }
+    }
+    void ManageCoyote()
+    {
+        if (onGround)
+        {
+            coyoteTimeCounter = coyoteTime;
+        }
+        else
+        {
+            coyoteTimeCounter -= Time.deltaTime;
+        }
+    }
     void ManageMovingPlatform()
     {
         // check if player is touching platform layer
@@ -117,87 +151,6 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
-    void ManageJumpBuffer()
-    {
-        if (frameInput.jumpPressed)
-        {
-            jumpBufferTimeCounter = jumpBufferTime;
-        }
-        else
-        {
-            jumpBufferTimeCounter -= Time.deltaTime;
-        }
-    }
-
-    void ManageCoyote()
-    {
-        if (onGround)
-        {
-            coyoteTimeCounter = coyoteTime;
-        }
-        else
-        {
-            coyoteTimeCounter -= Time.deltaTime;
-        }
-    }
-
-    void ManageJumpingNew()
-    {
-        if (coyoteTimeCounter > 0 && jumpBufferTimeCounter > 0)
-        {
-            rb.velocity += new Vector2(0, newJumpForce);
-            jumpBufferTimeCounter = 0;
-        }
-
-        if (frameInput.jumpUpPressed && rb.velocity.y > 0)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
-            coyoteTimeCounter = 0;
-        }
-    }
-
-    void ManageJumping()
-    {
-        // If on ground and jump is keyed down, add upwards force
-        if (onGround && frameInput.jumpDownPressed)
-        {
-            currentlyJumping = true;
-            rb.velocity += new Vector2(0, jumpForce);
-        }
-
-        // If in the air and jump is held down, add small upwards force (this should only apply up to maxJumpForce)
-        if (!onGround && frameInput.jumpPressed && timeJumping > jumpBoostBuffer && timeJumping < maxJumpTime)
-        {
-            // this extra force should be applied over time (maxJumpTime - jumpBoostBuffer)
-            float extraJumpForce = maxJumpForce - jumpForce;
-            float extraJumpTime = maxJumpTime - jumpBoostBuffer;
-            float extraJumpForcePerSecond = extraJumpForce / extraJumpTime;
-            rb.velocity += new Vector2(0, extraJumpForcePerSecond * Time.deltaTime);
-        }
-
-        if (frameInput.jumpPressed)
-        {
-            timeJumping += Time.deltaTime;
-        }
-        else
-        {
-            timeJumping = 0f;
-        }
-    }
-
-    void ManageInputs()
-    {
-        frameInput.horizontalInput = Input.GetAxis("Horizontal");
-        frameInput.mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        frameInput.jumpDownPressed = Input.GetKeyDown(KeyCode.Space);
-        frameInput.jumpPressed = Input.GetKey(KeyCode.Space);
-        frameInput.jumpUpPressed = Input.GetKeyUp(KeyCode.Space);
-        frameInput.shootPressed = Input.GetMouseButtonDown(0);
-    }
-
-    float previousHorizontalInput = 0f;
-
     void ManageWalking()
     {
         // If the player is moving left or right, move the player
@@ -213,7 +166,20 @@ public class PlayerController : MonoBehaviour
 
         previousHorizontalInput = frameInput.horizontalInput;
     }
+    void ManageJumping()
+    {
+        if (coyoteTimeCounter > 0 && jumpBufferTimeCounter > 0)
+        {
+            rb.velocity += new Vector2(0, jumpForce);
+            jumpBufferTimeCounter = 0;
+        }
 
+        if (frameInput.jumpUpPressed && rb.velocity.y > 0)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            coyoteTimeCounter = 0;
+        }
+    }
     void ManageShooting()
     {
         // point the weapon at the mouse
@@ -241,29 +207,19 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-    void ManageGround()
-    {
-        if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, maxDistance, layerMask))
-        {
-            onGround = true;
-        }
-        else
-        {
-            onGround = false;
-        }
-    }
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawCube(transform.position - transform.up * maxDistance, boxSize);
     }
 
+    // these two functions are for the health bar
     public void TakeDamage(float damage)
     {
-        currHealth -= damage;
-        healthBar.SetHealth(currHealth);
-        Debug.Log(currHealth);
-        if (currHealth <= 0)
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
+        Debug.Log(currentHealth);
+        if (currentHealth <= 0)
         {
             // restart the level
             UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
@@ -271,19 +227,15 @@ public class PlayerController : MonoBehaviour
 
         StartCoroutine(BlinkColor(1, Color.red));
     }
-
     public void AddHealth(float addedHealth)
     {
-        currHealth = Mathf.Min(currHealth + addedHealth, 100.0f);
-        healthBar.SetHealth(currHealth);
+        currentHealth = Mathf.Min(currentHealth + addedHealth, 100.0f);
+        healthBar.SetHealth(currentHealth);
 
         StartCoroutine(BlinkColor(1, Color.green));
     }
 
-    //}
-
     // these two functions are so that the fox can't move when in the bear trap
-
     public void SetImmobile()
     {
         isImmobile = true;

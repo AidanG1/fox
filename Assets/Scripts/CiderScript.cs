@@ -23,18 +23,13 @@ public class CiderScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     public void AddHealth(float amount)
     {
         // Modify the currHealth variable in the Player script
-        player.currHealth += amount;
-        if (player.currHealth > 100.0f)
-        {
-            player.currHealth = 100.0f;
-        }
-        healthBar.SetHealth(player.currHealth);
+        player.AddHealth(amount);
         Destroy(gameObject);
     }
 
@@ -42,10 +37,7 @@ public class CiderScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            if (player.currHealth < 100.0f)
-            {
-                AddHealth(addAmount);
-            }
+            AddHealth(addAmount);
         }
     }
 }
