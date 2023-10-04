@@ -4011,7 +4011,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1070577566431165317, guid: 8fd0b9a734c6a504083fc180e855b318, type: 3}
       propertyPath: explosionForce
-      value: 1000
+      value: 100000
       objectReference: {fileID: 0}
     - target: {fileID: 1070577566431165317, guid: 8fd0b9a734c6a504083fc180e855b318, type: 3}
       propertyPath: explosionDuration
@@ -5288,6 +5288,10 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 875435715}
+    - target: {fileID: 181062328842231242, guid: 373051b33c10a456abc65df3b2e64e16, type: 3}
+      propertyPath: newJumpForce
+      value: 0.32
+      objectReference: {fileID: 0}
     - target: {fileID: 2595770908597395363, guid: 373051b33c10a456abc65df3b2e64e16, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.997979

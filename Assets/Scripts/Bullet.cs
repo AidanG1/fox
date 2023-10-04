@@ -16,6 +16,7 @@ public class Bullet : MonoBehaviour
     public float explosionRadius = 3f;
     public float explosionForce = 10f;
     public float explosionDuration = 0.5f;
+    public float fireRate = 1f;
 
     void Start()
     {

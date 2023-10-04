@@ -9,8 +9,8 @@ public class Weapon : MonoBehaviour
     [Tooltip("The prefab of the bullet")]
     public List<GameObject> bulletPrefabs;
     private GameObject activeBulletPrefab;
-    [Tooltip("The minimum time between shots")]
-    public float fireRate = 0.5f;
+    [Tooltip("The minimum time between shots, set using bullet")]
+    private float fireRate = 0.5f;
     private float timeUntilNextShot = 0f;
     [Tooltip("The number of bullets to shoot per shot")]
     public float quantity = 1f;
@@ -30,7 +30,7 @@ public class Weapon : MonoBehaviour
         muzzleFlash.SetActive(false);
 
         // set the active bullet prefab to the first bullet prefab in the list
-        activeBulletPrefab = bulletPrefabs[0];
+        SetActiveBullet(0);
         UpdateUI();
     }
 
@@ -111,13 +111,14 @@ public class Weapon : MonoBehaviour
     public void SetActiveBullet(int index)
     {
         activeBulletPrefab = bulletPrefabs[index];
+        fireRate = activeBulletPrefab.GetComponent<Bullet>().fireRate;
         UpdateUI();
     }
 
     public void AddBullet(GameObject bullet)
     {
         bulletPrefabs.Add(bullet);
-        activeBulletPrefab = bulletPrefabs[^1];
+        SetActiveBullet(bulletPrefabs.Count - 1);
         UpdateUI();
     }
 
@@ -168,5 +169,10 @@ public class Weapon : MonoBehaviour
             // set the position for the next bulletUI
             position += width + spacing;
         }
+    }
+
+    public float GetRecoil()
+    {
+        return activeBulletPrefab.GetComponent<Rigidbody2D>().mass * activeBulletPrefab.GetComponent<Bullet>().velocity / 50f;
     }
 }

@@ -18,9 +18,9 @@ public class PlayerController : MonoBehaviour
     public float walkSpeed = 5f;
     public float timeToWalk = 0.2f;
     public float runSpeed = 10f;
+    public float maxSpeed = 10f;
     public float timeToRun = 0.4f;
     public float timeUntilRun = 0.5f;
-    private float runningTime = 0f;
     public float gravityScale = 10f;
     public float newJumpForce = 0.2f;
     public float jumpForce = 20f;
@@ -194,29 +194,24 @@ public class PlayerController : MonoBehaviour
         frameInput.jumpPressed = Input.GetKey(KeyCode.Space);
         frameInput.jumpUpPressed = Input.GetKeyUp(KeyCode.Space);
         frameInput.shootPressed = Input.GetMouseButtonDown(0);
-        frameInput.shiftPressed = Input.GetKey(KeyCode.LeftShift);
     }
+
+    float previousHorizontalInput = 0f;
 
     void ManageWalking()
     {
         // If the player is moving left or right, move the player
         if (frameInput.horizontalInput != 0)
         {
-            if (frameInput.shiftPressed)
-            {
-                runningTime += Time.deltaTime;
-                rb.velocity = new Vector2(frameInput.horizontalInput * Mathf.Lerp(walkSpeed, runSpeed, Math.Min(1, runningTime / timeToRun)), rb.velocity.y);
-            }
-            else
-            {
-                rb.velocity = new Vector2(frameInput.horizontalInput * walkSpeed, rb.velocity.y);
-            }
+
+            rb.velocity = new Vector2(frameInput.horizontalInput * walkSpeed, rb.velocity.y);
         }
-        else
+        else if (previousHorizontalInput != 0)
         {
-            runningTime = 0f;
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
+
+        previousHorizontalInput = frameInput.horizontalInput;
     }
 
     void ManageShooting()
@@ -238,6 +233,11 @@ public class PlayerController : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             weapon.GetComponent<Weapon>().Shoot();
+            // add recoil
+            Vector2 oppositeMouse = transform.position - frameInput.mousePosition;
+            rb.velocity += oppositeMouse.normalized * weapon.GetComponent<Weapon>().GetRecoil();
+
+            print(oppositeMouse.normalized);
         }
 
     }
@@ -348,5 +348,4 @@ public class FrameInput
     public bool jumpPressed;
     public bool jumpUpPressed;
     public bool shootPressed;
-    public bool shiftPressed;
 }
