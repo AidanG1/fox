@@ -144,6 +144,8 @@ public class PlayerController : MonoBehaviour
 
     void ManageJumpingNew()
     {
+        print("coyote time counter: " + coyoteTimeCounter);
+        print("jump buffer time counter: " + jumpBufferTimeCounter);
         if (coyoteTimeCounter > 0 && jumpBufferTimeCounter > 0)
         {
             rb.velocity += new Vector2(0, newJumpForce);

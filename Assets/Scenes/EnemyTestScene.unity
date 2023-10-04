@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 36419717}
   - component: {fileID: 36419716}
   - component: {fileID: 36419715}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tilemap
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -1209,13 +1209,29 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 284480238909512594, guid: 373051b33c10a456abc65df3b2e64e16, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.a
+      value: 0.654902
+      objectReference: {fileID: 0}
+    - target: {fileID: 284480238909512594, guid: 373051b33c10a456abc65df3b2e64e16, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.b
+      value: 0.11764707
+      objectReference: {fileID: 0}
+    - target: {fileID: 284480238909512594, guid: 373051b33c10a456abc65df3b2e64e16, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.g
+      value: 0.3647059
+      objectReference: {fileID: 0}
+    - target: {fileID: 284480238909512594, guid: 373051b33c10a456abc65df3b2e64e16, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.r
+      value: 0.6039216
+      objectReference: {fileID: 0}
     - target: {fileID: 2595770908597395363, guid: 373051b33c10a456abc65df3b2e64e16, type: 3}
       propertyPath: m_LocalPosition.x
       value: -8.6582155
       objectReference: {fileID: 0}
     - target: {fileID: 2595770908597395363, guid: 373051b33c10a456abc65df3b2e64e16, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.9240036
+      value: -3.16
       objectReference: {fileID: 0}
     - target: {fileID: 2595770908597395363, guid: 373051b33c10a456abc65df3b2e64e16, type: 3}
       propertyPath: m_LocalPosition.z
