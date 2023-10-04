@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0715fbacc560746e59893ecbe53ccf8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeAlpha: 0.5
+  fadeAlpha: 0.1
   startDisabled: 0
 --- !u!1 &5947023112932212136
 GameObject:
@@ -156,6 +156,7 @@ GameObject:
   - component: {fileID: 5827413059186532377}
   - component: {fileID: 8809954675527941124}
   - component: {fileID: 242901102905152734}
+  - component: {fileID: 3294366604482149634}
   m_Layer: 0
   m_Name: redButton
   m_TagString: Untagged
@@ -276,3 +277,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6422143, y: 1.0915623}
   m_EdgeRadius: 0
+--- !u!114 &3294366604482149634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5947023112932212136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 493ecb22f981a47e1ac9fb78bbf642e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  clickSound: {fileID: 8300000, guid: 23137a45ce766437bacd14b152d9b4b9, type: 3}
