@@ -5,16 +5,20 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
-    public float cameraMoveSpeed = 5.0f; // Adjust this speed as needed
+    public float cameraMoveSpeed = 5.0f;
     private bool isCameraMoving = false;
     private Vector3 targetPosition;
 
-    // Reference to the BackgroundManager GameObject
     public GameObject backgroundManager;
     public int spriteIndex;
 
-    // Reference to the BackgroundFader script on the backgroundManager GameObject
     private BackgroundFader backgroundFader;
+
+    // Public variable to adjust the Y offset
+    public float yOffset = 3.0f;
+
+    // Variable to store the last CameraMovement object that collided with the player
+    private static CameraMovement lastCameraMovement;
 
     private void Start()
     {
@@ -24,7 +28,6 @@ public class CameraMovement : MonoBehaviour
 
     private void Update()
     {
-
         if (isCameraMoving)
         {
             // Interpolate the camera's position towards the target position over time
@@ -41,10 +44,8 @@ public class CameraMovement : MonoBehaviour
                 backgroundManager.transform.position.z
             );
 
-            // Check if the camera is close enough to the target position
             if (Vector3.Distance(Camera.main.transform.position, targetPosition) < 0.1f)
             {
-                // Stop moving the camera once it's close enough
                 Camera.main.transform.position = targetPosition;
                 isCameraMoving = false;
             }
@@ -53,25 +54,47 @@ public class CameraMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player") && !isCameraMoving) // Check if the FOX collided with the trigger and the camera isn't already moving
+        if (other.CompareTag("Player") && !isCameraMoving)
         {
-            Debug.Log("FOX collided with the trigger");
+            // Check if the current CameraMovement is the same as the last one
+            if (lastCameraMovement != this)
+            {
+                // Reset the previous camera movement if it was still executing
+                if (lastCameraMovement != null && lastCameraMovement.isCameraMoving)
+                {
+                    lastCameraMovement.ResetCameraMovement();
+                }
 
-            // Get the position of the GameObject the FOX collided with
-            targetPosition = new Vector3(
-                transform.position.x,
-                transform.position.y,
-                Camera.main.transform.position.z // Keep the same z-position (-10)
-            );
+                Debug.Log("FOX collided with the trigger");
 
-            GameTimerManager.instance.AddCameraMovementTime(targetPosition.y);
+                // Get the position of the GameObject the FOX collided with
+                targetPosition = new Vector3(
+                    transform.position.x,
+                    transform.position.y + yOffset,
+                    Camera.main.transform.position.z
+                );
 
-            // Set isCameraMoving to true to start the camera movement
-            isCameraMoving = true;
+                GameTimerManager.instance.AddCameraMovementTime(targetPosition.y);
 
-            // Call the FadeToNewBackground method to initiate the background transition
-            // Pass the new background sprite to the method
-            backgroundFader.TransitionToNextBackground(spriteIndex);
+                // Set isCameraMoving to true to start the camera movement
+                isCameraMoving = true;
+
+                // Call the FadeToNewBackground method to initiate the background transition
+                // Pass the new background sprite to the method
+                backgroundFader.TransitionToNextBackground(spriteIndex);
+
+                // Update the lastCameraMovement to the current one
+                lastCameraMovement = this;
+            }
         }
+    }
+
+
+
+    // Method to reset camera movement
+    private void ResetCameraMovement()
+    {
+        isCameraMoving = false;
+        // Reset any other camera-related variables as needed
     }
 }
