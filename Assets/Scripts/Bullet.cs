@@ -18,8 +18,7 @@ public class Bullet : MonoBehaviour
         // make muzzle flash by making the bullet white and big on frame 1
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color = Color.white;
-        transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-        
+        // transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
     }
 
     void OnCollisionEnter2D(Collision2D collision)
