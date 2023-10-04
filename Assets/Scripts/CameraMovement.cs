@@ -11,8 +11,7 @@ public class CameraMovement : MonoBehaviour
 
     // Reference to the BackgroundManager GameObject
     public GameObject backgroundManager;
-    public Sprite newBackgroundSprite; // Assign the new background sprite in the Inspector
-    private int spriteIndex;
+    public int spriteIndex;
 
     // Reference to the BackgroundFader script on the backgroundManager GameObject
     private BackgroundFader backgroundFader;

@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     public float timeUntilRun = 0.5f;
     private float runningTime = 0f;
     public float gravityScale = 10f;
+    public float newJumpForce = 0.2f;
     public float jumpForce = 20f;
     public float maxJumpForce = 28f;
     public float maxJumpTime = 0.5f;
@@ -45,6 +46,12 @@ public class PlayerController : MonoBehaviour
     public HealthBarScript healthBar;
     public float currHealth;
 
+
+    public float coyoteTime = 0.1f;
+    private float coyoteTimeCounter;
+
+    public float jumpBufferTime = 0.1f;
+    private float jumpBufferTimeCounter;
 
     // Start is called before the first frame update
     void Start()
@@ -95,15 +102,19 @@ public class PlayerController : MonoBehaviour
         // boxcast down to see if moving platform is below
         // if so, move the player with the platform
         var bc = Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, maxDistance, 7);
-        if (bc)
+        if (bc && bc.collider.CompareTag("MovingPlatform"))
         {
-            // get the moving platform
-            GameObject platform = bc.collider.gameObject;
+            // Get the MovingPlatform component from the collider's GameObject
+            MovingPlatform platform = bc.collider.gameObject.GetComponent<MovingPlatform>();
 
-            // move the player with the platform
-            var vel = rb.velocity;
-            vel.x += platform.GetComponent<MovingPlatform>().speed;
-            rb.velocity = vel;
+            // Check if the platform component exists
+            if (platform != null)
+            {
+                // Move the player with the platform
+                var vel = rb.velocity;
+                vel.x += platform.speed;
+                rb.velocity = vel;
+            }
         }
     }
 
