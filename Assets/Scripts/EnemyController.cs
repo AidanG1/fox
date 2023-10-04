@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EnemyController : MonoBehaviour
 {
@@ -76,4 +77,27 @@ public class EnemyController : MonoBehaviour
 
         isFacingRight = transform.localScale.x > 0;
     }
+
+    /// <summary>
+    /// Function destroys a rat if hit by a bullet or restarts scene if a
+    /// collision between rat and fox.
+    /// </summary>
+    /// 
+    /// <param name="collision"></param>
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.GetComponent<PlayerController>() != null)
+        {
+            // reset scene if rat hit by bullet
+            Debug.Log("Player Killed");
+            Debug.Log("Reset Player Health");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
+        } else if (collision.gameObject.GetComponent<Bullet>() != null)
+        {
+            //destroy self(rat) if hit by bullet
+            Destroy(gameObject);
+        }
+    }
+
 }
