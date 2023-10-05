@@ -57,7 +57,7 @@ public class Bullet : MonoBehaviour
             Destroy(explosion, explosionDuration);
             Destroy(gameObject);
         }
-        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Trap") || collision.gameObject.CompareTag("Border"))
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Trap") || collision.gameObject.CompareTag("Border") || collision.gameObject.CompareTag("MovingPlatform"))
         {
             if (ricochets < maxRicochets)
             {
