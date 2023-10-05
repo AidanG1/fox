@@ -184,6 +184,7 @@ public class PlayerController : MonoBehaviour
             coyoteTimeCounter = 0;
         }
     }
+
     void ManageShooting()
     {
         // point the weapon at the mouse
