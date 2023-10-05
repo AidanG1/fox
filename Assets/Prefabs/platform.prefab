@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2407504511730419459}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PatrolPoint (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9010806427174292086}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PatrolPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ GameObject:
   - component: {fileID: 5808262408911789782}
   - component: {fileID: 2224507926960590055}
   - component: {fileID: 3595911047615398825}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
