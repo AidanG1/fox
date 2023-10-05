@@ -55,6 +55,8 @@ public class PlayerController : MonoBehaviour
     public AudioClip jumpSound;
     private bool jumpSoundPlayed = false;
     public AudioClip slideSound;
+    public AudioClip snowSound;
+    private float recentSnowSoundTime = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -164,12 +166,19 @@ public class PlayerController : MonoBehaviour
             Vector2 vel = rb.velocity;
             vel.x = frameInput.horizontalInput * walkSpeed;
             rb.velocity = vel;
+
+
+            if (snowSound != null && Time.time - recentSnowSoundTime > 0.5f)
+            {
+                AudioSource.PlayClipAtPoint(snowSound, transform.position);
+                recentSnowSoundTime = Time.time;
+            }
         }
         else if (previousHorizontalInput != 0)
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
-        if (rb.velocity.x != 0 && onGround)
+        if (rb.velocity.x != 0 && onGround && frameInput.horizontalInput == 0)
         {
             // Play the slide sound
             if (slideSound != null)
