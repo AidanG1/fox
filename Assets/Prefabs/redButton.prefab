@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3290217288203563396}
   - component: {fileID: 6388614488467586859}
   - component: {fileID: 923996211669157223}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: AppearingPlatform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 4750765954224720403}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.4352, y: -1.0059, z: 0}
+  m_LocalPosition: {x: -1.66, y: 0.03, z: 0}
   m_LocalScale: {x: 2.7734125, y: 0.3103, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -262,7 +262,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.061656892, y: 0.045425177}
