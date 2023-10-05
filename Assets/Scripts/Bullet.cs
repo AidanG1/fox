@@ -30,7 +30,7 @@ public class Bullet : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (shouldExplode)
+        if (shouldExplode && !collision.gameObject.CompareTag("player"))
         {
             // explode
             // Instantiate explosion prefab

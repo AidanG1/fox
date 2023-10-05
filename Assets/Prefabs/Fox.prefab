@@ -333,7 +333,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthMax: 100
   walkSpeed: 10
-  jumpForce: 0.6
+  jumpForce: 0.4
   jumpBoostBuffer: 0.1
   boxSize: {x: 0.7, y: 0.5, z: 1}
   maxDistance: 0.8
@@ -568,7 +568,7 @@ Transform:
   m_GameObject: {fileID: 5793663869257516329}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 8.4, z: 0}
+  m_LocalPosition: {x: 0, y: 8, z: 0}
   m_LocalScale: {x: 31.525848, y: 31.525848, z: 31.525852}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -601,7 +601,7 @@ Transform:
   m_GameObject: {fileID: 8424085873750391814}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.272, z: 0}
+  m_LocalPosition: {x: 0, y: 0.36, z: 0}
   m_LocalScale: {x: 0.03172, y: 0.03172, z: 0.031719998}
   m_ConstrainProportionsScale: 0
   m_Children:
