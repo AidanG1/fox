@@ -8,18 +8,6 @@ public class RatController : EnemyController
     void Update()
     {
         movementLeftRight();
-
-        // updating the facing direction
-        if (moveRight && !isFacingRight)
-        {
-            Flip();
-        }
-        else if (!moveRight && isFacingRight)
-        {
-            Flip();
-        }
-
-        
     }
 
 }

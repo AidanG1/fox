@@ -3,19 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+
+/// <summary>
+/// In order to move left the player, a negative unitsToMove value must be set
+/// initially. The move right 
+///
+/// 
+/// </summary>
 public class EnemyController : MonoBehaviour
 {
-
+    // negative to move left
     public int unitsToMove;
     public float moveSpeed;
 
     // space being travelled between
-    protected float startPos;
-    protected float endPos;
+    private float startPos;
+    private float endPos;
 
     // direction bools
-    public bool isFacingRight;
-    public bool moveRight;
+    protected bool isFacingRight = true;
+    protected bool moveRight;
 
 
     protected Rigidbody2D enemyRigidBody2D;
@@ -24,50 +32,45 @@ public class EnemyController : MonoBehaviour
     // Start or Awake
     void Start()
     {
-        enemyRigidBody2D = enemyRigidBody2D = GetComponent<Rigidbody2D>();
-        startPos = transform.position.x;
-        endPos = startPos + unitsToMove;
+        enemyRigidBody2D = GetComponent<Rigidbody2D>();
 
-        // what does this do?
-        // What x value is it refering to?
-        // somehow reveleals if facing left or right
-        isFacingRight = transform.localScale.x > 0;
+        // Calculate startPos and endPos based on initial position and unitsToMove
+        startPos = Mathf.Min(transform.position.x, transform.position.x + unitsToMove);
+        endPos = Mathf.Max(transform.position.x, transform.position.x + unitsToMove);
+
     }
+
 
     protected void movementLeftRight()
     {
         // current position
         float currPosX = enemyRigidBody2D.position.x;
 
-        // moving the player into direction being faced
-
-        //moving right
+        // moving right
         if (moveRight)
         {
-            enemyRigidBody2D.velocity = new Vector2(moveSpeed,
-                enemyRigidBody2D.velocity.y);
+            enemyRigidBody2D.velocity = new Vector2(moveSpeed, enemyRigidBody2D.velocity.y);
 
+            // Check if enemy needs to change direction
+            if (currPosX >= endPos)
+            {
+                moveRight = false;
+                Flip();
+            }
         }
-
-        // checking if enemy has reached end bound
-        if (currPosX >= endPos)
+        else // moving left
         {
-            moveRight = false;
-        }
+            enemyRigidBody2D.velocity = new Vector2(-moveSpeed, enemyRigidBody2D.velocity.y);
 
-        // moving left
-        if (!moveRight)
-        {
-            enemyRigidBody2D.velocity = new Vector2(-moveSpeed,
-                enemyRigidBody2D.velocity.y);
-
-        }
-        // checking if enemy has reached start bound
-        if (currPosX <= startPos)
-        {
-            moveRight = true;
+            // Check if enemy needs to change direction
+            if (currPosX <= startPos)
+            {
+                moveRight = true;
+                Flip();
+            }
         }
     }
+
 
     // Figure out if this is necessary 
     protected void Flip()
@@ -93,8 +96,7 @@ public class EnemyController : MonoBehaviour
             Debug.Log("Reset Player Health");
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
-        } else if (collision.gameObject.GetComponent<Bullet>() != null)
-        {
+        } else {
             //destroy self(rat) if hit by bullet
             Destroy(gameObject);
         }
