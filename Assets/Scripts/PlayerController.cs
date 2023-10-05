@@ -17,11 +17,11 @@ public class PlayerController : MonoBehaviour
     [Tooltip("The walking speed of the player")]
     public float walkSpeed = 5f;
     [Tooltip("The jumping force of the player")]
-    public float jumpForce = 0.3f;
+    public float jumpForce = 0.72f;
     [Tooltip("The box dimensions for the ground check")]
-    public Vector3 boxSize = new(0.5f, 0.3f, 1f);
+    public Vector3 boxSize = new(0.5f, 0.5f, 1f);
     [Tooltip("The maximum distance for the ground check")]
-    public float maxDistance = 0.1f;
+    public float maxDistance = 0.9f;
     [Tooltip("The layer mask for the ground")]
     public LayerMask groundLayerMask = 3; // ground
 
