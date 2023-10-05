@@ -335,8 +335,8 @@ MonoBehaviour:
   walkSpeed: 10
   jumpForce: 0.4
   jumpBoostBuffer: 0.1
-  boxSize: {x: 0.7, y: 0.5, z: 1}
-  maxDistance: 0.8
+  boxSize: {x: 0.2, y: 0.2, z: 1}
+  maxDistance: 0.9
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 3

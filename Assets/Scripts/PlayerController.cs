@@ -159,7 +159,9 @@ public class PlayerController : MonoBehaviour
         // If the player is moving left or right, move the player
         if (frameInput.horizontalInput != 0)
         {
-            rb.velocity = new Vector2(frameInput.horizontalInput * walkSpeed, 0);
+            Vector2 vel = rb.velocity;
+            vel.x = frameInput.horizontalInput * walkSpeed;
+            rb.velocity = vel;
         }
         else if (previousHorizontalInput != 0)
         {
