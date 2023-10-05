@@ -7,6 +7,8 @@ public class CiderScript : MonoBehaviour
     public float addAmount = 10.0f;
     public PlayerController player;
     public HealthBarScript healthBar;
+
+    public AudioClip[] collisionSounds; // An array of audio clips
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +39,16 @@ public class CiderScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            AddHealth(addAmount);
+            if (player.currHealth < 100.0f)
+            {
+                AddHealth(addAmount);
+
+                int randomIndex = Random.Range(0, collisionSounds.Length);
+
+                // Get the randomly selected audio clip
+                AudioClip randomClip = collisionSounds[randomIndex];
+                AudioSource.PlayClipAtPoint(randomClip, transform.position);
+            }
         }
     }
 }

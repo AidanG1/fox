@@ -220,10 +220,10 @@ public class PlayerController : MonoBehaviour
     // these two functions are for the health bar
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
-        healthBar.SetHealth(currentHealth);
-        Debug.Log(currentHealth);
-        if (currentHealth <= 0)
+        currHealth -= damage;
+        healthBar.SetHealth(currHealth);
+        //Debug.Log(currHealth);
+        if (currHealth <= 0)
         {
             // restart the level
             UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
@@ -243,7 +243,7 @@ public class PlayerController : MonoBehaviour
     public void SetImmobile()
     {
         isImmobile = true;
-        Debug.Log("immobile is set");
+        //Debug.Log("immobile is set");
     }
 
     void CantMove()

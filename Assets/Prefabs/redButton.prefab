@@ -145,6 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeAlpha: 0.1
   startDisabled: 0
+  isPressed: 0
 --- !u!1 &5947023112932212136
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,12 +222,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 3250f770f643642caa90a4701182fee5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: efb951f1edf92451c8a997ddf0d89aad, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2.56, y: 2.56}
+  m_Size: {x: 18.12, y: 15.58}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -264,18 +265,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.6740234, y: 0.28084278}
+  m_Offset: {x: -0.061656892, y: 0.045425177}
   m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.3272727, y: 2.3272727}
-    newSize: {x: 2.56, y: 2.56}
+    border: {x: 0.13350001, y: 0.053000003, z: 0.20850001, w: 0.028500002}
+    pivot: {x: 0.3466707, y: 0.542524}
+    oldSize: {x: 0.906, y: 0.779}
+    newSize: {x: 18.12, y: 15.58}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6422143, y: 1.0915623}
+  m_Size: {x: 0.5833596, y: 0.73843527}
   m_EdgeRadius: 0
 --- !u!114 &3294366604482149634
 MonoBehaviour:
@@ -290,3 +291,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickSound: {fileID: 8300000, guid: 23137a45ce766437bacd14b152d9b4b9, type: 3}
+  buttonRenderer: {fileID: 8809954675527941124}
+  pressedSprite: {fileID: 21300000, guid: efb951f1edf92451c8a997ddf0d89aad, type: 3}
+  buttonSprite: {fileID: 21300000, guid: b26867c7229884a0ba2add09f1655fb9, type: 3}
+  toggleCollision: {fileID: 0}
+  flipLeft: 0

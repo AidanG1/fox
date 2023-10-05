@@ -9,6 +9,9 @@ public class ToggleCollision : MonoBehaviour
     private Color originalColor;
     public float fadeAlpha = 0.2f; // Customize the alpha value when collision is disabled
     public bool startDisabled = false; // Public variable to toggle initial state
+    public bool isPressed = false;
+
+    private RedButton redButtonScript;
 
     private void Start()
     {
@@ -42,6 +45,7 @@ public class ToggleCollision : MonoBehaviour
         if (coll2D.enabled)
         {
             spriteRenderer.color = originalColor;
+            isPressed = false;
         }
         else
         {
@@ -49,6 +53,8 @@ public class ToggleCollision : MonoBehaviour
             Color fadedColor = originalColor;
             fadedColor.a = fadeAlpha;
             spriteRenderer.color = fadedColor;
+            isPressed = true;
         }
+
     }
 }

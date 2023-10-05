@@ -149,6 +149,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f6748f9bd7c2a405f9280f6e1a25159b, type: 3}
   - {fileID: 21300000, guid: 6dbedb243f24e49b28d27c78b4bafb30, type: 3}
   cycleSpeed: 0.1
+  trapSounds:
+  - {fileID: 8300000, guid: eb8e59c2ad8c548309577f192b44afd9, type: 3}
+  - {fileID: 8300000, guid: 6a1ed95c7f4294fdc98e640da4976736, type: 3}
 --- !u!1 &4972279892309910469
 GameObject:
   m_ObjectHideFlags: 0

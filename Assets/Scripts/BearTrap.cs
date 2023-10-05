@@ -13,6 +13,9 @@ public class BearTrap : MonoBehaviour
     private bool waiting = false;
     private float waitTime = 3.0f;
 
+    // audio clips for the bear trap
+    public AudioClip[] trapSounds; // An array of audio clips
+
     // berry and player activated is different
     private bool playerAct = false;
     private bool berryAct = false;
@@ -42,9 +45,11 @@ public class BearTrap : MonoBehaviour
                 timeSinceLastCycle += Time.deltaTime;
                 if (timeSinceLastCycle >= cycleSpeed)
                 {
-                    // Cycle to the next sprite in the array
+                 
                     currentSpriteIndex = (currentSpriteIndex + 1) % trapSprites.Length;
                     spriteRenderer.sprite = trapSprites[currentSpriteIndex];
+                    
+
 
                     // Reset the timer
                     timeSinceLastCycle = 0f;
@@ -86,12 +91,16 @@ public class BearTrap : MonoBehaviour
 
         berryAct = false;
 
+        AudioSource.PlayClipAtPoint(trapSounds[1], transform.position);
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Berry"))
         {
+            AudioSource.PlayClipAtPoint(trapSounds[0], transform.position);
+
             // Cycle to the next sprite immediately upon collision
             currentSpriteIndex = (currentSpriteIndex + 1) % trapSprites.Length;
             spriteRenderer.sprite = trapSprites[currentSpriteIndex];

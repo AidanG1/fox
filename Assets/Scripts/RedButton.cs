@@ -5,11 +5,30 @@ using UnityEngine;
 public class RedButton : MonoBehaviour
 {
     public AudioClip clickSound; // Reference to the audio clip to play
+    public SpriteRenderer buttonRenderer; // Reference to the SpriteRenderer for the button
+    public Sprite pressedSprite; // The sprite to use when the button is pressed
+    public Sprite buttonSprite;
+    public ToggleCollision toggleCollision;
+    public bool flipLeft = false;
+
+
+    private void Start()
+    {
+        // Find and assign the ToggleCollision script reference
+        toggleCollision = GetComponentInChildren<ToggleCollision>();
+
+        UpdateButtonSprite();
+    }
+
+   
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Berry"))
         {
+            // Destroy the Berry object
+            Destroy(collision.gameObject);
+
             // Get the ToggleCollision component from the child object
             ToggleCollision toggleCollision = GetComponentInChildren<ToggleCollision>();
 
@@ -19,17 +38,35 @@ public class RedButton : MonoBehaviour
                 toggleCollision.Toggle();
             }
 
-            // Check if a SpriteRenderer and an audio clip are assigned
+            // Play the assigned audio clip at the position of the GameObject
             if (clickSound != null)
             {
-                // Play the assigned audio clip at the position of the GameObject
                 AudioSource.PlayClipAtPoint(clickSound, transform.position);
                 Debug.Log("click played");
-
-                // You can also modify the sprite or color of the SpriteRenderer here if needed
-                // For example, change the sprite color to indicate the button press:
-                // spriteRenderer.color = Color.red;
             }
+
+            // Toggle the button's sprite and press state
+            if (toggleCollision.isPressed == true)
+            {
+                buttonRenderer.sprite = pressedSprite;
+            }
+            else
+            {
+                buttonRenderer.sprite = buttonSprite;
+            }
+
+        }
+    }
+
+    private void UpdateButtonSprite()
+    {
+        if (flipLeft)
+        {
+            buttonRenderer.flipX = true; // Flip the sprite about the Y-axis
+        }
+        else
+        {
+            buttonRenderer.flipX = false; // Reset the sprite's flip
         }
     }
 }

@@ -115,7 +115,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.013846874, y: -0.027695417}
@@ -144,3 +144,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   addAmount: 10
+  player: {fileID: 0}
+  healthBar: {fileID: 0}
+  collisionSounds:
+  - {fileID: 8300000, guid: 846e3507fa40e402c83ca574d6e6b058, type: 3}
+  - {fileID: 8300000, guid: d8afab8e288ee46e8b491ed560b52d9c, type: 3}
+  - {fileID: 8300000, guid: 2bd26253b9f654445b77971888753874, type: 3}
