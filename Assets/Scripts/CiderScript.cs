@@ -39,7 +39,7 @@ public class CiderScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            if (player.currHealth < 100.0f)
+            if (player.currentHealth < 100.0f)
             {
                 AddHealth(addAmount);
 

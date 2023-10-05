@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
     // variables for the health bar
     [Tooltip("The health bar of the player")]
     public HealthBarScript healthBar;
-    [SerializeField] private float currentHealth;
+    [SerializeField] public float currentHealth;
 
 
     [Header("Fancy Jumping")]
@@ -220,10 +220,11 @@ public class PlayerController : MonoBehaviour
     // these two functions are for the health bar
     public void TakeDamage(float damage)
     {
-        currHealth -= damage;
-        healthBar.SetHealth(currHealth);
-        //Debug.Log(currHealth);
-        if (currHealth <= 0)
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
+        Debug.Log("this is curr health");
+        Debug.Log(currentHealth);
+        if (currentHealth <= 0)
         {
             // restart the level
             UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
