@@ -5,4 +5,5 @@ using UnityEngine;
 public class Fruit : MonoBehaviour
 {
     public GameObject bulletPrefab;
+    public AudioClip fruitPickupSound;
 }

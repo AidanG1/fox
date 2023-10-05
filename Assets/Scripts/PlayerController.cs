@@ -282,6 +282,12 @@ public class PlayerController : MonoBehaviour
         {
             weapon.GetComponent<Weapon>().AddBullet(collision.gameObject.GetComponent<Fruit>().bulletPrefab);
 
+            // Play the fruit pickup sound
+            if (collision.gameObject.GetComponent<Fruit>().fruitPickupSound != null)
+            {
+                AudioSource.PlayClipAtPoint(collision.gameObject.GetComponent<Fruit>().fruitPickupSound, transform.position);
+            }
+
             // Destroy the fruit
             Destroy(collision.gameObject);
         }

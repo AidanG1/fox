@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public AudioClip bulletSound;
     public int maxRicochets = 0;
     private int ricochets = 0;
     public int maxPierces = 0;
@@ -26,6 +27,12 @@ public class Bullet : MonoBehaviour
         SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
         spriteRenderer.color = Color.white;
         // transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+
+        // play bullet sound
+        if (bulletSound != null)
+        {
+            AudioSource.PlayClipAtPoint(bulletSound, transform.position);
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
