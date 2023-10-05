@@ -206,6 +206,7 @@ public class PlayerController : MonoBehaviour
             // add recoil
             Vector2 oppositeMouse = transform.position - frameInput.mousePosition;
             rb.velocity += oppositeMouse.normalized * weapon.GetComponent<Weapon>().GetRecoil();
+            // rb.AddForce(oppositeMouse.normalized * weapon.GetComponent<Weapon>().GetRecoil(), ForceMode2D.Impulse);
 
             print(oppositeMouse.normalized);
         }

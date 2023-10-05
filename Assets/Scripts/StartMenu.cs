@@ -45,6 +45,11 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("PlayerTestScene");
     }
 
+    public void StartTutorial()
+    {
+        SceneManager.LoadScene("Tutorial");
+    }
+
     IEnumerator ShakeText()
     {
         Vector3 originalPosition = gameText.transform.position;
