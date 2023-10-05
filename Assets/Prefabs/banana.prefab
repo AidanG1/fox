@@ -100,6 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099c3944dfdc9cf4e9a2a17cdf8aef1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletSound: {fileID: 8300000, guid: 4411e514c4af8954f94fc8b48a72a07e, type: 3}
   maxRicochets: 5
   maxPierces: 0
   velocity: 40

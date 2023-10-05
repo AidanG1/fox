@@ -51,6 +51,9 @@ public class PlayerController : MonoBehaviour
     [Tooltip("The jump buffer time of the player")]
     public float jumpBufferTime = 0.1f;
     private float jumpBufferTimeCounter = 0.1f;
+    [Tooltip("The jump sound of the player")]
+    public AudioClip jumpSound;
+    private bool jumpSoundPlayed = false;
 
     // Start is called before the first frame update
     void Start()
@@ -176,12 +179,20 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity += new Vector2(0, jumpForce);
             jumpBufferTimeCounter = 0;
+
+            // Play the jump sound
+            if (jumpSound != null && !jumpSoundPlayed)
+            {
+                AudioSource.PlayClipAtPoint(jumpSound, transform.position);
+                jumpSoundPlayed = true;
+            }
         }
 
         if (frameInput.jumpUpPressed && rb.velocity.y > 0)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
             coyoteTimeCounter = 0;
+            jumpSoundPlayed = false;
         }
     }
 

@@ -160,6 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 4407114039867926245, guid: 254f08ae919dcd94fa7221145211bd1b, type: 3}
+  fruitPickupSound: {fileID: 0}
 --- !u!70 &141644988
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -3549,6 +3550,10 @@ PrefabInstance:
       propertyPath: maxPierces
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1070577566431165317, guid: 254f08ae919dcd94fa7221145211bd1b, type: 3}
+      propertyPath: bulletSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 63af5305948376d4c81c1a9e1b0aa59f, type: 3}
     - target: {fileID: 4407114039867926245, guid: 254f08ae919dcd94fa7221145211bd1b, type: 3}
       propertyPath: m_Name
       value: apple
@@ -3733,6 +3738,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6308543045559280757, guid: 7ff973ee0571577449fc5876426d5bd9, type: 3}
+      propertyPath: bulletSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 8262284ff30d12e4fa3fa412c0d97f9e, type: 3}
     m_RemovedComponents:
     - {fileID: -2351251881013216814, guid: 7ff973ee0571577449fc5876426d5bd9, type: 3}
     m_RemovedGameObjects: []
@@ -3750,6 +3759,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1070577566431165317, guid: 8c012dfc7ab632440be36c708f09a7db, type: 3}
+      propertyPath: bulletSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 2735faa8db748c1499053d751bfb9c5e, type: 3}
     - target: {fileID: 4407114039867926245, guid: 8c012dfc7ab632440be36c708f09a7db, type: 3}
       propertyPath: m_Name
       value: coconut
@@ -3900,6 +3913,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 4407114039867926245, guid: 8c012dfc7ab632440be36c708f09a7db, type: 3}
+  fruitPickupSound: {fileID: 0}
 --- !u!70 &379750749
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -4557,6 +4571,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1070577566431165317, guid: 8fd0b9a734c6a504083fc180e855b318, type: 3}
+      propertyPath: bulletSound
+      value: 
+      objectReference: {fileID: 8300000, guid: b8089d69b4a841b4e972c0d12f61d420, type: 3}
     - target: {fileID: 1070577566431165317, guid: 8fd0b9a734c6a504083fc180e855b318, type: 3}
       propertyPath: explosionForce
       value: 100000
@@ -5221,6 +5239,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1070577566431165317, guid: 480f97a7efa74b044a3e7bece5850923, type: 3}
+      propertyPath: bulletSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 4411e514c4af8954f94fc8b48a72a07e, type: 3}
     - target: {fileID: 4407114039867926245, guid: 480f97a7efa74b044a3e7bece5850923, type: 3}
       propertyPath: m_Name
       value: banana
@@ -5406,6 +5428,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 4407114039867926245, guid: ee20de19fae98004f8c32f4de08d8b47, type: 3}
+  fruitPickupSound: {fileID: 0}
 --- !u!212 &1085345772
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5591,6 +5614,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 4407114039867926245, guid: 480f97a7efa74b044a3e7bece5850923, type: 3}
+  fruitPickupSound: {fileID: 0}
 --- !u!70 &1449563853
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -6047,6 +6071,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 4407114039867926245, guid: 8fd0b9a734c6a504083fc180e855b318, type: 3}
+  fruitPickupSound: {fileID: 0}
 --- !u!70 &1761936241
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -6238,6 +6263,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1070577566431165317, guid: ee20de19fae98004f8c32f4de08d8b47, type: 3}
+      propertyPath: bulletSound
+      value: 
+      objectReference: {fileID: 8300000, guid: e2e024d7ead5e31439422db57b1cd676, type: 3}
     - target: {fileID: 4407114039867926245, guid: ee20de19fae98004f8c32f4de08d8b47, type: 3}
       propertyPath: m_Name
       value: cherry (1)

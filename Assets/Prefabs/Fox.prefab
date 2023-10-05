@@ -345,6 +345,7 @@ MonoBehaviour:
   currentHealth: 0
   coyoteTime: 0.05
   jumpBufferTime: 0.1
+  jumpSound: {fileID: 8300000, guid: 004cc161998d4aa4db8bf36845c7a66c, type: 3}
 --- !u!96 &284480238909512594
 TrailRenderer:
   serializedVersion: 3

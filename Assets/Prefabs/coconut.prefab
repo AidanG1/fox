@@ -100,9 +100,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 099c3944dfdc9cf4e9a2a17cdf8aef1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletSound: {fileID: 8300000, guid: 2735faa8db748c1499053d751bfb9c5e, type: 3}
   maxRicochets: 2
   maxPierces: 0
   velocity: 25
+  shouldExplode: 0
+  explosionPrefab: {fileID: 0}
+  explosionRadius: 3
+  explosionForce: 10
+  explosionDuration: 0.5
+  fireRate: 1
 --- !u!96 &2320809411818200860
 TrailRenderer:
   serializedVersion: 3
