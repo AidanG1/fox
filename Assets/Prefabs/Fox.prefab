@@ -316,8 +316,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.1538461, y: 1.6410257}
+  m_Offset: {x: 0.019274235, y: 0}
+  m_Size: {x: 0.8377485, y: 1.6410257}
   m_Direction: 0
 --- !u!114 &181062328842231242
 MonoBehaviour:
@@ -334,7 +334,6 @@ MonoBehaviour:
   healthMax: 100
   walkSpeed: 10
   jumpForce: 0.4
-  jumpBoostBuffer: 0.1
   boxSize: {x: 0.2, y: 0.2, z: 1}
   maxDistance: 0.9
   groundLayerMask:
