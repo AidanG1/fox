@@ -18,8 +18,6 @@ public class PlayerController : MonoBehaviour
     public float walkSpeed = 5f;
     [Tooltip("The jumping force of the player")]
     public float jumpForce = 0.3f;
-    [Tooltip("The jump boost buffer of the player")]
-    public float jumpBoostBuffer = 0.1f;
     [Tooltip("The box dimensions for the ground check")]
     public Vector3 boxSize = new(0.5f, 0.3f, 1f);
     [Tooltip("The maximum distance for the ground check")]
