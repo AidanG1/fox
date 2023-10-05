@@ -346,6 +346,7 @@ MonoBehaviour:
   coyoteTime: 0.05
   jumpBufferTime: 0.1
   jumpSound: {fileID: 8300000, guid: 004cc161998d4aa4db8bf36845c7a66c, type: 3}
+  slideSound: {fileID: 8300000, guid: 746419694e8e1bc468bd632a4202342a, type: 3}
 --- !u!96 &284480238909512594
 TrailRenderer:
   serializedVersion: 3

@@ -54,6 +54,7 @@ public class PlayerController : MonoBehaviour
     [Tooltip("The jump sound of the player")]
     public AudioClip jumpSound;
     private bool jumpSoundPlayed = false;
+    public AudioClip slideSound;
 
     // Start is called before the first frame update
     void Start()
@@ -167,6 +168,14 @@ public class PlayerController : MonoBehaviour
         else if (previousHorizontalInput != 0)
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
+        }
+        if (rb.velocity.x != 0 && onGround)
+        {
+            // Play the slide sound
+            if (slideSound != null)
+            {
+                AudioSource.PlayClipAtPoint(slideSound, transform.position);
+            }
         }
 
         previousHorizontalInput = frameInput.horizontalInput;

@@ -5416,6 +5416,10 @@ PrefabInstance:
       value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 181062328842231242, guid: 373051b33c10a456abc65df3b2e64e16, type: 3}
+      propertyPath: slideSound
+      value: 
+      objectReference: {fileID: 8300000, guid: 746419694e8e1bc468bd632a4202342a, type: 3}
+    - target: {fileID: 181062328842231242, guid: 373051b33c10a456abc65df3b2e64e16, type: 3}
       propertyPath: newJumpForce
       value: 0.32
       objectReference: {fileID: 0}
