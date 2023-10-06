@@ -16,11 +16,17 @@ public class Weapon : MonoBehaviour
     public float quantity = 1f;
     [Tooltip("The angle between bullets")]
     public float maxSpread = 20f;
+    [Tooltip("The sound to play when the weapon is fired but fireRate does not work")]
+    public AudioClip shootFailedSound;
 
+    [Header("UI")]
+    [Tooltip("The UI that displays the weapon bullet info")]
     public GameObject weaponUI;
     // max ricochets and max pierces are set in the bullet prefab    
     private GameObject stickTip;
     private GameObject muzzleFlash;
+
+    private GameObject foxCharacter;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +37,11 @@ public class Weapon : MonoBehaviour
 
         // set the active bullet prefab to the first bullet prefab in the list
         SetActiveBullet(0);
-        UpdateUI();
+
+        // set the fox character to the grandparent of the weapon
+        // hierarchy: fox -> stick parent -> stick -> stick tip & muzzle flash
+        // weapon is stick
+        foxCharacter = transform.parent.parent.gameObject;
     }
 
     // Update is called once per frame
@@ -39,7 +49,8 @@ public class Weapon : MonoBehaviour
     {
         timeUntilNextShot -= Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.Alpha1)) {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
             SetActiveBullet(0);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -84,7 +95,12 @@ public class Weapon : MonoBehaviour
     {
         if (timeUntilNextShot > 0)
         {
-            // can't shoot
+            // play shoot failed sound
+            if (shootFailedSound != null)
+            {
+                AudioSource.PlayClipAtPoint(shootFailedSound, transform.position);
+            }
+
             return;
         }
         else
@@ -96,6 +112,9 @@ public class Weapon : MonoBehaviour
 
                 // create a new bullet
                 GameObject bullet = Instantiate(activeBulletPrefab, stickTip.transform.position, stickTip.transform.rotation * Quaternion.Euler(0, 0, angle));
+                // add recoil
+                Vector2 oppositeShoot = (foxCharacter.transform.position - bullet.transform.position);
+                foxCharacter.GetComponent<Rigidbody2D>().velocity += oppositeShoot * GetRecoil();
                 muzzleFlash.SetActive(true);
                 timeUntilNextShot = fireRate;
                 StartCoroutine(DisableMuzzleFlash());
@@ -151,7 +170,7 @@ public class Weapon : MonoBehaviour
             bulletUI.transform.SetParent(weaponUI.transform);
 
             // set the position of the bulletUI
-            bulletUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(position - right/3, 2f);
+            bulletUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(position - right / 3, 2f);
 
             // set the size of the bulletUI
             bulletUI.GetComponent<RectTransform>().sizeDelta = new Vector2(height, height);
@@ -174,6 +193,6 @@ public class Weapon : MonoBehaviour
 
     public float GetRecoil()
     {
-        return activeBulletPrefab.GetComponent<Rigidbody2D>().mass * activeBulletPrefab.GetComponent<Bullet>().velocity / 500f;
+        return activeBulletPrefab.GetComponent<Rigidbody2D>().mass * activeBulletPrefab.GetComponent<Bullet>().velocity / 20f;
     }
 }
