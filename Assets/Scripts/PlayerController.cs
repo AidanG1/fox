@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -164,7 +165,7 @@ public class PlayerController : MonoBehaviour
         if (frameInput.horizontalInput != 0)
         {
             Vector2 vel = rb.velocity;
-            vel.x = frameInput.horizontalInput * walkSpeed;
+            vel.x = frameInput.horizontalInput * walkSpeed * Time.deltaTime * 500;
             rb.velocity = vel;
 
 
@@ -178,7 +179,7 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector2(0, rb.velocity.y);
         }
-        if (rb.velocity.x != 0 && onGround && frameInput.horizontalInput == 0)
+        if (math.abs(rb.velocity.x) > 1 && onGround && frameInput.horizontalInput == 0)
         {
             // Play the slide sound
             if (slideSound != null)
@@ -195,7 +196,7 @@ public class PlayerController : MonoBehaviour
         // print("Jump buffer time: " + jumpBufferTimeCounter);
         if (coyoteTimeCounter > 0 && jumpBufferTimeCounter > 0)
         {
-            rb.velocity += new Vector2(0, jumpForce);
+            rb.velocity += new Vector2(0, jumpForce * Time.deltaTime * 500);
             jumpBufferTimeCounter = 0;
 
             // Play the jump sound
