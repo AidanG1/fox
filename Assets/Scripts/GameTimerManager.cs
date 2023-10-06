@@ -15,11 +15,27 @@ public class GameTimerManager : MonoBehaviour
     private bool gameActive = true;
     private List<CameraMovementTime> cameraMovementTimes = new List<CameraMovementTime>();
 
+    public AudioClip musicClip;
+    public float musicVolume = 0.3f;
+
     // Start is called before the first frame update
     void Start()
     {
         instance = this;
         timer = 0f;
+
+        // Play the music
+        if (musicClip != null)
+        {
+            AudioSource.PlayClipAtPoint(musicClip, Camera.main.transform.position);
+
+            // 30% volume
+            AudioSource audioSource = Camera.main.GetComponent<AudioSource>();
+            audioSource.volume = musicVolume;
+
+            // loop the music
+            audioSource.loop = true;
+        }
     }
 
     // Update is called once per frame
