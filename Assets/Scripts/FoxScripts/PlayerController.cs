@@ -165,8 +165,8 @@ public class PlayerController : MonoBehaviour
         // Calculate the desired horizontal velocity based on player input
         float targetVelocityX = frameInput.horizontalInput * walkSpeed;
 
-        // Smoothly change the current velocity to the desired velocity
-        float smoothTime = 0.1f; // Adjust this value for desired smoothing
+        // smoothTIme influences how quick the fox runs after input. 
+        float smoothTime = 0.01f; // Adjust this value for desired smoothing
         float velocityX = Mathf.SmoothDamp(rb.velocity.x, targetVelocityX, ref velocityXSmoothing, smoothTime);
 
         // Apply the new horizontal velocity
