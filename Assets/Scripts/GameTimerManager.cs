@@ -48,16 +48,13 @@ public class GameTimerManager : MonoBehaviour
         {
             // Update the timer
             timer += Time.deltaTime;
-            if (previousShownTime != (int)timer)
-            {
-                previousShownTime = (int)timer;
-                // Debug.Log("Timer: " + timer);
-                // Display the timer in the GUI text
-                timerText.text = timer.ToString("F0");
-            }
+            // Display the timer in the GUI text
+            timerText.text = timer.ToString("F2");
         }
 
     }
+
+
 
     public void EndGame()
     {
@@ -72,6 +69,7 @@ public class GameTimerManager : MonoBehaviour
         });
 
         System.IO.File.WriteAllText(Application.persistentDataPath + "/gameData.json", json);
+        
     }
 
     public void AddCameraMovementTime(float cameraY)
