@@ -11,6 +11,7 @@ public class GameTimerManager : MonoBehaviour
     // GUI text for timer display
     public TMP_Text timerText;
     private float timer = 0f;
+    private int previousShownTime = 0;
     private bool gameActive = true;
     private List<CameraMovementTime> cameraMovementTimes = new List<CameraMovementTime>();
 
@@ -28,8 +29,13 @@ public class GameTimerManager : MonoBehaviour
         {
             // Update the timer
             timer += Time.deltaTime;
-            // Display the timer in the GUI text
-            timerText.text = timer.ToString("F2");
+            if (previousShownTime != (int)timer)
+            {
+                previousShownTime = (int)timer;
+                // Debug.Log("Timer: " + timer);
+                // Display the timer in the GUI text
+                timerText.text = timer.ToString("F0");
+            }
         }
 
     }
