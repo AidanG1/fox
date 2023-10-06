@@ -22,7 +22,7 @@ public class EnemyController : MonoBehaviour
     private float endPos;
 
     // direction bools
-    protected bool isFacingRight = true;
+    protected bool isFacingRight;
     protected bool moveRight;
 
 
@@ -33,6 +33,7 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         enemyRigidBody2D = GetComponent<Rigidbody2D>();
+        isFacingRight = transform.localScale.x > 0;
 
         // Calculate startPos and endPos based on initial position and unitsToMove
         startPos = Mathf.Min(transform.position.x, transform.position.x + unitsToMove);
