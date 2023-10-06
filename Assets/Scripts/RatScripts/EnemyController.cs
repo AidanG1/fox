@@ -30,7 +30,7 @@ public class EnemyController : MonoBehaviour
 
     // Start is called before the first frame update
     // Start or Awake
-    void Start()
+    protected virtual void Start()
     {
         enemyRigidBody2D = GetComponent<Rigidbody2D>();
         isFacingRight = transform.localScale.x > 0;
@@ -45,7 +45,7 @@ public class EnemyController : MonoBehaviour
     protected void movementLeftRight()
     {
         // current position
-        float currPosX = enemyRigidBody2D.position.x;
+        float currPosX = transform.position.x;
 
         // moving right
         if (moveRight)
@@ -97,7 +97,7 @@ public class EnemyController : MonoBehaviour
             Debug.Log("Reset Player Health");
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
-        } else {
+        } else if (!collision.gameObject.CompareTag("Knife")){
             //destroy self(rat) if hit by bullet
             Destroy(gameObject);
         }

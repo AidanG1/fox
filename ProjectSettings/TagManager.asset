@@ -10,6 +10,7 @@ TagManager:
   - Fruit
   - MovingPlatform
   - Border
+  - Knife
   layers:
   - Default
   - TransparentFX

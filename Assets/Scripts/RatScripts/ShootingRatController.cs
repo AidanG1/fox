@@ -13,15 +13,18 @@ public class ShootingRatController : EnemyController
     private GameObject player;
 
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
+        // executes parent class start method
+        base.Start();
+
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-        //movementLeftRight();
+        movementLeftRight();
 
         float distance = Vector2.Distance(transform.position, player.transform.position);
 

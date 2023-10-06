@@ -43,18 +43,24 @@ public class EnemyKnifeScript : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.gameObject.CompareTag("Player"))
-        {
-            other.gameObject.GetComponent<PlayerController>().TakeDamage(damage);
-            Destroy(gameObject);
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+            collision.gameObject.GetComponent<PlayerController>().TakeDamage(damage);
+            
         }
-        else if (other.gameObject.CompareTag("Ground"))
+        else if (collision.gameObject.CompareTag("Ground") ||
+            collision.gameObject.CompareTag("Trap") ||
+            collision.gameObject.CompareTag("Border") ||
+            collision.gameObject.CompareTag("MovingPlatform"))
         {
             Destroy(gameObject);
         }
     }
-  
+
+
+
 }
