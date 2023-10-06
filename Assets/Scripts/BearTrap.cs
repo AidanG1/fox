@@ -91,7 +91,7 @@ public class BearTrap : MonoBehaviour
 
         berryAct = false;
 
-        AudioSource.PlayClipAtPoint(trapSounds[1], transform.position, 0.8f);
+        AudioSource.PlayClipAtPoint(trapSounds[1], transform.position);
 
     }
 
@@ -99,7 +99,7 @@ public class BearTrap : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Berry"))
         {
-            AudioSource.PlayClipAtPoint(trapSounds[0], transform.position, 0.8f);
+            AudioSource.PlayClipAtPoint(trapSounds[0], transform.position);
 
             // Cycle to the next sprite immediately upon collision
             currentSpriteIndex = (currentSpriteIndex + 1) % trapSprites.Length;

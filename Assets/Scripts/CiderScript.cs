@@ -20,6 +20,7 @@ public class CiderScript : MonoBehaviour
         {
             Debug.LogWarning("Player is not assigned in the Inspector.");
         }
+        
     }
 
     // Update is called once per frame
@@ -47,7 +48,20 @@ public class CiderScript : MonoBehaviour
 
                 // Get the randomly selected audio clip
                 AudioClip randomClip = collisionSounds[randomIndex];
-                AudioSource.PlayClipAtPoint(randomClip, transform.position);
+
+                // Create a temporary GameObject to play the audio
+                GameObject audioSourceObject = new GameObject("TemporaryAudioSource");
+                AudioSource tempAudioSource = audioSourceObject.AddComponent<AudioSource>();
+
+                // Set the volume of the temporary audio source to make it louder
+                float louderVolume = 2.0f; // Adjust this value to make it louder or quieter
+                tempAudioSource.volume = louderVolume;
+
+                // Play the audio clip
+                tempAudioSource.PlayOneShot(randomClip);
+
+                // Destroy the temporary audio source object after the clip finishes playing
+                Destroy(audioSourceObject, randomClip.length);
             }
         }
     }
