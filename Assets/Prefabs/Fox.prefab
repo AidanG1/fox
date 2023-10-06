@@ -332,7 +332,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthMax: 100
-  walkSpeed: 40
+  walkSpeed: 15
   jumpForce: 4
   boxSize: {x: 0.6, y: 0.6, z: 1}
   maxDistance: 0.9

@@ -159,36 +159,34 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+    private float velocityXSmoothing = 0.0f;
     void ManageWalking()
     {
-        // If the player is moving left or right, move the player
-        if (frameInput.horizontalInput != 0)
-        {
-            Vector2 vel = rb.velocity;
-            vel.x = frameInput.horizontalInput * walkSpeed * Time.deltaTime * 100;
-            rb.velocity = vel;
+        // Calculate the desired horizontal velocity based on player input
+        float targetVelocityX = frameInput.horizontalInput * walkSpeed;
 
+        // smoothTIme influences how quick the fox runs after input. 
+        float smoothTime = 0.01f; // Adjust this value for desired smoothing
+        float velocityX = Mathf.SmoothDamp(rb.velocity.x, targetVelocityX, ref velocityXSmoothing, smoothTime);
 
-            if (snowSound != null && Time.time - recentSnowSoundTime > 0.5f)
-            {
-                AudioSource.PlayClipAtPoint(snowSound, transform.position);
-                recentSnowSoundTime = Time.time;
-            }
-        }
-        else if (previousHorizontalInput != 0)
+        // Apply the new horizontal velocity
+        rb.velocity = new Vector2(velocityX, rb.velocity.y);
+
+        // Play snow sound when moving
+        if (Mathf.Abs(targetVelocityX) > 0.01f && onGround && snowSound != null && Time.time - recentSnowSoundTime > 0.5f)
         {
-            rb.velocity = new Vector2(0, rb.velocity.y);
+            AudioSource.PlayClipAtPoint(snowSound, transform.position);
+            recentSnowSoundTime = Time.time;
         }
-        if (math.abs(rb.velocity.x) > 1 && onGround && frameInput.horizontalInput == 0)
+
+        // Check for abrupt stops and play the slide sound
+        if (Mathf.Abs(rb.velocity.x) > 0.01f && onGround && frameInput.horizontalInput == 0)
         {
-            // Play the slide sound
             if (slideSound != null)
             {
                 AudioSource.PlayClipAtPoint(slideSound, transform.position);
             }
         }
-
-        previousHorizontalInput = frameInput.horizontalInput;
     }
     void ManageJumping()
     {

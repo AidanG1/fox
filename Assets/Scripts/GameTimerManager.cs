@@ -40,7 +40,7 @@ public class GameTimerManager : MonoBehaviour
 
     }
 
-    void EndGame()
+    public void EndGame()
     {
         gameActive = false;
 

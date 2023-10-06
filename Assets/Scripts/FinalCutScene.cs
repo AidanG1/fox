@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 using TMPro;
+using UnityEngine.SceneManagement;
+
 
 public class FinalCutScene : MonoBehaviour
 {
@@ -17,7 +19,7 @@ public class FinalCutScene : MonoBehaviour
     private float timerValue;
 
     //GameTimerText
-    
+
     public TMP_Text gameTimerText;
 
     private void Start()
@@ -40,28 +42,20 @@ public class FinalCutScene : MonoBehaviour
         {
             // Start playing the video
             Debug.Log("Collided with player");
-            videoPlayer.Play();
 
-            // Enable the Canvas to display the RawImage and video
-            canvas.enabled = true;
-
-            // Access the timer from GameTimerManager
             timerValue = gameTimerManager.GetTimerValue();
-            gameTimerText.text = " " + timerValue.ToString("F2") + " sec";
-            Debug.Log(timerValue);
+            HoldTimeData.instance.sharedValue = timerValue;
 
-            // Pause gameplay
-            PauseGameplay();
+            gameTimerManager.EndGame();
+            
+
+            SceneManager.LoadScene("FinalCutScene");
         }
     }
 
-    private void PauseGameplay()
+    public void LoadScene(string sceneName)
     {
-        // Iterate through the array of gameplay components and disable them
-        foreach (GameObject component in gameplayComponents)
-        {
-            component.SetActive(false);
-        }
+        SceneManager.LoadScene("FinalCutScene");
     }
 
 }
