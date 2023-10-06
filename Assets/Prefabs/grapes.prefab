@@ -106,8 +106,8 @@ MonoBehaviour:
   velocity: 20
   shouldExplode: 1
   explosionPrefab: {fileID: 5544124457951114282, guid: 9b44f400840d02a45927c8e702e4166f, type: 3}
-  explosionRadius: 5
-  explosionForce: 5
+  explosionRadius: 3
+  explosionForce: 3
   explosionDuration: 1
   fireRate: 1.5
 --- !u!96 &2320809411818200860
@@ -235,7 +235,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 10
+  m_Mass: 12
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1

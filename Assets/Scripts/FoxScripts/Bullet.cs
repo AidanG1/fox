@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -57,7 +58,16 @@ public class Bullet : MonoBehaviour
                     // print(collider);
                     // Vector2 direction = (rb.transform.position - transform.position).normalized;
                     // rb.velocity += direction * explosionForce;
-                    if 
+                    if (collider.gameObject.CompareTag("Player"))
+                    {
+                        // print("player");
+                        collider.gameObject.GetComponent<PlayerController>().TakeDamage(20);
+                    } 
+                    else if (collider.gameObject.CompareTag("Enemy"))
+                    {
+                        // destroy enemy
+                        Destroy(collider.gameObject);
+                    }
                 }
             }
 
