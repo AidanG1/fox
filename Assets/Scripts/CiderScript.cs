@@ -5,42 +5,14 @@ using UnityEngine;
 public class CiderScript : MonoBehaviour
 {
     public float addAmount = 10.0f;
-    public PlayerController player;
-    public HealthBarScript healthBar;
 
     public AudioClip[] collisionSounds; // An array of audio clips
-    // Start is called before the first frame update
-    void Start()
-    {
-        if (player != null)
-        {
-            Debug.Log("Player assigned correctly: " + player.gameObject.name);
-        }
-        else
-        {
-            Debug.LogWarning("Player is not assigned in the Inspector.");
-        }
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    public void AddHealth(float amount)
-    {
-        // Modify the currHealth variable in the Player script
-        player.AddHealth(amount);
-        Destroy(gameObject);
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            AddHealth(addAmount);
+            collision.gameObject.GetComponent<PlayerController>().AddHealth(addAmount);
 
             int randomIndex = Random.Range(0, collisionSounds.Length);
 
@@ -60,6 +32,7 @@ public class CiderScript : MonoBehaviour
 
             // Destroy the temporary audio source object after the clip finishes playing
             Destroy(audioSourceObject, randomClip.length);
+            Destroy(gameObject);
         }
     }
 }

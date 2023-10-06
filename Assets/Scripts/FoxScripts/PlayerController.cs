@@ -180,7 +180,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Check for abrupt stops and play the slide sound
-        if (Mathf.Abs(rb.velocity.x) > 0.01f && onGround && frameInput.horizontalInput == 0)
+        if (Mathf.Abs(rb.velocity.x) > 1f && onGround && frameInput.horizontalInput == 0)
         {
             if (slideSound != null)
             {

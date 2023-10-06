@@ -31,7 +31,6 @@ public class ChickenSoundScript : MonoBehaviour
                 audioSource.Play();
             }
         }
-        
     }
 
     private void OnTriggerEnter2D(Collider2D other)

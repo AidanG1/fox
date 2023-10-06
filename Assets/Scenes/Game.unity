@@ -430,7 +430,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8132062036982336253, guid: 713ec88c5b13c4434896b15e12f5955e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 103.837456
+      value: 103.94
       objectReference: {fileID: 0}
     - target: {fileID: 8132062036982336253, guid: 713ec88c5b13c4434896b15e12f5955e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1111,8 +1111,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 348.91, y: 175.60999}
-  m_SizeDelta: {x: 102.1717, y: 39.7792}
+  m_AnchoredPosition: {x: 293.19614, y: 177.66689}
+  m_SizeDelta: {x: 213.5994, y: 35.6654}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &216064208
 MonoBehaviour:
@@ -1134,7 +1134,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Timer
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1197,7 +1197,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -1.1180725, y: 0, z: 2.9456367, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -7197,16 +7197,6 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: 18, y: 89, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 11
-      m_TileSpriteIndex: 11
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
   - first: {x: 19, y: 89, z: 0}
     second:
       serializedVersion: 2
@@ -8921,7 +8911,7 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: 5ef8c73dd465a9140b40dde5abd5c944, type: 2}
   - m_RefCount: 14
     m_Data: {fileID: 11400000, guid: 64225c26f23e63940b3860b5f762e11a, type: 2}
-  - m_RefCount: 13
+  - m_RefCount: 12
     m_Data: {fileID: 11400000, guid: d615fd57598f85c44baec0eedffc9bb7, type: 2}
   - m_RefCount: 32
     m_Data: {fileID: 11400000, guid: c23a69d5fd018cb4893dd6f63e6d1948, type: 2}
@@ -8960,7 +8950,7 @@ Tilemap:
     m_Data: {fileID: 21300010, guid: c3243c0bd9e831843b08e914337cc893, type: 3}
   - m_RefCount: 14
     m_Data: {fileID: 21300000, guid: acc5d9735413db84daf23370041fd5e0, type: 3}
-  - m_RefCount: 13
+  - m_RefCount: 12
     m_Data: {fileID: 21300002, guid: acc5d9735413db84daf23370041fd5e0, type: 3}
   - m_RefCount: 32
     m_Data: {fileID: 21300004, guid: b00b9ff8e2a7f494c9679b0b59c599bb, type: 3}
@@ -8977,7 +8967,7 @@ Tilemap:
   - m_RefCount: 3
     m_Data: {fileID: 21300004, guid: ebe88550c55b05e43bee2efaa0c0611d, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 608
+  - m_RefCount: 607
     m_Data:
       e00: 1
       e01: 0
@@ -8996,7 +8986,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 608
+  - m_RefCount: 607
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -10298,7 +10288,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8132062036982336253, guid: 713ec88c5b13c4434896b15e12f5955e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 103.92295
+      value: 103.96
       objectReference: {fileID: 0}
     - target: {fileID: 8132062036982336253, guid: 713ec88c5b13c4434896b15e12f5955e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -10397,6 +10387,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6593437870523575962, guid: d6981bd8f34c741c4b5be1da6cd0ba90, type: 3}
+      propertyPath: maxVolume
+      value: 0.01
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10458,6 +10452,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 0}
+  musicClip: {fileID: 0}
+  musicVolume: 0.3
 --- !u!114 &1106088782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11570,7 +11566,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8132062036982336253, guid: 713ec88c5b13c4434896b15e12f5955e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 102.897
+      value: 103
       objectReference: {fileID: 0}
     - target: {fileID: 8132062036982336253, guid: 713ec88c5b13c4434896b15e12f5955e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -15233,16 +15229,6 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: 18, y: 89, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
   - first: {x: 12, y: 90, z: 0}
     second:
       serializedVersion: 2
@@ -16185,7 +16171,7 @@ Tilemap:
       m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 10
+  - m_RefCount: 9
     m_Data: {fileID: 11400000, guid: e0cf394eddba3594bbb124fe8bc9274b, type: 2}
   - m_RefCount: 47
     m_Data: {fileID: 11400000, guid: 4f3a4ad5696b3fb449d756eb20ff22da, type: 2}
@@ -16210,7 +16196,7 @@ Tilemap:
   - m_RefCount: 50
     m_Data: {fileID: 11400000, guid: c1023700e7bf5b84cb9f8c7b0c6dac35, type: 2}
   m_TileSpriteArray:
-  - m_RefCount: 10
+  - m_RefCount: 9
     m_Data: {fileID: 21300004, guid: ceb3b251f8f266d4b9a051832f867d8d, type: 3}
   - m_RefCount: 47
     m_Data: {fileID: 21300000, guid: ceb3b251f8f266d4b9a051832f867d8d, type: 3}
@@ -16235,7 +16221,7 @@ Tilemap:
   - m_RefCount: 50
     m_Data: {fileID: 21300000, guid: 4d5cf8230d2ac284aa690adc5209e88f, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 352
+  - m_RefCount: 351
     m_Data:
       e00: 1
       e01: 0
@@ -16254,7 +16240,7 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 352
+  - m_RefCount: 351
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -17560,6 +17546,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 216064208}
+  musicClip: {fileID: 8300000, guid: 66dc4ea0837337845a684a8873e0ed95, type: 3}
+  musicVolume: 0.3
 --- !u!1001 &2069158031
 PrefabInstance:
   m_ObjectHideFlags: 0
