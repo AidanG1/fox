@@ -66,7 +66,7 @@ public class GameTimerManager : MonoBehaviour
         });
 
         System.IO.File.WriteAllText(Application.persistentDataPath + "/gameData.json", json);
-        timer = 0f;
+        
     }
 
     public void AddCameraMovementTime(float cameraY)
