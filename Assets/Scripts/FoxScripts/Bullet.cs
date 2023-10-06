@@ -8,8 +8,6 @@ public class Bullet : MonoBehaviour
     public AudioClip bulletSound;
     public int maxRicochets = 0;
     private int ricochets = 0;
-    public int maxPierces = 0;
-    private int pierces = 0;
 
     public float velocity = 15f;
 

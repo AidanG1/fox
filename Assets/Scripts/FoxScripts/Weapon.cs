@@ -22,7 +22,6 @@ public class Weapon : MonoBehaviour
     [Header("UI")]
     [Tooltip("The UI that displays the weapon bullet info")]
     public GameObject weaponUI;
-    // max ricochets and max pierces are set in the bullet prefab    
     private GameObject stickTip;
     private GameObject muzzleFlash;
 
