@@ -6,16 +6,19 @@ using UnityEngine;
 
 public class GameTimerManager : MonoBehaviour
 {
+    [HideInInspector] // Hide in inspector, but still public
     public static GameTimerManager instance;
-
-    // GUI text for timer display
+    [Header("Timer")]
+    [Tooltip("The GUI text to display the timer.")]
     public TMP_Text timerText;
     private float timer = 0f;
     private int previousShownTime = 0;
     private bool gameActive = true;
     private List<CameraMovementTime> cameraMovementTimes = new List<CameraMovementTime>();
-
+    [Header("Music")]
+    [Tooltip("The music clip to play.")]
     public AudioClip musicClip;
+    [Tooltip("The volume of the music.")]
     public float musicVolume = 0.3f;
 
     // Start is called before the first frame update

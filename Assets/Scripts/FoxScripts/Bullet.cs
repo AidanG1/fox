@@ -5,27 +5,31 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    [Header("Bullet Properties")]
+    [Tooltip("The sound to play when the bullet is fired.")]
     public AudioClip bulletSound;
+    [Tooltip("How frequently the bullet can be fired.")]
+    public float fireRate = 1f;
+    [Tooltip("The speed of the bullet.")]
+    public float velocity = 15f;
+    [Tooltip("The maximum number of ricochets the bullet can make.")]
     public int maxRicochets = 0;
     private int ricochets = 0;
 
-    public float velocity = 15f;
-
+    [Header("Explosion Properties")]
+    [Tooltip("Whether the bullet should explode on impact.")]
     public bool shouldExplode = false;
-    public GameObject explosionPrefab;
-    public float explosionRadius = 3f;
-    public float explosionForce = 10f;
+    [Tooltip("The duration of the explosion.")]
     public float explosionDuration = 0.5f;
-    public float fireRate = 1f;
-
+    [Tooltip("The force of the explosion.")]
+    public float explosionForce = 10f;
+    [Tooltip("The radius of the explosion.")]
+    public float explosionRadius = 3f;
+    [Tooltip("The prefab of the explosion.")]
+    public GameObject explosionPrefab;
     void Start()
     {
         GetComponent<Rigidbody2D>().velocity = transform.forward * velocity;
-
-        // make muzzle flash by making the bullet white and big on frame 1
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.color = Color.white;
-        // transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
 
         // play bullet sound
         if (bulletSound != null)
@@ -53,9 +57,6 @@ public class Bullet : MonoBehaviour
                 Rigidbody2D rb = collider.GetComponent<Rigidbody2D>();
                 if (rb != null)
                 {
-                    // print(collider);
-                    // Vector2 direction = (rb.transform.position - transform.position).normalized;
-                    // rb.velocity += direction * explosionForce;
                     if (collider.gameObject.CompareTag("Player"))
                     {
                         // print("player");
@@ -77,12 +78,10 @@ public class Bullet : MonoBehaviour
         {
             if (ricochets < maxRicochets)
             {
-                // ricochet
                 ricochets++;
             }
             else
             {
-                // destroy
                 Destroy(gameObject);
             }
         }
