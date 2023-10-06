@@ -109,7 +109,7 @@ MonoBehaviour:
   explosionRadius: 5
   explosionForce: 50
   explosionDuration: 1
-  fireRate: 1
+  fireRate: 1.5
 --- !u!96 &2320809411818200860
 TrailRenderer:
   serializedVersion: 3

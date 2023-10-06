@@ -97,6 +97,7 @@ public class Weapon : MonoBehaviour
                 // create a new bullet
                 GameObject bullet = Instantiate(activeBulletPrefab, stickTip.transform.position, stickTip.transform.rotation * Quaternion.Euler(0, 0, angle));
                 muzzleFlash.SetActive(true);
+                timeUntilNextShot = fireRate;
                 StartCoroutine(DisableMuzzleFlash());
             }
         }
