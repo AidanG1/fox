@@ -332,8 +332,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthMax: 100
-  walkSpeed: 10
-  jumpForce: 0.8
+  walkSpeed: 40
+  jumpForce: 4
   boxSize: {x: 0.6, y: 0.6, z: 1}
   maxDistance: 0.9
   groundLayerMask:
@@ -679,4 +679,5 @@ MonoBehaviour:
   - {fileID: 2299020075955701351, guid: 7ff973ee0571577449fc5876426d5bd9, type: 3}
   quantity: 1
   maxSpread: 20
+  shootFailedSound: {fileID: 0}
   weaponUI: {fileID: 0}
