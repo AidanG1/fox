@@ -10,7 +10,7 @@ public class FarmDoorTutorial : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene("LevelsScene");
+            SceneManager.LoadScene("Game");
         }
     }
 }

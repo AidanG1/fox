@@ -42,12 +42,11 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("LevelsScene");
+        SceneManager.LoadScene("Game");
     }
 
     public void StartTutorial()
     {
-        print("StartTutorial");
         SceneManager.LoadScene("Tutorial");
     }
 
