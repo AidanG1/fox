@@ -42,7 +42,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("PlayerTestScene");
+        SceneManager.LoadScene("LevelsScene");
     }
 
     IEnumerator ShakeText()

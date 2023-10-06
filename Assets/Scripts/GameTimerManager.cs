@@ -30,6 +30,7 @@ public class GameTimerManager : MonoBehaviour
             // Display the timer in the GUI text
             timerText.text = timer.ToString("F2");
         }
+
     }
 
     void EndGame()
@@ -50,6 +51,11 @@ public class GameTimerManager : MonoBehaviour
     public void AddCameraMovementTime(float cameraY)
     {
         cameraMovementTimes.Add(new CameraMovementTime { cameraY = cameraY, time = timer });
+    }
+
+    public float GetTimerValue()
+    {
+        return timer;
     }
 }
 

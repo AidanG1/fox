@@ -111,7 +111,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -1538195955, guid: f0bf35bd0cf7d4b109b72ab92c26f2a3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -333,12 +333,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthMax: 100
   walkSpeed: 10
-  jumpForce: 0.4
-  boxSize: {x: 0.2, y: 0.2, z: 1}
+  jumpForce: 0.8
+  boxSize: {x: 0.6, y: 0.6, z: 1}
   maxDistance: 0.9
   groundLayerMask:
     serializedVersion: 2
-    m_Bits: 3
+    m_Bits: 8
   currentlyJumping: 0
   waitTime: 3.3
   healthBar: {fileID: 0}

@@ -249,7 +249,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
-  videoPlayer: {fileID: 0}
+  videoPlayer: {fileID: 6672734690236826302}
+  gameplayComponents:
+  - {fileID: 0}
+  - {fileID: 0}
+  gameTimerManager: {fileID: 0}
+  gameTimerText: {fileID: 0}
 --- !u!114 &6593437870523575962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,7 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e88d7e47cce949959d594d0ee29097c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 9193355255333309969}
   fox: {fileID: 0}
   maxVolume: 1
   minVolume: 0.1
@@ -435,7 +440,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: f04f5427673874f4a8aafb57d45d727e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
