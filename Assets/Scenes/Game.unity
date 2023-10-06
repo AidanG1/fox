@@ -10377,6 +10377,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 0}
+  musicClip: {fileID: 0}
+  musicVolume: 0.3
 --- !u!114 &1106088782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17456,6 +17458,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 216064208}
+  musicClip: {fileID: 8300000, guid: 66dc4ea0837337845a684a8873e0ed95, type: 3}
+  musicVolume: 0.3
 --- !u!1001 &2069158031
 PrefabInstance:
   m_ObjectHideFlags: 0
