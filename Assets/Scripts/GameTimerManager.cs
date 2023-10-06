@@ -18,6 +18,7 @@ public class GameTimerManager : MonoBehaviour
     void Start()
     {
         instance = this;
+        timer = 0f;
     }
 
     // Update is called once per frame
