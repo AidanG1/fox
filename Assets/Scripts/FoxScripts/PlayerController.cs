@@ -165,7 +165,7 @@ public class PlayerController : MonoBehaviour
         if (frameInput.horizontalInput != 0)
         {
             Vector2 vel = rb.velocity;
-            vel.x = frameInput.horizontalInput * walkSpeed * Time.deltaTime * 500;
+            vel.x = frameInput.horizontalInput * walkSpeed * Time.deltaTime * 100;
             rb.velocity = vel;
 
 
@@ -196,7 +196,7 @@ public class PlayerController : MonoBehaviour
         // print("Jump buffer time: " + jumpBufferTimeCounter);
         if (coyoteTimeCounter > 0 && jumpBufferTimeCounter > 0)
         {
-            rb.velocity += new Vector2(0, jumpForce * Time.deltaTime * 500);
+            rb.velocity += new Vector2(0, jumpForce * Time.deltaTime * 100);
             jumpBufferTimeCounter = 0;
 
             // Play the jump sound
@@ -257,14 +257,14 @@ public class PlayerController : MonoBehaviour
             UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
         }
 
-        StartCoroutine(BlinkColor(1, Color.red));
+        StartCoroutine(BlinkColor(2, Color.red));
     }
     public void AddHealth(float addedHealth)
     {
         currentHealth = Mathf.Min(currentHealth + addedHealth, 100.0f);
         healthBar.SetHealth(currentHealth);
 
-        StartCoroutine(BlinkColor(1, Color.green));
+        StartCoroutine(BlinkColor(2, Color.green));
     }
 
     // these two functions are so that the fox can't move when in the bear trap
