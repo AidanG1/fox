@@ -251,8 +251,8 @@ public class PlayerController : MonoBehaviour
         Debug.Log(currentHealth);
         if (currentHealth <= 0)
         {
-            // restart the level
-            UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+            // Game Over
+            UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
         }
 
         StartCoroutine(BlinkColor(2, Color.red));
