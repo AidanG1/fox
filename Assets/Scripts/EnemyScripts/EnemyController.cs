@@ -24,6 +24,7 @@ public class EnemyController : MonoBehaviour
     // direction bools
     protected bool isFacingRight;
     protected bool moveRight;
+    protected bool moveUp;
 
 
     protected Rigidbody2D enemyRigidBody2D;
@@ -72,6 +73,37 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    protected void movementUpDown()
+    {
+        // Current position
+        float currPosY = transform.position.y;
+
+        // Moving up
+        if (moveUp)
+        {
+            enemyRigidBody2D.velocity = new Vector2(enemyRigidBody2D.velocity.x, moveSpeed);
+
+            // Check if enemy needs to change direction
+            if (currPosY >= endPos)
+            {
+                moveUp = false;
+                //Flip();
+            }
+        }
+        else // Moving down
+        {
+            enemyRigidBody2D.velocity = new Vector2(enemyRigidBody2D.velocity.x, -moveSpeed);
+
+            // Check if enemy needs to change direction
+            if (currPosY <= startPos)
+            {
+                moveUp = true;
+                //Flip();
+            }
+        }
+    }
+
+
 
     // Figure out if this is necessary 
     protected void Flip()
@@ -92,10 +124,11 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<PlayerController>() != null)
         {
-            // reset scene if rat hit by bullet
-            Debug.Log("Player Killed");
-            Debug.Log("Reset Player Health");
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            //// reset scene if rat hit by bullet
+            //Debug.Log("Player Killed");
+            //Debug.Log("Reset Player Health");
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            collision.gameObject.GetComponent<PlayerController>().TakeDamage(40);
 
         } else if (!collision.gameObject.CompareTag("Knife")){
             //destroy self(rat) if hit by bullet
