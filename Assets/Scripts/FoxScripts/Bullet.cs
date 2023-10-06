@@ -54,9 +54,10 @@ public class Bullet : MonoBehaviour
                 Rigidbody2D rb = collider.GetComponent<Rigidbody2D>();
                 if (rb != null)
                 {
-                    print(collider);
-                    Vector2 direction = (rb.transform.position - transform.position).normalized;
-                    rb.AddForce(direction * explosionForce, ForceMode2D.Impulse);
+                    // print(collider);
+                    // Vector2 direction = (rb.transform.position - transform.position).normalized;
+                    // rb.velocity += direction * explosionForce;
+                    if 
                 }
             }
 

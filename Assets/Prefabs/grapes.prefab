@@ -107,7 +107,7 @@ MonoBehaviour:
   shouldExplode: 1
   explosionPrefab: {fileID: 5544124457951114282, guid: 9b44f400840d02a45927c8e702e4166f, type: 3}
   explosionRadius: 5
-  explosionForce: 50
+  explosionForce: 5
   explosionDuration: 1
   fireRate: 1.5
 --- !u!96 &2320809411818200860
