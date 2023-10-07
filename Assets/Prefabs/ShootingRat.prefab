@@ -163,8 +163,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce28f0372860448bb8798a04b57d2b06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animationFPS: 0
-  walkAnimation: []
+  animationFPS: 8
+  walkAnimation:
+  - {fileID: 720928515, guid: c74c2eca0c0784ede973b24a5f2a6b86, type: 3}
+  - {fileID: -92150297, guid: c74c2eca0c0784ede973b24a5f2a6b86, type: 3}
+  - {fileID: 568490051, guid: c74c2eca0c0784ede973b24a5f2a6b86, type: 3}
+  - {fileID: -547501764, guid: c74c2eca0c0784ede973b24a5f2a6b86, type: 3}
+  - {fileID: 1945491873, guid: c74c2eca0c0784ede973b24a5f2a6b86, type: 3}
 --- !u!114 &4869175611152671476
 MonoBehaviour:
   m_ObjectHideFlags: 0

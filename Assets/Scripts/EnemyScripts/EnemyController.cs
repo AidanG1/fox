@@ -26,20 +26,23 @@ public class EnemyController : MonoBehaviour
     protected bool moveRight;
     protected bool moveUp;
 
-
     protected Rigidbody2D enemyRigidBody2D;
 
-    // Start is called before the first frame update
-    // Start or Awake
-    protected virtual void Start()
+
+    protected void getBounds(bool horizontal)
     {
         enemyRigidBody2D = GetComponent<Rigidbody2D>();
         isFacingRight = transform.localScale.x > 0;
 
-        // Calculate startPos and endPos based on initial position and unitsToMove
-        startPos = Mathf.Min(transform.position.x, transform.position.x + unitsToMove);
-        endPos = Mathf.Max(transform.position.x, transform.position.x + unitsToMove);
-
+        if (horizontal)
+        {
+            startPos = Mathf.Min(transform.position.x, transform.position.x + unitsToMove);
+            endPos = Mathf.Max(transform.position.x, transform.position.x + unitsToMove);
+        } else
+        {
+            startPos = Mathf.Min(transform.position.y, transform.position.y + unitsToMove);
+            endPos = Mathf.Max(transform.position.y, transform.position.y + unitsToMove);
+        }
     }
 
 
@@ -57,6 +60,10 @@ public class EnemyController : MonoBehaviour
             if (currPosX >= endPos)
             {
                 moveRight = false;
+
+                // Only flipping in this method because the base rat moves
+                // between two set horizonatal points.
+
                 Flip();
             }
         }
@@ -68,11 +75,19 @@ public class EnemyController : MonoBehaviour
             if (currPosX <= startPos)
             {
                 moveRight = true;
+
+                // Only flipping in this method because the base rat moves
+                // between set points horizonatal points.
+
                 Flip();
             }
         }
     }
 
+
+    /// <summary>
+    /// Method is useful for enemies that need to move up and down in the air.
+    /// </summary>
     protected void movementUpDown()
     {
         // Current position
@@ -81,31 +96,33 @@ public class EnemyController : MonoBehaviour
         // Moving up
         if (moveUp)
         {
-            enemyRigidBody2D.velocity = new Vector2(enemyRigidBody2D.velocity.x, moveSpeed);
+            enemyRigidBody2D.velocity = new
+                Vector2(enemyRigidBody2D.velocity.x, moveSpeed);
 
             // Check if enemy needs to change direction
             if (currPosY >= endPos)
             {
-                moveUp = false;
-                //Flip();
+                moveUp = false;                
             }
         }
         else // Moving down
         {
-            enemyRigidBody2D.velocity = new Vector2(enemyRigidBody2D.velocity.x, -moveSpeed);
+            enemyRigidBody2D.velocity = new
+                Vector2(enemyRigidBody2D.velocity.x, -moveSpeed);
 
             // Check if enemy needs to change direction
             if (currPosY <= startPos)
             {
                 moveUp = true;
-                //Flip();
             }
         }
     }
 
 
 
-    // Figure out if this is necessary 
+    /// <summary>
+    /// This method is useful to flip the sprite animation especially if 
+    /// </summary>
     protected void Flip()
     {
         transform.localScale = new Vector3(-transform.localScale.x,
@@ -120,7 +137,7 @@ public class EnemyController : MonoBehaviour
     /// </summary>
     /// 
     /// <param name="collision"></param>
-    private void OnCollisionEnter2D(Collision2D collision)
+    protected void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.GetComponent<PlayerController>() != null)
         {
