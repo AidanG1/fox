@@ -180,7 +180,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Check for abrupt stops and play the slide sound
-        if (Mathf.Abs(rb.velocity.x) > 1f && onGround && frameInput.horizontalInput == 0)
+        if (Mathf.Abs(rb.velocity.x) > 2f && onGround && frameInput.horizontalInput == 0)
         {
             if (slideSound != null)
             {
@@ -209,6 +209,10 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
             coyoteTimeCounter = 0;
+        }
+
+        if (onGround || frameInput.jumpUpPressed)
+        {
             jumpSoundPlayed = false;
         }
     }
