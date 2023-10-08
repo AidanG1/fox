@@ -185,7 +185,7 @@ Transform:
   m_GameObject: {fileID: 5903636494296882340}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.62, y: -3.79, z: 0}
+  m_LocalPosition: {x: 3.55, y: -3.79, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -249,12 +249,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 0}
-  videoPlayer: {fileID: 6672734690236826302}
   gameplayComponents:
   - {fileID: 0}
   - {fileID: 0}
   gameTimerManager: {fileID: 0}
   gameTimerText: {fileID: 0}
+  videoPlayer: {fileID: 6672734690236826302}
 --- !u!114 &6593437870523575962
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -268,10 +268,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioSource: {fileID: 9193355255333309969}
-  fox: {fileID: 0}
+  maxDistance: 30
   maxVolume: 0.3
   minVolume: 0
-  maxDistance: 30
+  fox: {fileID: 0}
 --- !u!82 &9193355255333309969
 AudioSource:
   m_ObjectHideFlags: 0
