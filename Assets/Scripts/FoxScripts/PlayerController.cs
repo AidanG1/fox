@@ -173,13 +173,13 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(velocityX, rb.velocity.y);
 
         // Check for abrupt stops and play the slide sound
-        if (Mathf.Abs(rb.velocity.x) > 2f && onGround && frameInput.horizontalInput == 0)
-        {
-            if (slideSound != null)
-            {
-                AudioSource.PlayClipAtPoint(slideSound, transform.position);
-            }
-        }
+        // if (Mathf.Abs(rb.velocity.x) > 2f && onGround && frameInput.horizontalInput == 0)
+        // {
+        //     if (slideSound != null)
+        //     {
+        //         AudioSource.PlayClipAtPoint(slideSound, transform.position);
+        //     }
+        // }
     }
     void ManageJumping()
     {

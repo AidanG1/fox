@@ -12,10 +12,6 @@ public class GameTimerManager : MonoBehaviour
     [Tooltip("The GUI text to display the timer.")]
     public TMP_Text timerText;
     [Header("Music")]
-    [Tooltip("The music clip to play.")]
-    public AudioClip musicClip;
-    [Tooltip("The volume of the music.")]
-    public float musicVolume = 0.3f;
     private bool gameActive = true;
     private float timer = 0f;
     private List<CameraMovementTime> cameraMovementTimes = new();
@@ -24,19 +20,6 @@ public class GameTimerManager : MonoBehaviour
     {
         instance = this;
         timer = 0f;
-
-        // Play the music
-        if (musicClip != null)
-        {
-            AudioSource.PlayClipAtPoint(musicClip, Camera.main.transform.position);
-
-            // 30% volume
-            AudioSource audioSource = Camera.main.GetComponent<AudioSource>();
-            audioSource.volume = musicVolume;
-
-            // loop the music
-            audioSource.loop = true;
-        }
     }
 
     void Update()

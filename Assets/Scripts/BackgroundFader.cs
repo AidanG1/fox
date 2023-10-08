@@ -10,8 +10,13 @@ public class BackgroundFader : MonoBehaviour
     public float fadeThreshold = 0.07f;
     [Tooltip("Array of background sprites to fade between.")]
     public Sprite[] backgroundSprites;
+    [Tooltip("Array of music clips per background")]
+    [Header("Music")]
+    public AudioClip[] musicClips;
     [Tooltip("Reference to the SpriteRenderer component displaying the background sprite.")]
+    public float musicVolume = 0.3f;
     public SpriteRenderer backgroundRenderer;
+    private AudioSource audioSource;
     private int currentIndex = 0;
 
 
@@ -19,6 +24,22 @@ public class BackgroundFader : MonoBehaviour
     {
         // Display the initial background sprite
         backgroundRenderer.sprite = backgroundSprites[currentIndex];
+
+        audioSource = GetComponent<AudioSource>();
+
+        // Play the music
+        if (musicClips[currentIndex] != null)
+        {
+            audioSource.clip = musicClips[currentIndex];
+
+            // 30% volume
+            audioSource.volume = musicVolume;
+
+            // loop the music
+            audioSource.loop = true;
+
+            audioSource.Play();
+        }
     }
 
     // Call this method to initiate a fade transition to the next background sprite
@@ -29,6 +50,14 @@ public class BackgroundFader : MonoBehaviour
         {
             currentIndex = spriteIndex;
             Debug.Log(spriteIndex);
+
+            // Play the music
+            if (musicClips[spriteIndex] != null)
+            {
+                audioSource.clip = musicClips[spriteIndex];
+                audioSource.Play();
+            }
+
             // Start a fade-out coroutine
             StartCoroutine(CrossfadeToNext(backgroundSprites[currentIndex]));
         }

@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletSound: {fileID: 8300000, guid: 2735faa8db748c1499053d751bfb9c5e, type: 3}
   fireRate: 1
-  velocity: 25
+  velocity: 30
   maxRicochets: 2
   shouldExplode: 0
   explosionDuration: 0.5
@@ -235,7 +235,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 20
+  m_Mass: 25
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1.2
