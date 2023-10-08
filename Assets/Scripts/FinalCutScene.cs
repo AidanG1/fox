@@ -18,18 +18,12 @@ public class FinalCutScene : MonoBehaviour
     [Tooltip("Reference to the text component for the game timer")]
     public TMP_Text gameTimerText;
     [Tooltip("Reference to the video player component")]
-    public VideoPlayer videoPlayer;
+    
     private float timerValue;
 
     private void Start()
     {
-        // Disable the Canvas at the start (to hide it)
-        canvas.enabled = false;
-
-        videoPlayer.playOnAwake = false;
-
-        // Prepare the video player without playing it
-        videoPlayer.Prepare();
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
