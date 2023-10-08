@@ -4,12 +4,16 @@ using System.Collections;
 
 public class BackgroundFader : MonoBehaviour
 {
-    public SpriteRenderer backgroundRenderer; // Reference to the SpriteRenderer component displaying the background sprite
-    public float fadeDuration = 1.0f; // Duration of the fade effect
+    [Tooltip("Duration of the fade effect in seconds.")]
+    public float fadeDuration = 1.0f;
+    [Tooltip("The alpha value to fade to (and from).")]
+    public float fadeThreshold = 0.07f;
+    [Tooltip("Array of background sprites to fade between.")]
+    public Sprite[] backgroundSprites;
+    [Tooltip("Reference to the SpriteRenderer component displaying the background sprite.")]
+    public SpriteRenderer backgroundRenderer;
+    private int currentIndex = 0;
 
-    public Sprite[] backgroundSprites; // Array of background sprites
-    private int currentIndex = 0; // Index of the current background sprite
-    public float fadeThreshold = 0.07f; // Adjust this value as needed
 
     private void Start()
     {

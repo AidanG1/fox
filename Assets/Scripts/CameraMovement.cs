@@ -5,20 +5,19 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
+    [Header("Camera Movement")]
+    [Tooltip("The speed at which the camera moves to the next position.")]
     public float cameraMoveSpeed = 5.0f;
-    private bool isCameraMoving = false;
-    private Vector3 targetPosition;
-
-    public GameObject backgroundManager;
-    public int spriteIndex;
-
-    private BackgroundFader backgroundFader;
-
-    // Public variable to adjust the Y offset
+    [Tooltip("The amount to offset the camera's y position.")]
     public float yOffset = 3.0f;
-
-    // Variable to store the last CameraMovement object that collided with the player
+    [Tooltip("The GameObject that contains the BackgroundFader script.")]
+    public GameObject backgroundManager;
+    [Tooltip("The index of the background sprite to transition to.")]
+    public int spriteIndex;
+    private BackgroundFader backgroundFader;
+    private bool isCameraMoving = false;
     private static CameraMovement lastCameraMovement;
+    private Vector3 targetPosition;
 
     private void Start()
     {

@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class RedButton : MonoBehaviour
 {
+    [Header("Button Settings")]
+    [Tooltip("The audio clip to play when the button is pressed")]
     public AudioClip clickSound; // Reference to the audio clip to play
-    public SpriteRenderer buttonRenderer; // Reference to the SpriteRenderer for the button
-    public Sprite pressedSprite; // The sprite to use when the button is pressed
-    public Sprite buttonSprite;
-    public ToggleCollision toggleCollision;
+    [Tooltip("Whether the button should be flipped left")]
     public bool flipLeft = false;
-
+    [Tooltip("The sprite to use when the button is not pressed")]
+    public Sprite buttonSprite;
+    [Tooltip("The sprite to use when the button is pressed")]
+    public Sprite pressedSprite;
+    [Tooltip("The SpriteRenderer for the button")]
+    public SpriteRenderer buttonRenderer;
+    [Tooltip("The ToggleCollision script reference")]
+    public ToggleCollision toggleCollision;
 
     private void Start()
     {
@@ -20,12 +26,11 @@ public class RedButton : MonoBehaviour
         UpdateButtonSprite();
     }
 
-
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Berry"))
         {
+            collision.gameObject.GetComponent<Bullet>().CallExplode();
             // Destroy the Berry object
             Destroy(collision.gameObject);
 

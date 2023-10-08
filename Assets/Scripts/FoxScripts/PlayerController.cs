@@ -55,9 +55,10 @@ public class PlayerController : MonoBehaviour
     [Tooltip("The jump sound of the player")]
     public AudioClip jumpSound;
     private bool jumpSoundPlayed = false;
+    [Tooltip("The slide sound of the player")]
     public AudioClip slideSound;
-    public AudioClip snowSound;
-    private float recentSnowSoundTime = 0f;
+    [Tooltip("The hurt sound of the player")]
+    public AudioClip hurtSound;
 
     // Start is called before the first frame update
     void Start()
@@ -172,15 +173,8 @@ public class PlayerController : MonoBehaviour
         // Apply the new horizontal velocity
         rb.velocity = new Vector2(velocityX, rb.velocity.y);
 
-        // Play snow sound when moving
-        if (Mathf.Abs(targetVelocityX) > 0.01f && onGround && snowSound != null && Time.time - recentSnowSoundTime > 0.5f)
-        {
-            AudioSource.PlayClipAtPoint(snowSound, transform.position);
-            recentSnowSoundTime = Time.time;
-        }
-
         // Check for abrupt stops and play the slide sound
-        if (Mathf.Abs(rb.velocity.x) > 1f && onGround && frameInput.horizontalInput == 0)
+        if (Mathf.Abs(rb.velocity.x) > 2f && onGround && frameInput.horizontalInput == 0)
         {
             if (slideSound != null)
             {
@@ -209,6 +203,10 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
             coyoteTimeCounter = 0;
+        }
+
+        if (frameInput.jumpUpPressed)
+        {
             jumpSoundPlayed = false;
         }
     }
@@ -253,6 +251,12 @@ public class PlayerController : MonoBehaviour
         {
             // Game Over
             UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver");
+        }
+
+        // Play the hurt sound
+        if (hurtSound != null)
+        {
+            AudioSource.PlayClipAtPoint(hurtSound, transform.position);
         }
 
         StartCoroutine(BlinkColor(2, Color.red));

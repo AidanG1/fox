@@ -27,6 +27,8 @@ public class Bullet : MonoBehaviour
     public float explosionRadius = 3f;
     [Tooltip("The prefab of the explosion.")]
     public GameObject explosionPrefab;
+    [Tooltip("The sound to play when the bullet ricochets.")]
+    public AudioClip ricochetSound;
     void Start()
     {
         GetComponent<Rigidbody2D>().velocity = transform.forward * velocity;
@@ -40,50 +42,75 @@ public class Bullet : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (shouldExplode && !collision.gameObject.CompareTag("player"))
+        if (shouldExplode && !collision.gameObject.CompareTag("Player"))
         {
-            // explode
-            // Instantiate explosion prefab
-            GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
-            // make explosion sized to explosion radius
-            explosion.transform.localScale = new Vector3(explosionRadius, explosionRadius, explosionRadius);
-
-            // Get all colliders within explosion radius
-            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
-
-            // Apply explosion force to all rigidbodies within explosion radius
-            foreach (Collider2D collider in colliders)
-            {
-                Rigidbody2D rb = collider.GetComponent<Rigidbody2D>();
-                if (rb != null)
-                {
-                    if (collider.gameObject.CompareTag("Player"))
-                    {
-                        // print("player");
-                        collider.gameObject.GetComponent<PlayerController>().TakeDamage(20);
-                    } 
-                    else if (collider.gameObject.CompareTag("Enemy"))
-                    {
-                        // destroy enemy
-                        Destroy(collider.gameObject);
-                    }
-                }
-            }
-
-            // Destroy bullet and explosion after delay
-            Destroy(explosion, explosionDuration);
-            Destroy(gameObject);
+            print(collision.gameObject.tag);
+            print(collision.gameObject.CompareTag("Player"));
+            Explode();
         }
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Trap") || collision.gameObject.CompareTag("Border") || collision.gameObject.CompareTag("MovingPlatform"))
         {
             if (ricochets < maxRicochets)
             {
                 ricochets++;
+
+                // play ricochet sound
+                if (ricochetSound != null)
+                {
+                    AudioSource.PlayClipAtPoint(ricochetSound, transform.position);
+                }
             }
             else
             {
                 Destroy(gameObject);
             }
+        }
+    }
+
+    private void Explode()
+    {
+        // explode
+        // Instantiate explosion prefab
+        GameObject explosion = Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        // make explosion sized to explosion radius
+        explosion.transform.localScale = new Vector3(explosionRadius, explosionRadius, explosionRadius);
+
+        // Get all colliders within explosion radius
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
+
+        // Apply explosion force to all rigidbodies within explosion radius
+        foreach (Collider2D collider in colliders)
+        {
+            Rigidbody2D rb = collider.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                if (collider.gameObject.CompareTag("Player"))
+                {
+                    // print("player");
+                    collider.gameObject.GetComponent<PlayerController>().TakeDamage(20);
+                }
+                else if (collider.gameObject.CompareTag("Enemy"))
+                {
+                    // destroy enemy
+                    Destroy(collider.gameObject);
+                }
+                else if (collider.gameObject.CompareTag("Trap"))
+                {
+                    
+                }
+            }
+        }
+
+        // Destroy bullet and explosion after delay
+        Destroy(explosion, explosionDuration);
+        Destroy(gameObject);
+    }
+
+    public void CallExplode()
+    {
+        if (shouldExplode)
+        {
+            Explode();
         }
     }
 }

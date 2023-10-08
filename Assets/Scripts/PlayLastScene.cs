@@ -3,31 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 using TMPro;
-using UnityEngine.SceneManagement;
 public class PlayLastScene : MonoBehaviour
 {
-    public Canvas canvas; // Reference to the Canvas component
-    public VideoPlayer videoPlayer;
-
-
-    //GameTimerText
-
+    [Tooltip("Reference to the Canvas component")]
+    public Canvas canvas;
+    [Tooltip("Reference to the text component for the game timer")]
     public TMP_Text gameTimerText;
+    [Tooltip("Reference to the video player component")]
+    public VideoPlayer videoPlayer;
 
     // Start is called before the first frame update
     void Start()
     {
         videoPlayer.Play();
         
-
         // Access the timer from HoldTimeData
-        
         gameTimerText.text = " " + HoldTimeData.instance.sharedValue.ToString("F2") + " sec";
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

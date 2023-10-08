@@ -354,9 +354,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraMoveSpeed: 5
+  yOffset: 3
   backgroundManager: {fileID: 425609144}
   spriteIndex: 0
-  yOffset: 3
 --- !u!1 &190619543
 GameObject:
   m_ObjectHideFlags: 0
@@ -4098,14 +4098,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 163d4e730aa354029bbe256480b566e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backgroundRenderer: {fileID: 425609145}
   fadeDuration: 0.8
+  fadeThreshold: 0.1
   backgroundSprites:
   - {fileID: 21300000, guid: bb07c92cceb0b43938633d5fe9486467, type: 3}
   - {fileID: 21300000, guid: e4e07a2ad54bf4ccfadccd51cd6ecb2c, type: 3}
   - {fileID: 21300000, guid: 9d214768628a54ad68531ebb9d608a91, type: 3}
   - {fileID: 21300000, guid: 5d2d61f61474a459fa62d360c53eceb4, type: 3}
-  fadeThreshold: 0.1
+  backgroundRenderer: {fileID: 425609145}
 --- !u!4 &425609147
 Transform:
   m_ObjectHideFlags: 0
@@ -4302,6 +4302,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 2040652189}
+  musicClip: {fileID: 0}
+  musicVolume: 0.3
 --- !u!1001 &529393176
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4458,9 +4460,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraMoveSpeed: 5
+  yOffset: 3
   backgroundManager: {fileID: 425609144}
   spriteIndex: 1
-  yOffset: 3
 --- !u!1 &647341780
 GameObject:
   m_ObjectHideFlags: 0
@@ -4747,9 +4749,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraMoveSpeed: 5
+  yOffset: 3
   backgroundManager: {fileID: 425609144}
   spriteIndex: 0
-  yOffset: 3
 --- !u!1 &841280204 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4407114039867926245, guid: 8fd0b9a734c6a504083fc180e855b318, type: 3}
@@ -5093,9 +5095,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraMoveSpeed: 5
+  yOffset: 3
   backgroundManager: {fileID: 425609144}
   spriteIndex: 0
-  yOffset: 3
 --- !u!61 &900947662
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5819,9 +5821,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraMoveSpeed: 5
+  yOffset: 0
   backgroundManager: {fileID: 425609144}
   spriteIndex: 0
-  yOffset: 0
 --- !u!1 &1627732211 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4407114039867926245, guid: 254f08ae919dcd94fa7221145211bd1b, type: 3}
@@ -6200,11 +6202,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2595770908597395363, guid: 373051b33c10a456abc65df3b2e64e16, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.9
+      value: 4.2
       objectReference: {fileID: 0}
     - target: {fileID: 2595770908597395363, guid: 373051b33c10a456abc65df3b2e64e16, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 22.5
+      value: -7.9
       objectReference: {fileID: 0}
     - target: {fileID: 2595770908597395363, guid: 373051b33c10a456abc65df3b2e64e16, type: 3}
       propertyPath: m_LocalPosition.z

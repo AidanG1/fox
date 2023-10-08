@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class ToggleCollision : MonoBehaviour
 {
+    [Header("Collision Fade")]
+    [Range(0, 1)] [Tooltip("The alpha value when collision is disabled")]
+    public float fadeAlpha = 0.2f;
+    [Tooltip("Whether the button is currently pressed")]
+    public bool isPressed = false;
+    [Tooltip("Whether the platform should start disabled")]
+    public bool startDisabled = false;
+
     private Collider2D coll2D;
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
-    public float fadeAlpha = 0.2f; // Customize the alpha value when collision is disabled
-    public bool startDisabled = false; // Public variable to toggle initial state
-    public bool isPressed = false;
-
     private RedButton redButtonScript;
 
     private void Start()

@@ -11,15 +11,14 @@ public class GameTimerManager : MonoBehaviour
     [Header("Timer")]
     [Tooltip("The GUI text to display the timer.")]
     public TMP_Text timerText;
-    private float timer = 0f;
-    private int previousShownTime = 0;
-    private bool gameActive = true;
-    private List<CameraMovementTime> cameraMovementTimes = new List<CameraMovementTime>();
     [Header("Music")]
     [Tooltip("The music clip to play.")]
     public AudioClip musicClip;
     [Tooltip("The volume of the music.")]
     public float musicVolume = 0.3f;
+    private bool gameActive = true;
+    private float timer = 0f;
+    private List<CameraMovementTime> cameraMovementTimes = new List<CameraMovementTime>();
 
     // Start is called before the first frame update
     void Start()
@@ -51,10 +50,7 @@ public class GameTimerManager : MonoBehaviour
             // Display the timer in the GUI text
             timerText.text = timer.ToString("F2");
         }
-
     }
-
-
 
     public void EndGame()
     {
@@ -68,8 +64,7 @@ public class GameTimerManager : MonoBehaviour
             cameraMovementTimes = cameraMovementTimes
         });
 
-        System.IO.File.WriteAllText(Application.persistentDataPath + "/gameData.json", json);
-        
+        System.IO.File.WriteAllText(Application.persistentDataPath + "/gameData.json", json); 
     }
 
     public void AddCameraMovementTime(float cameraY)

@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class CiderScript : MonoBehaviour
 {
+    [Tooltip("The amount of health to add to the player")]
     public float addAmount = 10.0f;
-
+    [Tooltip("Sounds to play when the cider is picked up")]
     public AudioClip[] collisionSounds; // An array of audio clips
 
     private void OnTriggerEnter2D(Collider2D collision)

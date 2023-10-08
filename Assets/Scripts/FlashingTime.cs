@@ -5,14 +5,17 @@ using TMPro;
 
 public class TextFlash : MonoBehaviour
 {
+    [Tooltip("The duration for which the text should flash in seconds.")]
+    public float flashDuration = 24f;
+    [Tooltip("The time interval for text flashing in seconds.")]
+    public float flashInterval = 0.5f;
+    [Tooltip("The TMP Text component to flash.")]
     public TMP_Text flashingText;
-    public float flashInterval = 0.5f; // Time interval for text flashing
-    public float flashDuration = 24f; // Duration for flashing in seconds
 
+    private bool flashingComplete = false;
     private bool isTextVisible = true;
     private float nextFlashTime;
     private float startTime;
-    private bool flashingComplete = false;
 
     private void Start()
     {

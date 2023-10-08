@@ -264,16 +264,6 @@ MonoBehaviour:
   - {fileID: 1678521674, guid: 9aed47a7ce68b4e6f8bbbced4a0987d9, type: 3}
   - {fileID: 1678521674, guid: 9aed47a7ce68b4e6f8bbbced4a0987d9, type: 3}
   - {fileID: 1678521674, guid: 9aed47a7ce68b4e6f8bbbced4a0987d9, type: 3}
-  walkAnimation:
-  - {fileID: -1538195955, guid: f0bf35bd0cf7d4b109b72ab92c26f2a3, type: 3}
-  - {fileID: -206639106, guid: f0bf35bd0cf7d4b109b72ab92c26f2a3, type: 3}
-  - {fileID: -815995099, guid: f0bf35bd0cf7d4b109b72ab92c26f2a3, type: 3}
-  - {fileID: 1820808092, guid: f0bf35bd0cf7d4b109b72ab92c26f2a3, type: 3}
-  - {fileID: -1389865469, guid: f0bf35bd0cf7d4b109b72ab92c26f2a3, type: 3}
-  - {fileID: -1504397908, guid: f0bf35bd0cf7d4b109b72ab92c26f2a3, type: 3}
-  - {fileID: 783365643, guid: f0bf35bd0cf7d4b109b72ab92c26f2a3, type: 3}
-  - {fileID: -851027445, guid: f0bf35bd0cf7d4b109b72ab92c26f2a3, type: 3}
-  - {fileID: 4418104, guid: f0bf35bd0cf7d4b109b72ab92c26f2a3, type: 3}
   jumpAnimation:
   - {fileID: -1538195955, guid: f0bf35bd0cf7d4b109b72ab92c26f2a3, type: 3}
   - {fileID: -231845397, guid: 9aed47a7ce68b4e6f8bbbced4a0987d9, type: 3}
@@ -284,6 +274,16 @@ MonoBehaviour:
   - {fileID: -231845397, guid: 9aed47a7ce68b4e6f8bbbced4a0987d9, type: 3}
   - {fileID: -231845397, guid: 9aed47a7ce68b4e6f8bbbced4a0987d9, type: 3}
   - {fileID: -231845397, guid: 9aed47a7ce68b4e6f8bbbced4a0987d9, type: 3}
+  walkAnimation:
+  - {fileID: -1538195955, guid: f0bf35bd0cf7d4b109b72ab92c26f2a3, type: 3}
+  - {fileID: -206639106, guid: f0bf35bd0cf7d4b109b72ab92c26f2a3, type: 3}
+  - {fileID: -815995099, guid: f0bf35bd0cf7d4b109b72ab92c26f2a3, type: 3}
+  - {fileID: 1820808092, guid: f0bf35bd0cf7d4b109b72ab92c26f2a3, type: 3}
+  - {fileID: -1389865469, guid: f0bf35bd0cf7d4b109b72ab92c26f2a3, type: 3}
+  - {fileID: -1504397908, guid: f0bf35bd0cf7d4b109b72ab92c26f2a3, type: 3}
+  - {fileID: 783365643, guid: f0bf35bd0cf7d4b109b72ab92c26f2a3, type: 3}
+  - {fileID: -851027445, guid: f0bf35bd0cf7d4b109b72ab92c26f2a3, type: 3}
+  - {fileID: 4418104, guid: f0bf35bd0cf7d4b109b72ab92c26f2a3, type: 3}
 --- !u!70 &4342829714857205294
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -347,7 +347,7 @@ MonoBehaviour:
   jumpBufferTime: 0.1
   jumpSound: {fileID: 8300000, guid: 004cc161998d4aa4db8bf36845c7a66c, type: 3}
   slideSound: {fileID: 8300000, guid: 746419694e8e1bc468bd632a4202342a, type: 3}
-  snowSound: {fileID: 8300000, guid: 0ad564b73144f3d47807dbdc3dc478cb, type: 3}
+  hurtSound: {fileID: 8300000, guid: f1c858c2535404a43806890f49c7c90a, type: 3}
 --- !u!96 &284480238909512594
 TrailRenderer:
   serializedVersion: 3
@@ -679,5 +679,6 @@ MonoBehaviour:
   - {fileID: 2299020075955701351, guid: 7ff973ee0571577449fc5876426d5bd9, type: 3}
   quantity: 1
   maxSpread: 20
-  shootFailedSound: {fileID: 0}
+  shootFailedSound: {fileID: 8300000, guid: 0ad564b73144f3d47807dbdc3dc478cb, type: 3}
+  changeBulletSound: {fileID: 8300000, guid: 17d169e81e2714c4887318156fbb9069, type: 3}
   weaponUI: {fileID: 0}
