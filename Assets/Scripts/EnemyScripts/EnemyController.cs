@@ -9,6 +9,8 @@ public class EnemyController : MonoBehaviour
     public float moveSpeed;
     [Tooltip("The number of units the enemy will move before turning around.")]
     public int unitsToMove; // use negative units to move left
+    [Tooltip("The sound to play when the enemy dies.")]
+    public AudioClip deathSound;
 
     // space being traveled between
     private float endPos;
@@ -119,6 +121,12 @@ public class EnemyController : MonoBehaviour
             collision.gameObject.GetComponent<PlayerController>().TakeDamage(40);
 
         } else if (!collision.gameObject.CompareTag("Knife")){
+            // play death sound
+            if (deathSound != null)
+            {
+                AudioSource.PlayClipAtPoint(deathSound, transform.position);
+            }
+
             //destroy self(rat) if hit by bullet
             Destroy(gameObject);
         }

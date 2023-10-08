@@ -131,8 +131,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a2206442e6974260bd307153bed5797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitsToMove: -3
   moveSpeed: 4
+  unitsToMove: -3
+  deathSound: {fileID: 8300000, guid: 141fe3e5442ab8d499f9c593f86ff4d1, type: 3}
+  shootingRange: 0
   knife: {fileID: 751797531077095109, guid: 8e5de813d0df54d8bb74d6d8c28bfb63, type: 3}
   knifePosition: {fileID: 7070766774898265614}
 --- !u!50 &1535089386641939866
