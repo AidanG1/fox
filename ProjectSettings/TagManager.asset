@@ -12,6 +12,7 @@ TagManager:
   - Border
   - Knife
   - Enemy
+  - Explosion
   layers:
   - Default
   - TransparentFX

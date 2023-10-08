@@ -30,6 +30,7 @@ public class RedButton : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Berry"))
         {
+            collision.gameObject.GetComponent<Bullet>().CallExplode();
             // Destroy the Berry object
             Destroy(collision.gameObject);
 

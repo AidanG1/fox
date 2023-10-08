@@ -89,7 +89,7 @@ public class BearTrap : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Berry"))
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Berry") || collision.gameObject.CompareTag("Explosion"))
         {
             AudioSource.PlayClipAtPoint(trapSounds[0], transform.position);
 
@@ -106,7 +106,7 @@ public class BearTrap : MonoBehaviour
                 collision.gameObject.GetComponent<PlayerController>().SetImmobile();
 
             }
-            if (collision.gameObject.CompareTag("Berry")){
+            if (collision.gameObject.CompareTag("Berry") || collision.gameObject.CompareTag("Explosion")) {
                 berryAct = true;
             }
         }
