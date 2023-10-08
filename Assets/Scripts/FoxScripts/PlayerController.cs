@@ -211,7 +211,7 @@ public class PlayerController : MonoBehaviour
             coyoteTimeCounter = 0;
         }
 
-        if (onGround || frameInput.jumpUpPressed)
+        if (frameInput.jumpUpPressed)
         {
             jumpSoundPlayed = false;
         }
