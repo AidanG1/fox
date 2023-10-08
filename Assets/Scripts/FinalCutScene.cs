@@ -47,6 +47,7 @@ public class FinalCutScene : MonoBehaviour
             HoldTimeData.instance.sharedValue = timerValue;
 
             gameTimerManager.EndGame();
+
             
 
             SceneManager.LoadScene("FinalCutScene");
