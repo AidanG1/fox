@@ -4,32 +4,29 @@ using UnityEngine;
 
 public class BirdControllerScript : EnemyController
 {
-    public GameObject knife;
-    public Transform knifePosition;
+    [Tooltip("The range at which the bird will start shooting at the player.")]
     public float shootingRange;
-
-
+    [Tooltip("The knife to shoot at the player.")]
+    public GameObject knife;
+    [Tooltip("The position to shoot the knife from.")]
+    public Transform knifePosition;
     private float timer;
     private GameObject player;
 
-    // Start is called before the first frame update
     public void Start()
     {
         // executes parent class start method
         //base.Start();
-
-        getBounds(false);
+        GetBounds(false);
 
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    // Update is called once per frame
     void Update()
     {
-        movementUpDown();
+        MovementUpDown();
 
         float distance = Vector2.Distance(transform.position, player.transform.position);
-
 
         if (distance < shootingRange)
         {
@@ -37,15 +34,12 @@ public class BirdControllerScript : EnemyController
             if (timer > 2)
             {
                 timer = 0;
-                shoot();
+                Shoot();
             }
         }
-
-
     }
 
-
-    void shoot()
+    void Shoot()
     {
         Instantiate(knife, knifePosition.position, Quaternion.identity);
     }

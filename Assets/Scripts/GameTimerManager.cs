@@ -18,9 +18,8 @@ public class GameTimerManager : MonoBehaviour
     public float musicVolume = 0.3f;
     private bool gameActive = true;
     private float timer = 0f;
-    private List<CameraMovementTime> cameraMovementTimes = new List<CameraMovementTime>();
+    private List<CameraMovementTime> cameraMovementTimes = new();
 
-    // Start is called before the first frame update
     void Start()
     {
         instance = this;
@@ -40,7 +39,6 @@ public class GameTimerManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (gameActive)

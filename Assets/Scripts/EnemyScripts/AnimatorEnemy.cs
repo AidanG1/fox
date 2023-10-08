@@ -4,27 +4,21 @@ using UnityEngine;
 
 public class AnimatorEnemy : MonoBehaviour
 {
+    [Tooltip("How many frames per second the animation should play at")]
     public float animationFPS;
+    [Tooltip("The sprites to use for the animation")]
     public Sprite[] walkAnimation;
-
-
-    private SpriteRenderer sRenderer;
-
     private float frameTimer = 0;
     private int frameIndex = 0;
+    private SpriteRenderer sRenderer;
 
-    // Start is called before the first frame update
     void Start()
     {
         sRenderer = GetComponent<SpriteRenderer>();
-
     }
 
-    // Update is called once per frame
     void Update()
     {
-
-
         frameTimer -= Time.deltaTime;
         if (frameTimer <= 0.0f)
         {
@@ -33,10 +27,5 @@ public class AnimatorEnemy : MonoBehaviour
             sRenderer.sprite = walkAnimation[frameIndex];
             frameIndex++;
         }
-
-        //sRenderer.flipX = rb2D.velocity.x < 0.0f;
-
-    }
-
-  
+    }  
 }

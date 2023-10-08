@@ -26,7 +26,6 @@ public class Animator2D : MonoBehaviour
     private Rigidbody2D rb2D;
     private SpriteRenderer sRenderer;
 
-    // Start is called before the first frame update
     void Start()
     {
         animationAtlas = new Dictionary<AnimationState, Sprite[]>();
@@ -40,7 +39,6 @@ public class Animator2D : MonoBehaviour
         controller = GetComponent<PlayerController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         AnimationState newState = GetAnimationState();
