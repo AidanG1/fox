@@ -18,6 +18,8 @@ public class Weapon : MonoBehaviour
     public float maxSpread = 20f;
     [Tooltip("The sound to play when the weapon is fired but fireRate does not work")]
     public AudioClip shootFailedSound;
+    [Tooltip("The sound to play when the bullet is changed")]
+    public AudioClip changeBulletSound;
 
     [Header("UI")]
     [Tooltip("The UI that displays the weapon bullet info")]
@@ -34,7 +36,7 @@ public class Weapon : MonoBehaviour
         muzzleFlash.SetActive(false);
 
         // set the active bullet prefab to the first bullet prefab in the list
-        SetActiveBullet(0);
+        SetActiveBullet(0, false);
 
         // set the fox character to the grandparent of the weapon
         // hierarchy: fox -> stick parent -> stick -> stick tip & muzzle flash
@@ -126,11 +128,16 @@ public class Weapon : MonoBehaviour
         muzzleFlash.SetActive(false);
     }
 
-    public void SetActiveBullet(int index)
+    public void SetActiveBullet(int index, bool playSound = true)
     {
         activeBulletPrefab = bulletPrefabs[index];
         fireRate = activeBulletPrefab.GetComponent<Bullet>().fireRate;
         UpdateUI();
+
+        if (playSound && changeBulletSound != null)
+        {
+            AudioSource.PlayClipAtPoint(changeBulletSound, transform.position);
+        }
     }
 
     public void AddBullet(GameObject bullet)

@@ -101,15 +101,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSound: {fileID: 8300000, guid: 4411e514c4af8954f94fc8b48a72a07e, type: 3}
-  maxRicochets: 5
-  maxPierces: 0
-  velocity: 40
-  shouldExplode: 0
-  explosionPrefab: {fileID: 0}
-  explosionRadius: 3
-  explosionForce: 10
-  explosionDuration: 0.5
   fireRate: 0.5
+  velocity: 40
+  maxRicochets: 5
+  shouldExplode: 0
+  explosionDuration: 0.5
+  explosionForce: 10
+  explosionRadius: 3
+  explosionPrefab: {fileID: 0}
+  ricochetSound: {fileID: 8300000, guid: 2e47244918ad7c54cbb54e76d3a7428b, type: 3}
 --- !u!96 &2320809411818200860
 TrailRenderer:
   serializedVersion: 3

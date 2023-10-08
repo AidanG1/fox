@@ -679,5 +679,6 @@ MonoBehaviour:
   - {fileID: 2299020075955701351, guid: 7ff973ee0571577449fc5876426d5bd9, type: 3}
   quantity: 1
   maxSpread: 20
-  shootFailedSound: {fileID: 0}
+  shootFailedSound: {fileID: 8300000, guid: 0ad564b73144f3d47807dbdc3dc478cb, type: 3}
+  changeBulletSound: {fileID: 8300000, guid: 17d169e81e2714c4887318156fbb9069, type: 3}
   weaponUI: {fileID: 0}

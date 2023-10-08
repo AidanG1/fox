@@ -27,6 +27,8 @@ public class Bullet : MonoBehaviour
     public float explosionRadius = 3f;
     [Tooltip("The prefab of the explosion.")]
     public GameObject explosionPrefab;
+    [Tooltip("The sound to play when the bullet ricochets.")]
+    public AudioClip ricochetSound;
     void Start()
     {
         GetComponent<Rigidbody2D>().velocity = transform.forward * velocity;
@@ -51,6 +53,12 @@ public class Bullet : MonoBehaviour
             if (ricochets < maxRicochets)
             {
                 ricochets++;
+
+                // play ricochet sound
+                if (ricochetSound != null)
+                {
+                    AudioSource.PlayClipAtPoint(ricochetSound, transform.position);
+                }
             }
             else
             {
