@@ -196,6 +196,6 @@ public class Weapon : MonoBehaviour
 
     public float GetRecoil()
     {
-        return activeBulletPrefab.GetComponent<Rigidbody2D>().mass * activeBulletPrefab.GetComponent<Bullet>().velocity / 50f;
+        return activeBulletPrefab.GetComponent<Rigidbody2D>().mass * activeBulletPrefab.GetComponent<Bullet>().velocity / 40f;
     }
 }
