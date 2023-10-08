@@ -6,16 +6,19 @@ public class BirdControllerScript : EnemyController
 {
     public GameObject knife;
     public Transform knifePosition;
+    public float shootingRange;
 
 
     private float timer;
     private GameObject player;
 
     // Start is called before the first frame update
-    protected override void Start()
+    public void Start()
     {
         // executes parent class start method
-        base.Start();
+        //base.Start();
+
+        getBounds(false);
 
         player = GameObject.FindGameObjectWithTag("Player");
     }
@@ -28,7 +31,7 @@ public class BirdControllerScript : EnemyController
         float distance = Vector2.Distance(transform.position, player.transform.position);
 
 
-        if (distance < 10)
+        if (distance < shootingRange)
         {
             timer += Time.deltaTime;
             if (timer > 2)

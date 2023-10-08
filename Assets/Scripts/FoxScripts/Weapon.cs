@@ -24,7 +24,6 @@ public class Weapon : MonoBehaviour
     public GameObject weaponUI;
     private GameObject stickTip;
     private GameObject muzzleFlash;
-
     private GameObject foxCharacter;
 
     // Start is called before the first frame update

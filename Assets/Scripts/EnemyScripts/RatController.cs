@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class RatController : EnemyController
 {
-    protected override void Start()
+    public void Start()
     {
-        base.Start();
+        getBounds(true);
     }
 
     // Update is called once per frame
