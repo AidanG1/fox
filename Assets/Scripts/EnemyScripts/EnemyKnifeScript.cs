@@ -5,19 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class EnemyKnifeScript : MonoBehaviour
 {
-    public float force;
+    [Tooltip("Damage dealt to player")]
     public float damage;
-
+    [Tooltip("Speed of knife")]
+    public float force;
     private GameObject player;
     private Rigidbody2D rb2d;
     
-
-     
-
-    // I need to make the bullet destroy itself if it collides with the tilemap
-    // or player
-
-    // Start is called before the first frame update
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -30,10 +24,6 @@ public class EnemyKnifeScript : MonoBehaviour
         float rot = Mathf.Atan2(-direction.y, -direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, rot);
     }
-
-    
-    
-
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -51,7 +41,4 @@ public class EnemyKnifeScript : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-
-
 }

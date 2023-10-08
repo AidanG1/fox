@@ -28,7 +28,6 @@ public class Weapon : MonoBehaviour
     private GameObject muzzleFlash;
     private GameObject foxCharacter;
 
-    // Start is called before the first frame update
     void Start()
     {
         stickTip = transform.GetChild(0).gameObject;
@@ -44,7 +43,6 @@ public class Weapon : MonoBehaviour
         foxCharacter = transform.parent.parent.gameObject;
     }
 
-    // Update is called once per frame
     void Update()
     {
         timeUntilNextShot -= Time.deltaTime;

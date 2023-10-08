@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
     [Tooltip("The jump buffer time of the player")]
     public float jumpBufferTime = 0.1f;
     private float jumpBufferTimeCounter = 0.1f;
+    [Header("Sounds")]
     [Tooltip("The jump sound of the player")]
     public AudioClip jumpSound;
     private bool jumpSoundPlayed = false;
@@ -60,7 +61,6 @@ public class PlayerController : MonoBehaviour
     [Tooltip("The hurt sound of the player")]
     public AudioClip hurtSound;
 
-    // Start is called before the first frame update
     void Start()
     {
         // Get the Rigidbody2D component of the player
@@ -78,7 +78,6 @@ public class PlayerController : MonoBehaviour
         healthBar.MaxHealth(healthMax);
     }
 
-    // Update is called once per frame
     void Update()
     {
         ManageInputs();
@@ -210,7 +209,6 @@ public class PlayerController : MonoBehaviour
             jumpSoundPlayed = false;
         }
     }
-
     void ManageShooting()
     {
         // point the weapon at the mouse

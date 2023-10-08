@@ -3,33 +3,24 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-
-
-/// <summary>
-/// In order to move left the player, a negative unitsToMove value must be set
-/// initially. The move right 
-///
-/// 
-/// </summary>
 public class EnemyController : MonoBehaviour
 {
-    // negative to move left
-    public int unitsToMove;
+    [Tooltip("The speed at which the enemy moves.")]
     public float moveSpeed;
+    [Tooltip("The number of units the enemy will move before turning around.")]
+    public int unitsToMove; // use negative units to move left
 
-    // space being travelled between
-    private float startPos;
+    // space being traveled between
     private float endPos;
+    private float startPos;
 
     // direction bools
     protected bool isFacingRight;
     protected bool moveRight;
     protected bool moveUp;
-
     protected Rigidbody2D enemyRigidBody2D;
 
-
-    protected void getBounds(bool horizontal)
+    protected void GetBounds(bool horizontal)
     {
         enemyRigidBody2D = GetComponent<Rigidbody2D>();
         isFacingRight = transform.localScale.x > 0;
@@ -45,8 +36,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-
-    protected void movementLeftRight()
+    protected void MovementLeftRight()
     {
         // current position
         float currPosX = transform.position.x;
@@ -62,8 +52,7 @@ public class EnemyController : MonoBehaviour
                 moveRight = false;
 
                 // Only flipping in this method because the base rat moves
-                // between two set horizonatal points.
-
+                // between two set horizontal points.
                 Flip();
             }
         }
@@ -77,18 +66,14 @@ public class EnemyController : MonoBehaviour
                 moveRight = true;
 
                 // Only flipping in this method because the base rat moves
-                // between set points horizonatal points.
+                // between set points horizontal points.
 
                 Flip();
             }
         }
     }
 
-
-    /// <summary>
-    /// Method is useful for enemies that need to move up and down in the air.
-    /// </summary>
-    protected void movementUpDown()
+    protected void MovementUpDown()
     {
         // Current position
         float currPosY = transform.position.y;
@@ -118,11 +103,6 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-
-
-    /// <summary>
-    /// This method is useful to flip the sprite animation especially if 
-    /// </summary>
     protected void Flip()
     {
         transform.localScale = new Vector3(-transform.localScale.x,
@@ -131,20 +111,11 @@ public class EnemyController : MonoBehaviour
         isFacingRight = transform.localScale.x > 0;
     }
 
-    /// <summary>
-    /// Function destroys a rat if hit by a bullet or restarts scene if a
-    /// collision between rat and fox.
-    /// </summary>
-    /// 
-    /// <param name="collision"></param>
     protected void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.GetComponent<PlayerController>() != null)
         {
-            //// reset scene if rat hit by bullet
-            //Debug.Log("Player Killed");
-            //Debug.Log("Reset Player Health");
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            // reset scene if rat hit by bullet
             collision.gameObject.GetComponent<PlayerController>().TakeDamage(40);
 
         } else if (!collision.gameObject.CompareTag("Knife")){
