@@ -4,27 +4,22 @@ using UnityEngine;
 
 public class BearTrap : MonoBehaviour
 {
-    public Sprite[] trapSprites; // Array of trap sprites
-    public float cycleSpeed = 0.5f; // Adjust the speed here
-    private SpriteRenderer spriteRenderer;
-    private int currentSpriteIndex = 0;
-    private float timeSinceLastCycle = 0f;
-    private bool activated = false;
-    private bool waiting = false;
-    private float waitTime = 3.0f;
-
-    // audio clips for the bear trap
+    [Tooltip("The sound to play when the trap is activated.")]
     public AudioClip[] trapSounds; // An array of audio clips
-
-    // berry and player activated is different
-    private bool playerAct = false;
+    [Tooltip("The speed at which the trap cycles through its sprites.")]
+    public float cycleSpeed = 0.5f; // Adjust the speed here
+    [Tooltip("The sprites to cycle through when the trap is activated.")]
+    public Sprite[] trapSprites; // Array of trap sprites
+    private bool activated = false;
     private bool berryAct = false;
-
-    // Reference to the original collider
-    private Collider2D originalCollider;
-
-    // Reference to the new collider
+    private bool playerAct = false;
+    private bool waiting = false;
     private Collider2D newCollider;
+    private Collider2D originalCollider;
+    private float timeSinceLastCycle = 0f;
+    private float waitTime = 3.0f;
+    private int currentSpriteIndex = 0;
+    private SpriteRenderer spriteRenderer;
 
     private void Start()
     {
@@ -45,11 +40,8 @@ public class BearTrap : MonoBehaviour
                 timeSinceLastCycle += Time.deltaTime;
                 if (timeSinceLastCycle >= cycleSpeed)
                 {
-                 
                     currentSpriteIndex = (currentSpriteIndex + 1) % trapSprites.Length;
                     spriteRenderer.sprite = trapSprites[currentSpriteIndex];
-                    
-
 
                     // Reset the timer
                     timeSinceLastCycle = 0f;

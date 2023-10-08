@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class ChickenSoundScript : MonoBehaviour
 {
-    public AudioSource audioSource; // Reference to the AudioSource component
-    public GameObject fox; // Reference to the fox GameObject
-    public float maxVolume = 1.0f; // Maximum volume when the fox is at the closest distance
-    public float minVolume = 0.1f; // Minimum volume when the fox is at the farthest distance
-    public float maxDistance = 10.0f; // Maximum distance at which audio can be heard
+    [Tooltip("The AudioSource component")]
+    public AudioSource audioSource;
+    [Tooltip("The maximum distance at which audio can be heard")]
+    public float maxDistance = 10.0f;
+    [Tooltip("The maximum volume when the fox is at the closest distance")]
+    public float maxVolume = 1.0f;
+    [Tooltip("The minimum volume when the fox is at the farthest distance")]
+    public float minVolume = 0.1f;
+    [Tooltip("The fox GameObject")]
+    public GameObject fox;
     private bool hasCollided = false;
 
     private void Update()

@@ -4,28 +4,27 @@ using UnityEngine;
 
 public class Animator2D : MonoBehaviour
 {
-
     public enum AnimationState
     {
         Idle,
         Walk,
         Jump
     }
-
+    [Tooltip("Frames per second for animation")]
     public float animationFPS;
+    [Tooltip("Animation frames for idle state")]
     public Sprite[] idleAnimation;
-    public Sprite[] walkAnimation;
+    [Tooltip("Animation frames for jump state")]
     public Sprite[] jumpAnimation;
-
-    private Rigidbody2D rb2D;
-    private PlayerController controller;
-    private SpriteRenderer sRenderer;
-
+    [Tooltip("Animation frames for walk state")]
+    public Sprite[] walkAnimation;
+    private AnimationState state = AnimationState.Idle;
+    private Dictionary<AnimationState, Sprite[]> animationAtlas;
     private float frameTimer = 0;
     private int frameIndex = 0;
-    private AnimationState state = AnimationState.Idle;
-
-    private Dictionary<AnimationState, Sprite[]> animationAtlas;
+    private PlayerController controller;
+    private Rigidbody2D rb2D;
+    private SpriteRenderer sRenderer;
 
     // Start is called before the first frame update
     void Start()
@@ -39,7 +38,6 @@ public class Animator2D : MonoBehaviour
         rb2D = GetComponent<Rigidbody2D>();
         sRenderer = GetComponent<SpriteRenderer>();
         controller = GetComponent<PlayerController>();
-
     }
 
     // Update is called once per frame
@@ -50,7 +48,6 @@ public class Animator2D : MonoBehaviour
         {
             TransitionToState(newState);
         }
-
 
         frameTimer -= Time.deltaTime;
         if (frameTimer <= 0.0f)
@@ -63,20 +60,7 @@ public class Animator2D : MonoBehaviour
 
             frameIndex++;
         }
-
-        // if (rb2D.velocity.x < -0.01f)
-        // {
-        //     sRenderer.flipX = true;
-        // }
-
-        // if (rb2D.velocity.x > 0.01f)
-        // {
-        //     sRenderer.flipX = false;
-        // }
-
-        //sRenderer.flipX = rb2D.velocity.x < 0.0f;
     }
-
 
     void TransitionToState(AnimationState newState)
     {

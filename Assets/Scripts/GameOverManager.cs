@@ -7,7 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class GameOverManager : MonoBehaviour
 {
+    [Tooltip("Reference to the GameOverManager instance")]
     public static GameOverManager instance;
+    [Tooltip("Reference to the text component for the game timer")]
     public TMP_Text timerText;
 
     // Start is called before the first frame update

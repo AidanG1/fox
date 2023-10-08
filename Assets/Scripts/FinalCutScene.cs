@@ -8,24 +8,21 @@ using UnityEngine.SceneManagement;
 
 public class FinalCutScene : MonoBehaviour
 {
+    [Header("Final Cut Scene Properties")]
+    [Tooltip("The Canvas component")]
     public Canvas canvas; // Reference to the Canvas component
-    public VideoPlayer videoPlayer;
+    [Tooltip("Gameplay components to disable when the cut scene starts")]
     public GameObject[] gameplayComponents;
-
-    // Reference to the GameTimerManager script
+    [Tooltip("GameTimerManager component")]
     public GameTimerManager gameTimerManager;
-
-    // Variable to store the timer value
-    private float timerValue;
-
-    //GameTimerText
-
+    [Tooltip("Reference to the text component for the game timer")]
     public TMP_Text gameTimerText;
+    [Tooltip("Reference to the video player component")]
+    public VideoPlayer videoPlayer;
+    private float timerValue;
 
     private void Start()
     {
-        // Get the VideoPlayer component
-
         // Disable the Canvas at the start (to hide it)
         canvas.enabled = false;
 
@@ -48,15 +45,7 @@ public class FinalCutScene : MonoBehaviour
 
             gameTimerManager.EndGame();
 
-            
-
             SceneManager.LoadScene("FinalCutScene");
         }
     }
-
-    public void LoadScene(string sceneName)
-    {
-        SceneManager.LoadScene("FinalCutScene");
-    }
-
 }
