@@ -12,7 +12,6 @@ public class BearTrap : MonoBehaviour
     public Sprite[] trapSprites; // Array of trap sprites
     private bool activated = false;
     private bool berryAct = false;
-    private bool playerAct = false;
     private bool waiting = false;
     private Collider2D newCollider;
     private Collider2D originalCollider;
@@ -79,8 +78,7 @@ public class BearTrap : MonoBehaviour
             originalCollider.enabled = true;
             newCollider.enabled = false;
         }
-        playerAct = false;
-
+        
         berryAct = false;
 
         AudioSource.PlayClipAtPoint(trapSounds[1], transform.position);
@@ -100,9 +98,9 @@ public class BearTrap : MonoBehaviour
             // Reset the timer
             timeSinceLastCycle = 0f;
             activated = true;
-            if (collision.gameObject.CompareTag("Player")){
-                playerAct = true;
-
+            if (collision.gameObject.CompareTag("Player"))
+            {
+        
                 collision.gameObject.GetComponent<PlayerController>().SetImmobile();
 
             }

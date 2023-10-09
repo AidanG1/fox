@@ -2024,6 +2024,7 @@ MonoBehaviour:
   fadeThreshold: 0.1
   backgroundSprites:
   - {fileID: 21300000, guid: 34be69a6aa5f68743a5b425f2791650f, type: 3}
+  - {fileID: 21300000, guid: bb07c92cceb0b43938633d5fe9486467, type: 3}
   musicClips: []
   musicVolume: 0.3
   backgroundRenderer: {fileID: 425609145}
@@ -2036,7 +2037,7 @@ Transform:
   m_GameObject: {fileID: 425609144}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 7.02, z: -5.8852344}
+  m_LocalPosition: {x: 0, y: 0, z: -5.8852344}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -2674,7 +2675,7 @@ MonoBehaviour:
   cameraMoveSpeed: 5
   yOffset: 3
   backgroundManager: {fileID: 425609144}
-  spriteIndex: 1
+  spriteIndex: 0
 --- !u!1 &771231307
 GameObject:
   m_ObjectHideFlags: 0
@@ -2993,7 +2994,7 @@ Transform:
   m_GameObject: {fileID: 832113342}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 24, z: 0}
+  m_LocalPosition: {x: -0.2, y: 27.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3014,7 +3015,7 @@ MonoBehaviour:
   cameraMoveSpeed: 5
   yOffset: 3
   backgroundManager: {fileID: 425609144}
-  spriteIndex: 0
+  spriteIndex: 1
 --- !u!1 &854135947
 GameObject:
   m_ObjectHideFlags: 0

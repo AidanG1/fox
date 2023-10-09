@@ -47,7 +47,7 @@ public class RedButton : MonoBehaviour
             if (clickSound != null)
             {
                 AudioSource.PlayClipAtPoint(clickSound, transform.position);
-                Debug.Log("click played");
+                
             }
 
             // Toggle the button's sprite and press state

@@ -270,9 +270,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 490f04317144145eba00da320d3dbb09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flashingText: {fileID: 55442656}
-  flashInterval: 0.5
   flashDuration: 24
+  flashInterval: 0.5
+  flashingText: {fileID: 55442656}
 --- !u!1 &203631311
 GameObject:
   m_ObjectHideFlags: 0
@@ -991,8 +991,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 203631314}
-  videoPlayer: {fileID: 1512471660}
   gameTimerText: {fileID: 55442656}
+  videoPlayer: {fileID: 1512471660}
 --- !u!1 &1934659320
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,7 +15,6 @@ public class ToggleCollision : MonoBehaviour
     private Collider2D coll2D;
     private SpriteRenderer spriteRenderer;
     private Color originalColor;
-    private RedButton redButtonScript;
 
     private void Start()
     {

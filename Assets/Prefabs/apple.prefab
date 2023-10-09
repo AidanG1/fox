@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8314886080932059308}
   - component: {fileID: 591049939700382663}
   m_Layer: 0
-  m_Name: apple
+  m_Name: Apple
   m_TagString: Berry
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

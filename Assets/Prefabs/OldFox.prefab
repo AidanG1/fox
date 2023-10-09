@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 8963410353115659581}
   - component: {fileID: 4161786076758400500}
   m_Layer: 6
-  m_Name: foxrun1
+  m_Name: OldFox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

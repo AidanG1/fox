@@ -64,8 +64,6 @@ public class CameraMovement : MonoBehaviour
                     lastCameraMovement.ResetCameraMovement();
                 }
 
-                Debug.Log("FOX collided with the trigger");
-
                 // Get the position of the GameObject the FOX collided with
                 targetPosition = new Vector3(
                     transform.position.x,
@@ -80,6 +78,7 @@ public class CameraMovement : MonoBehaviour
 
                 // Call the FadeToNewBackground method to initiate the background transition
                 // Pass the new background sprite to the method
+                
                 backgroundFader.TransitionToNextBackground(spriteIndex);
 
                 // Update the lastCameraMovement to the current one
