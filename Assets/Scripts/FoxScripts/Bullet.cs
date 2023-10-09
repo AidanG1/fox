@@ -44,8 +44,7 @@ public class Bullet : MonoBehaviour
     {
         if (shouldExplode && !collision.gameObject.CompareTag("Player"))
         {
-            print(collision.gameObject.tag);
-            print(collision.gameObject.CompareTag("Player"));
+            
             Explode();
         }
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Trap") || collision.gameObject.CompareTag("Border") || collision.gameObject.CompareTag("MovingPlatform"))
@@ -86,7 +85,7 @@ public class Bullet : MonoBehaviour
             {
                 if (collider.gameObject.CompareTag("Player"))
                 {
-                    // print("player");
+                    
                     collider.gameObject.GetComponent<PlayerController>().TakeDamage(20);
                 }
                 else if (collider.gameObject.CompareTag("Enemy"))
