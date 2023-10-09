@@ -5131,11 +5131,11 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9d214768628a54ad68531ebb9d608a91, type: 3}
   musicClips:
   - {fileID: 8300000, guid: 66dc4ea0837337845a684a8873e0ed95, type: 3}
-  - {fileID: 8300000, guid: 66dc4ea0837337845a684a8873e0ed95, type: 3}
-  - {fileID: 8300000, guid: 66dc4ea0837337845a684a8873e0ed95, type: 3}
-  - {fileID: 8300000, guid: 66dc4ea0837337845a684a8873e0ed95, type: 3}
-  - {fileID: 8300000, guid: 66dc4ea0837337845a684a8873e0ed95, type: 3}
-  - {fileID: 8300000, guid: 66dc4ea0837337845a684a8873e0ed95, type: 3}
+  - {fileID: 8300000, guid: 158c5810cbc56cd4984f75576bc4fd55, type: 3}
+  - {fileID: 8300000, guid: 6b71c029610af8547a94bdf3e1b72892, type: 3}
+  - {fileID: 8300000, guid: 2e5d2771a778b004494705d5f092f10f, type: 3}
+  - {fileID: 8300000, guid: 3325a70d7fe62944e98589e09a9acad3, type: 3}
+  - {fileID: 8300000, guid: 03ca9b28ef2978d4c80ae061f1c4e6e2, type: 3}
   musicVolume: 0.3
   backgroundRenderer: {fileID: 468476316}
 --- !u!4 &468476318
