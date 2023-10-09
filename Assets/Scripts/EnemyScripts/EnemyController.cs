@@ -149,15 +149,16 @@ public class EnemyController : MonoBehaviour
     }
 
     /// <summary>
-    /// This method is called when 
-    /// 
+    /// This method is called 
+    /// Instantiate a 'knife' GameObject at the position defined by
+    /// 'knifePosition' with no rotation (Quaternion.identity).
     /// </summary>
     /// <param name="knife"></param>
     /// <param name="knifePosition"></param>
     protected void Shoot(GameObject knife, Transform knifePosition)
     {
-        // Instantiate a 'knife' GameObject at the position defined by
-        // 'knifePosition' with no rotation (Quaternion.identity).
+        // function used in Unity to create a new instance of a GameObject at a
+        // specified position and rotation.
         Instantiate(knife, knifePosition.position, Quaternion.identity);
     }
 
