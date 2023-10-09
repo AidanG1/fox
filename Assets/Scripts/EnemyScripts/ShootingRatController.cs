@@ -1,7 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// This class updates the shooting rat position and calls a shooting method.
+/// </summary>
 public class ShootingRatController : EnemyController
 {
     [Tooltip("The range at which the rat will shoot the player.")]
@@ -16,8 +17,9 @@ public class ShootingRatController : EnemyController
 
     public void Start()
     {
-        // executes parent class start method
-        //base.Start();
+        // Setting horizontal bounds for shooting rat which walks between two
+        // points
+        // True because bounds are horizontal
         GetBounds(true);
 
         player = GameObject.FindGameObjectWithTag("Player");
@@ -25,23 +27,25 @@ public class ShootingRatController : EnemyController
 
     void Update()
     {
+        // Updating ShootingRat position
         MovementLeftRight();
 
+        // Getting distance of player to shoot at
         float distance = Vector2.Distance(transform.position, player.transform.position);
-
+        // Only shooting if distance is less than shooting range
         if (distance < shootingRange)
         {
+            // Can only shoot if timer is greater than 2
             timer += Time.deltaTime;
             if (timer > 2)
             {
+                // Reset and shoot at player
                 timer = 0;
-                Shoot();
+                Shoot(knife, knifePosition);
             }
         }
     }
 
-    void Shoot()
-    {
-        Instantiate(knife, knifePosition.position, Quaternion.identity);
-    }
+
+
 }
