@@ -29,7 +29,7 @@ public class PlayerController : MonoBehaviour
     // Player grounding variables
     public bool currentlyJumping = false;
     private bool onGround = false;
-    private float previousHorizontalInput = 0f;
+    
 
     // added in for implementing immobility when interacting with a bear trap
     private bool isImmobile = false;
@@ -183,8 +183,7 @@ public class PlayerController : MonoBehaviour
     }
     void ManageJumping()
     {
-        // print("Coyote time: " + coyoteTimeCounter);
-        // print("Jump buffer time: " + jumpBufferTimeCounter);
+        
         if (coyoteTimeCounter > 0 && jumpBufferTimeCounter > 0)
         {
             rb.velocity += new Vector2(0, jumpForce * Time.deltaTime * 100);
@@ -243,8 +242,6 @@ public class PlayerController : MonoBehaviour
     {
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
-        Debug.Log("this is curr health");
-        Debug.Log(currentHealth);
         if (currentHealth <= 0)
         {
             // Game Over
@@ -271,7 +268,6 @@ public class PlayerController : MonoBehaviour
     public void SetImmobile()
     {
         isImmobile = true;
-        //Debug.Log("immobile is set");
     }
 
     void CantMove()

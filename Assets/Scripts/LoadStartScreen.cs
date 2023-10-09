@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneLoader : MonoBehaviour
 {
     // Public method to load a scene by name
-    public void LoadScene(string sceneName)
+    public void LoadScene(string SceneName)
     {
         SceneManager.LoadScene("MainMenu");
     }

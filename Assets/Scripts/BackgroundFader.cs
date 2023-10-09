@@ -12,6 +12,7 @@ public class BackgroundFader : MonoBehaviour
     public Sprite[] backgroundSprites;
     [Tooltip("Array of music clips per background")]
     [Header("Music")]
+    // wrote this in in case we wanted different music for different parts of the map
     public AudioClip[] musicClips;
     [Tooltip("Reference to the SpriteRenderer component displaying the background sprite.")]
     public float musicVolume = 0.3f;
@@ -28,7 +29,7 @@ public class BackgroundFader : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
 
         // Play the music
-        if (musicClips[currentIndex] != null)
+        if (musicClips != null && musicClips.Length > currentIndex && musicClips[currentIndex] != null)
         {
             audioSource.clip = musicClips[currentIndex];
 
@@ -49,10 +50,9 @@ public class BackgroundFader : MonoBehaviour
         if (currentIndex != spriteIndex)
         {
             currentIndex = spriteIndex;
-            Debug.Log(spriteIndex);
 
             // Play the music
-            if (musicClips[spriteIndex] != null)
+            if (musicClips != null && musicClips.Length > currentIndex && musicClips[currentIndex] != null)
             {
                 audioSource.clip = musicClips[spriteIndex];
                 audioSource.Play();

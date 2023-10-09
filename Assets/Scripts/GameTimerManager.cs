@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameTimerManager : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class GameTimerManager : MonoBehaviour
 
     void Update()
     {
-        if (gameActive)
+        if (gameActive && (SceneManager.GetActiveScene().name == "Game"))
         {
             // Update the timer
             timer += Time.deltaTime;
@@ -32,6 +33,8 @@ public class GameTimerManager : MonoBehaviour
             timerText.text = timer.ToString("F2");
         }
     }
+
+
 
     public void EndGame()
     {
