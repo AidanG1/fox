@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8314886080932059308}
   - component: {fileID: 2929930806246603005}
   m_Layer: 0
-  m_Name: Grapes
+  m_Name: grapes
   m_TagString: Berry
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -101,15 +101,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletSound: {fileID: 8300000, guid: b8089d69b4a841b4e972c0d12f61d420, type: 3}
-  maxRicochets: 0
-  maxPierces: 0
-  velocity: 20
-  shouldExplode: 1
-  explosionPrefab: {fileID: 5544124457951114282, guid: 9b44f400840d02a45927c8e702e4166f, type: 3}
-  explosionRadius: 3
-  explosionForce: 3
-  explosionDuration: 1
   fireRate: 1.5
+  velocity: 20
+  maxRicochets: 0
+  shouldExplode: 1
+  explosionDuration: 1
+  explosionForce: 3
+  explosionRadius: 4
+  explosionPrefab: {fileID: 5544124457951114282, guid: 9b44f400840d02a45927c8e702e4166f, type: 3}
+  ricochetSound: {fileID: 0}
 --- !u!96 &2320809411818200860
 TrailRenderer:
   serializedVersion: 3
