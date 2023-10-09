@@ -154,18 +154,19 @@ public class Weapon : MonoBehaviour
         }
 
         // each bullet should be size 20 pixels wide
-        float width = 20f;
-        float spacing = 5f;
-        float position = 1f;
-        float right = bulletPrefabs.Count * width + (bulletPrefabs.Count - 1) * spacing + position + 5f;
-        float height = 30f;
+        float sizeDelta = 50f;
+        float width = 30f;
+        float spacing = 0f;
+        float starting_position = 1f;
+        float right = bulletPrefabs.Count * width + (bulletPrefabs.Count - 1) * spacing + starting_position;
+        float position = starting_position - right / 2 + width / 2;
 
         // set the width of weaponUI
-        weaponUI.GetComponent<RectTransform>().sizeDelta = new Vector2(right, height);
+        weaponUI.GetComponent<RectTransform>().sizeDelta = new Vector2(right, width);
         for (int i = 0; i < bulletPrefabs.Count; i++)
         {
             // update the UI
-            GameObject bulletUI = new GameObject();
+            GameObject bulletUI = new();
             Image bulletImage = bulletUI.AddComponent<Image>();
             bulletImage.sprite = bulletPrefabs[i].GetComponent<SpriteRenderer>().sprite;
 
@@ -173,10 +174,10 @@ public class Weapon : MonoBehaviour
             bulletUI.transform.SetParent(weaponUI.transform);
 
             // set the position of the bulletUI
-            bulletUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(position - right / 3, 2f);
+            bulletUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(position, 0);
 
             // set the size of the bulletUI
-            bulletUI.GetComponent<RectTransform>().sizeDelta = new Vector2(height, height);
+            bulletUI.GetComponent<RectTransform>().sizeDelta = new Vector2(sizeDelta, sizeDelta);
 
             if (bulletPrefabs[i] == activeBulletPrefab)
             {
