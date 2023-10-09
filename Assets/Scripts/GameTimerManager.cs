@@ -33,6 +33,8 @@ public class GameTimerManager : MonoBehaviour
         }
     }
 
+
+
     public void EndGame()
     {
         gameActive = false;
