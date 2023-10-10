@@ -218,4 +218,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 3
   unitsToMove: 0
-  deathSound: {fileID: 8300000, guid: fac7070b4b5c13249927b5344b120f74, type: 3}
+  deathSound: {fileID: 8300000, guid: 35b86fec9c38e3240ac150aa8353a8a8, type: 3}

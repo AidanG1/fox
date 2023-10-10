@@ -29,13 +29,17 @@ public class PlayerController : MonoBehaviour
     // Player grounding variables
     public bool currentlyJumping = false;
     private bool onGround = false;
-    
+
 
     // added in for implementing immobility when interacting with a bear trap
     private bool isImmobile = false;
     private float immobileTimer = 0f;
     [Tooltip("The time the player is immobile when interacting with a bear trap")]
     public float waitTime = 3.3f; // Adjust the wait time as needed
+    private float velocityXSmoothing = 0.0f;
+    private float maxVelocityAdd;
+    private float currentVelocityAdd = 0.0f;
+    private readonly float jumpMultiplier = 100f;
 
 
     // variables for the health bar
@@ -61,6 +65,24 @@ public class PlayerController : MonoBehaviour
     [Tooltip("The hurt sound of the player")]
     public AudioClip hurtSound;
 
+    void Awake()
+    {
+#if UNITY_EDITOR
+        QualitySettings.vSyncCount = 0;  // VSync must be disabled
+        Application.targetFrameRate = 30;
+#endif
+
+        // set max velocity add
+        var simulatedFPS = 5000f;
+
+        var deltaTime = 1f / simulatedFPS;
+
+        var jumpingFrames = Mathf.Ceil(Mathf.Min(coyoteTime, jumpBufferTime) / deltaTime);
+
+        maxVelocityAdd = jumpForce * deltaTime * jumpMultiplier * jumpingFrames;
+
+        print(maxVelocityAdd);
+    }
     void Start()
     {
         // Get the Rigidbody2D component of the player
@@ -90,7 +112,6 @@ public class PlayerController : MonoBehaviour
             ManageJumping();
         }
         ManageShooting();
-        ManageMovingPlatform();
         CantMove();
     }
     void ManageInputs()
@@ -138,28 +159,6 @@ public class PlayerController : MonoBehaviour
             coyoteTimeCounter -= Time.deltaTime;
         }
     }
-    void ManageMovingPlatform()
-    {
-        // check if player is touching platform layer
-        // boxcast down to see if moving platform is below
-        // if so, move the player with the platform
-        var bc = Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, maxDistance, 7);
-        if (bc && bc.collider.CompareTag("MovingPlatform"))
-        {
-            // Get the MovingPlatform component from the collider's GameObject
-            MovingPlatform platform = bc.collider.gameObject.GetComponent<MovingPlatform>();
-
-            // Check if the platform component exists
-            if (platform != null)
-            {
-                // Move the player with the platform
-                var vel = rb.velocity;
-                vel.x += platform.speed;
-                rb.velocity = vel;
-            }
-        }
-    }
-    private float velocityXSmoothing = 0.0f;
     void ManageWalking()
     {
         // Calculate the desired horizontal velocity based on player input
@@ -183,10 +182,16 @@ public class PlayerController : MonoBehaviour
     }
     void ManageJumping()
     {
-        
         if (coyoteTimeCounter > 0 && jumpBufferTimeCounter > 0)
         {
-            rb.velocity += new Vector2(0, jumpForce * Time.deltaTime * 100);
+            var velocityAdd = jumpForce * Time.deltaTime * jumpMultiplier;
+            if (currentVelocityAdd + velocityAdd > maxVelocityAdd)
+            {
+                velocityAdd = maxVelocityAdd - currentVelocityAdd;
+                print("velocityAdd: " + velocityAdd);
+            }
+            rb.velocity += new Vector2(0, velocityAdd);
+            currentVelocityAdd += velocityAdd;
             jumpBufferTimeCounter = 0;
 
             // Play the jump sound
@@ -195,6 +200,15 @@ public class PlayerController : MonoBehaviour
                 AudioSource.PlayClipAtPoint(jumpSound, transform.position);
                 jumpSoundPlayed = true;
             }
+        }
+        else
+        {
+            if (currentVelocityAdd > 0)
+            {
+                print("currentVelocityAdd: " + currentVelocityAdd);
+                // print(maxVelocityAdd);
+            }
+            currentVelocityAdd = 0;
         }
 
         if (frameInput.jumpUpPressed && rb.velocity.y > 0)
@@ -236,7 +250,6 @@ public class PlayerController : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawCube(transform.position - transform.up * maxDistance, boxSize);
     }
-
     // these two functions are for the health bar
     public void TakeDamage(float damage)
     {
@@ -269,7 +282,6 @@ public class PlayerController : MonoBehaviour
     {
         isImmobile = true;
     }
-
     void CantMove()
     {
         if (isImmobile)
@@ -288,7 +300,6 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Trap"))
@@ -296,7 +307,6 @@ public class PlayerController : MonoBehaviour
             TakeDamage(20.0f);
         }
     }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Fruit"))

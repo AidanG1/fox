@@ -5068,7 +5068,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 181062328842231242, guid: 373051b33c10a456abc65df3b2e64e16, type: 3}
       propertyPath: coyoteTime
-      value: 0.05
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 181062328842231242, guid: 373051b33c10a456abc65df3b2e64e16, type: 3}
       propertyPath: slideSound
