@@ -36,7 +36,6 @@ public class PlayerController : MonoBehaviour
     private float immobileTimer = 0f;
     [Tooltip("The time the player is immobile when interacting with a bear trap")]
     public float waitTime = 3.3f; // Adjust the wait time as needed
-    private float velocityXSmoothing = 0.0f;
     private float maxVelocityAdd;
     private float currentVelocityAdd = 0.0f;
     private readonly float jumpMultiplier = 100f;
@@ -125,10 +124,21 @@ public class PlayerController : MonoBehaviour
     }
     void ManageGround()
     {
-        if (Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, maxDistance, groundLayerMask))
+        var hit = Physics2D.BoxCast(transform.position, boxSize, 0, -transform.up, maxDistance, groundLayerMask);
+        if (hit.collider != null)
         {
             onGround = true;
             currentlyJumping = false;
+
+            // rotate the player to match the ground
+            var angle = Mathf.Atan2(hit.normal.y, hit.normal.x) * Mathf.Rad2Deg - 90;
+
+            if (Mathf.Abs(angle) > 90)
+            {
+                angle = 0;
+            }
+
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
         }
         else
         {
@@ -161,15 +171,8 @@ public class PlayerController : MonoBehaviour
     }
     void ManageWalking()
     {
-        // Calculate the desired horizontal velocity based on player input
-        float targetVelocityX = frameInput.horizontalInput * walkSpeed;
-
-        // smoothTIme influences how quick the fox runs after input. 
-        float smoothTime = 0.01f; // Adjust this value for desired smoothing
-        float velocityX = Mathf.SmoothDamp(rb.velocity.x, targetVelocityX, ref velocityXSmoothing, smoothTime);
-
         // Apply the new horizontal velocity
-        rb.velocity = new Vector2(velocityX, rb.velocity.y);
+        rb.velocity = new Vector2(frameInput.horizontalInput * walkSpeed, rb.velocity.y);
 
         // Check for abrupt stops and play the slide sound
         // if (Mathf.Abs(rb.velocity.x) > 2f && onGround && frameInput.horizontalInput == 0)
