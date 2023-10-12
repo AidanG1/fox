@@ -66,10 +66,10 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
-#if UNITY_EDITOR
-        QualitySettings.vSyncCount = 0;  // VSync must be disabled
-        Application.targetFrameRate = 30;
-#endif
+// #if UNITY_EDITOR
+//         QualitySettings.vSyncCount = 0;  // VSync must be disabled
+//         Application.targetFrameRate = 30;
+// #endif
 
         // set max velocity add
         var simulatedFPS = 5000f;
