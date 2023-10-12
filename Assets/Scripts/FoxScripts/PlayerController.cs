@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour
             // rotate the player to match the ground
             var angle = Mathf.Atan2(hit.normal.y, hit.normal.x) * Mathf.Rad2Deg - 90;
 
-            if (Mathf.Abs(angle) > 90)
+            if (Mathf.Abs(angle) > 50)
             {
                 angle = 0;
             }
