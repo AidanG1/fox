@@ -82,7 +82,6 @@ public class BearTrap : MonoBehaviour
         berryAct = false;
 
         AudioSource.PlayClipAtPoint(trapSounds[1], transform.position);
-
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
