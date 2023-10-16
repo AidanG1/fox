@@ -101,7 +101,7 @@ public class BearTrap : MonoBehaviour
             {
         
                 collision.gameObject.GetComponent<PlayerController>().SetImmobile();
-
+                collision.gameObject.GetComponent<PlayerController>().TakeDamage(20);
             }
             if (collision.gameObject.CompareTag("Berry") || collision.gameObject.CompareTag("Explosion")) {
                 berryAct = true;
