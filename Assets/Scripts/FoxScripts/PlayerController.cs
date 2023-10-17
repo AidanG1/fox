@@ -40,6 +40,8 @@ public class PlayerController : MonoBehaviour
     private float currentVelocityAdd = 0.0f;
     private readonly float jumpMultiplier = 100f;
 
+    public float invincibilityTime = 2f;
+    private float invincibilityTimer = 0f;
 
     // variables for the health bar
     [Tooltip("The health bar of the player")]
@@ -66,10 +68,10 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
-// #if UNITY_EDITOR
-//         QualitySettings.vSyncCount = 0;  // VSync must be disabled
-//         Application.targetFrameRate = 30;
-// #endif
+        // #if UNITY_EDITOR
+        //         QualitySettings.vSyncCount = 0;  // VSync must be disabled
+        //         Application.targetFrameRate = 30;
+        // #endif
 
         // set max velocity add
         var simulatedFPS = 5000f;
@@ -102,6 +104,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         ManageInputs();
+        ManageInvincibility();
         ManageGround();
         ManageJumpBuffer();
         ManageCoyote();
@@ -121,6 +124,13 @@ public class PlayerController : MonoBehaviour
         frameInput.jumpPressed = Input.GetKey(KeyCode.Space);
         frameInput.jumpUpPressed = Input.GetKeyUp(KeyCode.Space);
         frameInput.shootPressed = Input.GetMouseButtonDown(0);
+    }
+    void ManageInvincibility()
+    {
+        if (invincibilityTimer > 0)
+        {
+            invincibilityTimer -= Time.deltaTime;
+        }
     }
     void ManageGround()
     {
@@ -256,6 +266,10 @@ public class PlayerController : MonoBehaviour
     // these two functions are for the health bar
     public void TakeDamage(float damage)
     {
+        if (invincibilityTimer > 0)
+        {
+            return;
+        }
         currentHealth -= damage;
         healthBar.SetHealth(currentHealth);
         if (currentHealth <= 0)
@@ -270,7 +284,8 @@ public class PlayerController : MonoBehaviour
             AudioSource.PlayClipAtPoint(hurtSound, transform.position);
         }
 
-        StartCoroutine(BlinkColor(2, Color.red));
+        StartCoroutine(BlinkColor(invincibilityTime, Color.red));
+        invincibilityTimer = invincibilityTime;
     }
     public void AddHealth(float addedHealth)
     {
