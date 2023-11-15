@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8314886080932059308}
   - component: {fileID: 2929930806246603005}
   m_Layer: 0
-  m_Name: Coconut
+  m_Name: coconut
   m_TagString: Berry
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -238,7 +238,7 @@ Rigidbody2D:
   m_Mass: 25
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1.2
+  m_GravityScale: 3
   m_Material: {fileID: 6200000, guid: a23370a5f39a4ed449073befa4ab9ef7, type: 2}
   m_IncludeLayers:
     serializedVersion: 2

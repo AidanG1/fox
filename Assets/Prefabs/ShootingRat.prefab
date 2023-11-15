@@ -184,7 +184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 0
   unitsToMove: 0
-  deathSound: {fileID: 8300000, guid: b8e1867da69231947b62c3ef18836320, type: 3}
+  deathSound: {fileID: 8300000, guid: 35b86fec9c38e3240ac150aa8353a8a8, type: 3}
   shootingRange: 0
   knife: {fileID: 751797531077095109, guid: 8e5de813d0df54d8bb74d6d8c28bfb63, type: 3}
   knifePosition: {fileID: 7608300156965299026}

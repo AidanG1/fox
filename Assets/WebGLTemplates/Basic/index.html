@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Super Mr Fox</title>
+  <link rel="shortcut icon" href="TemplateData/fox.ico">
+  <link rel="stylesheet" href="TemplateData/style.css">
+  <!-- og urls -->
+  <meta property="og:url" content="http://supermrfox.aidang.me/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Super Mr Fox">
+  <meta property="og:description"
+    content="Created by Aidan Gerber, Manny Santiago, and Joey Stanley for game development class. Loosely based on the movie Fantastic Mr. Fox.">
+  <meta property="og:image" content="http://supermrfox.aidang.me/TemplateData/fox.jpg">
+</head>
+
+<body>
+  <div id="loading-screen">
+    <svg viewBox="0 0 960 300">
+      <symbol id="s-text">
+        <text text-anchor="middle" x="50%" y="80%">Super Mr Fox</text>
+        <text text-anchor="middle" x="52%" y="80%">Super Mr Fox</text>
+      </symbol>
+
+      <g class="g-ants">
+        <use xlink:href="#s-text" class="text-copy"></use>
+        <use xlink:href="#s-text" class="text-copy"></use>
+        <use xlink:href="#s-text" class="text-copy"></use>
+        <use xlink:href="#s-text" class="text-copy"></use>
+        <use xlink:href="#s-text" class="text-copy"></use>
+      </g>
+    </svg>
+    <h2>Created by Aidan Gerber, Manny Santiago, and Joey Stanley for game development class. <br>Loosely based on the movie Fantastic Mr. Fox.</h2>
+    <p>Source code available at <a href="https://github.com/AidanG1/fox" target="_blank">github.com/AidanG1/fox</a></p>
+    <p>Give it 10 seconds to load for the first time🦊🦊🦊</p>
+    <div id="unity-loading-bar">
+      <div id="unity-progress-bar-empty">
+        <div id="unity-progress-bar-full"></div>
+      </div>
+    </div>
+  </div>
+  <div id="unity-container">
+    <canvas id="unity-canvas" width=auto height=auto tabindex="-1"></canvas>
+  </div>
+  <script>
+
+    var container = document.querySelector("#unity-container");
+    var canvas = document.querySelector("#unity-canvas");
+    var loadingBar = document.querySelector("#unity-loading-bar");
+    var progressBarFull = document.querySelector("#unity-progress-bar-full");
+
+    var buildUrl = "Build";
+    var loaderUrl = buildUrl + "/FoxBuild.loader.js";
+    var config = {
+      dataUrl: buildUrl + "/FoxBuild.data",
+      frameworkUrl: buildUrl + "/FoxBuild.framework.js",
+      codeUrl: buildUrl + "/FoxBuild.wasm",
+      streamingAssetsUrl: "StreamingAssets",
+      companyName: "DIS",
+      productName: "Fox",
+      productVersion: "1.0",
+      // showBanner: unityShowBanner,
+    };
+
+    // By default Unity keeps WebGL canvas render target size matched with
+    // the DOM size of the canvas element (scaled by window.devicePixelRatio)
+    // Set this to false if you want to decouple this synchronization from
+    // happening inside the engine, and you would instead like to size up
+    // the canvas DOM size and WebGL render target sizes yourself.
+    // config.matchWebGLToCanvasSize = false;
+
+    if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+      // Mobile device style: fill the whole browser client area with the game canvas:
+
+      var meta = document.createElement('meta');
+      meta.name = 'viewport';
+      meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+      document.getElementsByTagName('head')[0].appendChild(meta);
+      container.className = "unity-mobile";
+      canvas.className = "unity-mobile";
+
+      // To lower canvas resolution on mobile devices to gain some
+      // performance, uncomment the following line:
+      // config.devicePixelRatio = 1;
+    } else {
+      // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
+      canvas.style.width = "100%";
+      canvas.style.height = "100%";
+    }
+
+    loadingBar.style.display = "block";
+
+    var script = document.createElement("script");
+    script.src = loaderUrl;
+    script.onload = () => {
+      createUnityInstance(canvas, config, (progress) => {
+        progressBarFull.style.width = 100 * progress + "%";
+      }).then((unityInstance) => {
+        // remove loading screen
+        document.querySelector("#loading-screen").remove();
+      }).catch((message) => {
+        alert(message);
+      });
+    };
+
+    document.body.appendChild(script);
+  </script>
+</body>
+
+</html>

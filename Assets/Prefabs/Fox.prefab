@@ -333,9 +333,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthMax: 100
   walkSpeed: 15
-  jumpForce: 4
+  jumpForce: 4.05
   boxSize: {x: 0.6, y: 0.6, z: 1}
-  maxDistance: 0.9
+  maxDistance: 0.7
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 8
@@ -343,7 +343,7 @@ MonoBehaviour:
   waitTime: 3.3
   healthBar: {fileID: 0}
   currentHealth: 0
-  coyoteTime: 0.05
+  coyoteTime: 0.1
   jumpBufferTime: 0.1
   jumpSound: {fileID: 8300000, guid: 004cc161998d4aa4db8bf36845c7a66c, type: 3}
   slideSound: {fileID: 8300000, guid: 746419694e8e1bc468bd632a4202342a, type: 3}
